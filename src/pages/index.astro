@@ -12,8 +12,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                 <h1
                     class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight"
                 >
-                    How we tested <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-eoe-accent to-purple-500"
+                    How we tested <span class="text-eoe-accent"
                         >Galactic Fruit</span
                     >
                 </h1>
@@ -26,7 +25,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                         target="_blank"
                         rel="noopener noreferrer"
                         class="text-eoe-accent hover:underline"
-                        >Galactic Fruit (Echoes of Exile)</a
+                        >Galactic Fruit</a
                     >. Explore the strategies, plans, and results of our QA
                     process.
                 </p>
@@ -47,10 +46,10 @@ import MainLayout from "../layouts/MainLayout.astro";
             </div>
 
             <!-- Decorative background element -->
-            <div
-                class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-eoe-accent/10 to-transparent pointer-events-none"
+            <!-- <div
+                class="absolute top-0 right-0 w-1/2 h-full bg-eoe-accent/5 pointer-events-none"
             >
-            </div>
+            </div> -->
         </div>
 
         <!-- Features Grid -->
@@ -147,7 +146,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                 <p class="text-eoe-muted mb-4">
                     Galactic Fruit is a passion project that has been in work
                     since 2024. Meet the testing team that helped ship this
-                    project.
+                    game.
                 </p>
                 <a
                     href={import.meta.env.BASE_URL + "/about"}

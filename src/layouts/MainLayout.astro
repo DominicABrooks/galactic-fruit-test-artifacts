@@ -39,18 +39,7 @@ const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
 
         <main class="md:ml-64 min-h-screen relative">
             <!-- Background ambient glow -->
-            <div
-                class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none"
-            >
-                <div
-                    class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-eoe-accent/5 rounded-full blur-[100px]"
-                >
-                </div>
-                <div
-                    class="absolute bottom-[-10%] left-[20%] w-[400px] h-[400px] bg-purple-600/5 rounded-full blur-[100px]"
-                >
-                </div>
-            </div>
+            <!-- Background ambient glow removed -->
 
             <div class="max-w-7xl mx-auto p-8 md:p-12">
                 <header class="mb-12">
@@ -59,10 +48,7 @@ const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
                     >
                         {title}
                     </h2>
-                    <div
-                        class="h-1 w-20 bg-gradient-to-r from-eoe-accent to-purple-600 rounded-full"
-                    >
-                    </div>
+                    <div class="h-1 w-20 bg-eoe-accent rounded-full"></div>
                 </header>
 
                 <div class="animate-fade-in">
