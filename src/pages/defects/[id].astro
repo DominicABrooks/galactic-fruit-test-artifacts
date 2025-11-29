@@ -130,7 +130,9 @@ const { id } = Astro.params;
     <script define:vars={{ id }}>
         document.addEventListener("DOMContentLoaded", async () => {
             try {
-                const response = await fetch(`/data/defects/${id}.json`);
+                        const base = import.meta.env.BASE_URL || '/';
+                        const baseSlash = base.endsWith('/') ? base : base + '/';
+                        const response = await fetch(`${baseSlash}data/defects/${id}.json`);
                 if (!response.ok) throw new Error("Defect not found");
                 const data = await response.json();
 

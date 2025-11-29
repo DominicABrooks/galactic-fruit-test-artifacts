@@ -290,6 +290,8 @@ import builds from "../data/builds.json";
 
 <script>
     // Client-side logic
+    const base = import.meta.env.BASE_URL || '/';
+    const baseSlash = base.endsWith('/') ? base : base + '/';
     document.addEventListener("DOMContentLoaded", async () => {
         const buildItems = document.querySelectorAll(".build-item");
         const emptyState = document.getElementById("empty-state");
@@ -301,7 +303,7 @@ import builds from "../data/builds.json";
         // Load Test Case Index
         let testCaseIndex = {};
         try {
-            const response = await fetch("/data/testCaseIndex.json");
+            const response = await fetch(`${baseSlash}data/testCaseIndex.json`);
             testCaseIndex = await response.json();
         } catch (e) {
             console.error("Failed to load test case index", e);
@@ -325,7 +327,7 @@ import builds from "../data/builds.json";
             let executionData: any = null;
             try {
                 const response = await fetch(
-                    `/data/executions/build_${buildId}.json`,
+                    `${baseSlash}data/executions/build_${buildId}.json`,
                 );
                 executionData = await response.json();
             } catch (e) {
@@ -429,7 +431,7 @@ import builds from "../data/builds.json";
                 let testCaseDef: any = null;
                 try {
                     const response = await fetch(
-                        `/data/testCases/${testId}.json`,
+                        `${baseSlash}data/testCases/${testId}.json`,
                     );
                     testCaseDef = await response.json();
                 } catch (e) {
@@ -506,7 +508,7 @@ import builds from "../data/builds.json";
                     if (defectNotes) {
                         if (defectMatch) {
                             const defectId = defectMatch[1];
-                            defectNotes.innerHTML = `${notes.replace(defectId, "")} <a href="/defects/${defectId}" class="text-eoe-accent hover:underline font-mono ml-1">${defectId} ↗</a>`;
+                                defectNotes.innerHTML = `${notes.replace(defectId, "")} <a href="${baseSlash}defects/\${defectId}" class="text-eoe-accent hover:underline font-mono ml-1">\${defectId} ↗</a>`;
                         } else {
                             defectNotes.textContent =
                                 notes || "Test failed. No defect ID linked.";
