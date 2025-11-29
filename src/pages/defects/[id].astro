@@ -1,0 +1,203 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export async function getStaticPaths() {
+    // In a real app, this would fetch all defect IDs.
+    // For this static generation, we'll define the known defects.
+    return [{ params: { id: "DEF-001" } }];
+}
+
+const { id } = Astro.params;
+---
+
+<MainLayout title={`Defect ${id}`} currentPath="/test-execution">
+    <div
+        class="max-w-4xl mx-auto space-y-6 text-eoe-muted"
+        id="defect-container"
+    >
+        <!-- Loading State -->
+        <div id="loading" class="text-center py-12">
+            <div
+                class="animate-spin rounded-full h-8 w-8 border-b-2 border-eoe-accent mx-auto mb-4"
+            >
+            </div>
+            <p>Loading defect data...</p>
+        </div>
+
+        <!-- Content (Hidden initially) -->
+        <div id="content" class="hidden space-y-6">
+            <!-- Header -->
+            <div
+                class="bg-eoe-panel border border-white/5 rounded-xl p-6 flex justify-between items-start"
+            >
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <h1
+                            class="text-2xl font-bold text-white"
+                            id="defect-id"
+                        >
+                        </h1>
+                        <span
+                            id="defect-status"
+                            class="px-2 py-0.5 rounded text-xs font-medium border"
+                        ></span>
+                    </div>
+                    <h2 class="text-lg text-white/90" id="defect-summary"></h2>
+                </div>
+                <div class="text-right text-sm">
+                    <div class="text-eoe-muted">Severity</div>
+                    <div class="text-red-400 font-medium" id="defect-severity">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3
+                        class="text-white font-medium mb-4 border-b border-white/5 pb-2"
+                    >
+                        Environment
+                    </h3>
+                    <dl class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <dt>Build:</dt>
+                            <dd class="text-white" id="defect-env"></dd>
+                        </div>
+                        <div class="flex justify-between">
+                            <dt>Reported By:</dt>
+                            <dd class="text-white" id="defect-reporter"></dd>
+                        </div>
+                        <div class="flex justify-between">
+                            <dt>Date:</dt>
+                            <dd class="text-white" id="defect-date"></dd>
+                        </div>
+                    </dl>
+                </div>
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3
+                        class="text-white font-medium mb-4 border-b border-white/5 pb-2"
+                    >
+                        Attachments
+                    </h3>
+                    <div id="defect-attachments" class="space-y-2">
+                        <!-- Attachments injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description & Steps -->
+            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <h3 class="text-white font-medium mb-4">Description</h3>
+                <p class="text-sm mb-6" id="defect-desc"></p>
+
+                <h3 class="text-white font-medium mb-4">Steps to Reproduce</h3>
+                <div
+                    class="bg-black/20 rounded-lg p-4 font-mono text-sm text-white/80"
+                    id="defect-steps"
+                >
+                    <!-- Steps injected here -->
+                </div>
+            </div>
+
+            <!-- Expected vs Actual -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3
+                        class="text-green-400 font-medium mb-2 text-sm uppercase tracking-wider"
+                    >
+                        Expected Result
+                    </h3>
+                    <p class="text-sm" id="defect-expected"></p>
+                </div>
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3
+                        class="text-red-400 font-medium mb-2 text-sm uppercase tracking-wider"
+                    >
+                        Actual Result
+                    </h3>
+                    <p class="text-sm" id="defect-actual"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="hidden text-center py-12">
+            <p class="text-red-400">Failed to load defect data.</p>
+        </div>
+    </div>
+
+    <script define:vars={{ id }}>
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+                const response = await fetch(`/data/defects/${id}.json`);
+                if (!response.ok) throw new Error("Defect not found");
+                const data = await response.json();
+
+                // Populate fields
+                document.getElementById("defect-id").textContent = data.id;
+                document.getElementById("defect-summary").textContent =
+                    data.summary;
+
+                const statusEl = document.getElementById("defect-status");
+                statusEl.textContent = data.status;
+                statusEl.className = `px-2 py-0.5 rounded text-xs font-medium border ${
+                    data.status === "Open"
+                        ? "bg-red-500/10 text-red-400 border-red-500/20"
+                        : "bg-green-500/10 text-green-400 border-green-500/20"
+                }`;
+
+                document.getElementById("defect-severity").textContent =
+                    data.severity;
+                document.getElementById("defect-env").textContent =
+                    data.environment;
+                document.getElementById("defect-reporter").textContent =
+                    data.reporter;
+                document.getElementById("defect-date").textContent = data.date;
+                document.getElementById("defect-desc").textContent =
+                    data.description;
+                document.getElementById("defect-expected").textContent =
+                    data.expected;
+                document.getElementById("defect-actual").textContent =
+                    data.actual;
+
+                // Steps
+                document.getElementById("defect-steps").innerHTML = data.steps
+                    .map((step) => `<div class="mb-1">${step}</div>`)
+                    .join("");
+
+                // Attachments
+                const attachContainer =
+                    document.getElementById("defect-attachments");
+                if (data.attachments && data.attachments.length > 0) {
+                    attachContainer.innerHTML = data.attachments
+                        .map(
+                            (att) => `
+                        <div class="flex items-center gap-3 p-2 bg-white/5 rounded border border-white/10">
+                            <div class="w-8 h-8 bg-white/10 rounded flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <div>
+                                <div class="text-white text-xs font-medium">${att.name}</div>
+                                <div class="text-eoe-muted text-[10px]">${att.description}</div>
+                            </div>
+                        </div>
+                    `,
+                        )
+                        .join("");
+                } else {
+                    attachContainer.innerHTML =
+                        '<div class="text-xs italic">No attachments</div>';
+                }
+
+                // Show content
+                document.getElementById("loading").classList.add("hidden");
+                document.getElementById("content").classList.remove("hidden");
+            } catch (e) {
+                console.error(e);
+                document.getElementById("loading").classList.add("hidden");
+                document.getElementById("error").classList.remove("hidden");
+            }
+        });
+    </script>
+</MainLayout>

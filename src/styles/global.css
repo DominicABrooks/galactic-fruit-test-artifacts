@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-eoe-dark text-eoe-text antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-eoe-dark;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-eoe-panel rounded-full border border-eoe-dark;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-eoe-muted;
+  }
+}

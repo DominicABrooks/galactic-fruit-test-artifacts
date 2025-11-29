@@ -1,0 +1,16 @@
+{
+    "id": "TC-LOGIN-004",
+    "name": "Verify email format validation",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter invalid email format (e.g. 'userdomain.com')",
+            "expected": "Field populated"
+        },
+        {
+            "step": 2,
+            "action": "Click Login button",
+            "expected": "Error message 'Invalid email format' displayed"
+        }
+    ]
+}

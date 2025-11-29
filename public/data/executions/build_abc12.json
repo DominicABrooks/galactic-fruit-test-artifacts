@@ -1,0 +1,20 @@
+{
+    "buildId": "abc12",
+    "results": [
+        {
+            "testCaseId": "TC-001",
+            "status": "Pass",
+            "notes": ""
+        },
+        {
+            "testCaseId": "TC-002",
+            "status": "Fail",
+            "notes": "Item icon missing."
+        },
+        {
+            "testCaseId": "TC-003",
+            "status": "Fail",
+            "notes": "Animation glitch."
+        }
+    ]
+}

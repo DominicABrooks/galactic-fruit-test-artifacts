@@ -1,0 +1,21 @@
+{
+    "id": "TC-005",
+    "name": "Save/Load Game",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Save game via menu",
+            "expected": "Save successful message"
+        },
+        {
+            "step": 2,
+            "action": "Exit to main menu",
+            "expected": "Main menu appears"
+        },
+        {
+            "step": 3,
+            "action": "Load saved game",
+            "expected": "Player spawns at saved location"
+        }
+    ]
+}

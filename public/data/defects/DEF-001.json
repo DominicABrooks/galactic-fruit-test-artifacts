@@ -1,0 +1,24 @@
+{
+    "id": "DEF-001",
+    "summary": "Email format validation missing on client side",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "QA Staging v1.0.1",
+    "reporter": "QA Analyst",
+    "date": "2024-03-25",
+    "description": "The login form accepts invalid email formats (e.g. 'userdomain.com' without @) and attempts to send them to the server, instead of showing a client-side validation error.",
+    "steps": [
+        "1. Navigate to Login Page",
+        "2. Enter 'userdomain.com' in Email field",
+        "3. Enter valid password",
+        "4. Click Login"
+    ],
+    "expected": "Client-side error 'Invalid email format' should appear immediately or on submit.",
+    "actual": "No error shown, request sent to server (500 error returned).",
+    "attachments": [
+        {
+            "name": "screenshot_error.png",
+            "description": "Network tab showing 500 error"
+        }
+    ]
+}

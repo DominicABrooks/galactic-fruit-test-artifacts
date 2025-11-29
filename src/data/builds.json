@@ -1,0 +1,23 @@
+[
+    {
+        "id": "bWAed",
+        "name": "Alpha Build 0.9.1",
+        "date": "2024-03-15",
+        "status": "Completed",
+        "passRate": 92
+    },
+    {
+        "id": "abc12",
+        "name": "Alpha Build 0.9.0",
+        "date": "2024-03-10",
+        "status": "Completed",
+        "passRate": 85
+    },
+    {
+        "id": "xyz88",
+        "name": "Alpha Build 0.8.9",
+        "date": "2024-03-05",
+        "status": "Completed",
+        "passRate": 78
+    }
+]

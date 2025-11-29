@@ -1,0 +1,16 @@
+{
+    "id": "TC-LOGIN-003",
+    "name": "Verify empty fields validation",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Leave Email and Password empty",
+            "expected": "Fields are empty"
+        },
+        {
+            "step": 2,
+            "action": "Click Login button",
+            "expected": "Validation errors 'Required field' displayed for both inputs"
+        }
+    ]
+}

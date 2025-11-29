@@ -1,0 +1,265 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Test Closure" currentPath="/test-closure">
+    <div class="space-y-8 text-eoe-muted max-w-5xl mx-auto">
+        <!-- Header -->
+        <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+            <h1 class="text-3xl font-bold text-white mb-2">
+                Test Closure Report
+            </h1>
+            <p class="text-lg text-eoe-muted">
+                Final summary and sign-off for Galactic Fruit.
+            </p>
+        </div>
+
+        <!-- 1. Executive Summary -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >1</span
+                >
+                Executive Summary
+            </h2>
+            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <p class="mb-4">
+                    Testing for Galactic Fruit has been completed. The system
+                    meets the primary functional requirements for user
+                    authentication. However, one medium-severity defect
+                    regarding email format validation remains open and has been
+                    deferred to v1.0.2.
+                </p>
+                <div
+                    class="flex items-center gap-4 mt-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg"
+                >
+                    <div
+                        class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-bold"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 13l4 4L19 7"></path></svg
+                        >
+                    </div>
+                    <div>
+                        <h4 class="text-green-400 font-bold">
+                            Ready for Release
+                        </h4>
+                        <p class="text-xs text-green-400/80">
+                            Conditional sign-off granted (Known issue DEF-001
+                            documented).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Test Coverage & Metrics -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >2</span
+                >
+                Coverage & Metrics
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div
+                    class="bg-eoe-panel border border-white/5 rounded-xl p-6 text-center"
+                >
+                    <div class="text-3xl font-bold text-white mb-1">100%</div>
+                    <div
+                        class="text-xs text-eoe-muted uppercase tracking-wider"
+                    >
+                        Requirements Covered
+                    </div>
+                </div>
+                <div
+                    class="bg-eoe-panel border border-white/5 rounded-xl p-6 text-center"
+                >
+                    <div class="text-3xl font-bold text-white mb-1">92%</div>
+                    <div
+                        class="text-xs text-eoe-muted uppercase tracking-wider"
+                    >
+                        Pass Rate
+                    </div>
+                </div>
+                <div
+                    class="bg-eoe-panel border border-white/5 rounded-xl p-6 text-center"
+                >
+                    <div class="text-3xl font-bold text-white mb-1">1</div>
+                    <div
+                        class="text-xs text-eoe-muted uppercase tracking-wider"
+                    >
+                        Open Defects
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="mt-6 bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
+            >
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-white/5 text-xs uppercase text-white">
+                        <tr>
+                            <th class="px-6 py-4">Feature Area</th>
+                            <th class="px-6 py-4">Planned</th>
+                            <th class="px-6 py-4">Executed</th>
+                            <th class="px-6 py-4">Passed</th>
+                            <th class="px-6 py-4">Coverage</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr>
+                            <td class="px-6 py-4 text-white"
+                                >Authentication (Positive)</td
+                            >
+                            <td class="px-6 py-4">5</td>
+                            <td class="px-6 py-4">5</td>
+                            <td class="px-6 py-4 text-green-400">5</td>
+                            <td class="px-6 py-4">100%</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-white"
+                                >Error Handling (Negative)</td
+                            >
+                            <td class="px-6 py-4">8</td>
+                            <td class="px-6 py-4">8</td>
+                            <td class="px-6 py-4 text-yellow-400">7</td>
+                            <td class="px-6 py-4">100%</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-white"
+                                >Security (Lockout)</td
+                            >
+                            <td class="px-6 py-4">3</td>
+                            <td class="px-6 py-4">3</td>
+                            <td class="px-6 py-4 text-green-400">3</td>
+                            <td class="px-6 py-4">100%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. Exit Criteria Evaluation -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >3</span
+                >
+                Exit Criteria Evaluation
+            </h2>
+            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <div
+                            class="mt-1 w-5 h-5 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-xs"
+                        >
+                            ✓
+                        </div>
+                        <div>
+                            <div class="text-white font-medium text-sm">
+                                100% of critical test cases executed
+                            </div>
+                            <div class="text-xs text-eoe-muted">
+                                All P1 and P2 tests completed.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div
+                            class="mt-1 w-5 h-5 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-xs"
+                        >
+                            !
+                        </div>
+                        <div>
+                            <div class="text-white font-medium text-sm">
+                                No High severity defects open
+                            </div>
+                            <div class="text-xs text-eoe-muted">
+                                One Medium defect (DEF-001) remains open. Risk
+                                accepted by PO.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <div
+                            class="mt-1 w-5 h-5 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center text-xs"
+                        >
+                            ✓
+                        </div>
+                        <div>
+                            <div class="text-white font-medium text-sm">
+                                Code coverage > 80%
+                            </div>
+                            <div class="text-xs text-eoe-muted">
+                                Unit tests report 87% coverage.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. Lessons Learned -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >4</span
+                >
+                Lessons Learned & Recommendations
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3
+                        class="text-green-400 font-medium mb-3 uppercase text-xs tracking-wider"
+                    >
+                        What Went Well
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-sm">
+                        <li>
+                            Test data preparation was automated, saving 4 hours.
+                        </li>
+                        <li>
+                            Early involvement in design reviews prevented 3
+                            potential defects.
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3
+                        class="text-red-400 font-medium mb-3 uppercase text-xs tracking-wider"
+                    >
+                        Areas for Improvement
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-sm">
+                        <li>Environment instability caused delays on Day 2.</li>
+                        <li>
+                            Need to define "Client-side Validation" requirements
+                            more clearly.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</MainLayout>

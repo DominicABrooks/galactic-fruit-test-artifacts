@@ -1,0 +1,16 @@
+{
+    "id": "TC-LOGIN-005",
+    "name": "Verify account lockout",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter invalid password 5 times",
+            "expected": "Error 'Invalid credentials' shown 5 times"
+        },
+        {
+            "step": 2,
+            "action": "Enter valid password on 6th attempt",
+            "expected": "Account locked message displayed. Login denied."
+        }
+    ]
+}

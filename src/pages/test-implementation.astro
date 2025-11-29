@@ -1,0 +1,226 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Test Implementation" currentPath="/test-implementation">
+    <div class="space-y-8 text-eoe-muted max-w-5xl mx-auto">
+        <!-- Header -->
+        <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+            <h1 class="text-3xl font-bold text-white mb-2">
+                Test Implementation
+            </h1>
+            <p class="text-lg text-eoe-muted">
+                Test suite organization and automation readiness for SecureLogin
+                v1.0.
+            </p>
+        </div>
+
+        <!-- 1. Test Suite Structure -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >1</span
+                >
+                Test Suite Structure
+            </h2>
+            <div
+                class="bg-eoe-panel border border-white/5 rounded-xl p-6 font-mono text-sm"
+            >
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2 text-white">
+                        <svg
+                            class="w-4 h-4 text-blue-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                            ></path></svg
+                        >
+                        tests/
+                    </div>
+                    <div class="pl-6 space-y-2">
+                        <div class="flex items-center gap-2 text-white">
+                            <svg
+                                class="w-4 h-4 text-blue-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                ></path></svg
+                            >
+                            e2e/
+                        </div>
+                        <div class="pl-6 space-y-1 text-eoe-muted">
+                            <div class="flex items-center gap-2">
+                                <svg
+                                    class="w-4 h-4 text-gray-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                    ></path></svg
+                                >
+                                login.spec.ts
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg
+                                    class="w-4 h-4 text-gray-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                    ></path></svg
+                                >
+                                dashboard.spec.ts
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-white pt-2">
+                            <svg
+                                class="w-4 h-4 text-blue-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                                ></path></svg
+                            >
+                            fixtures/
+                        </div>
+                        <div class="pl-6 space-y-1 text-eoe-muted">
+                            <div class="flex items-center gap-2">
+                                <svg
+                                    class="w-4 h-4 text-yellow-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    ><path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                                    ></path></svg
+                                >
+                                users.json
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Runnable Test Set -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >2</span
+                >
+                Runnable Test Set (Smoke)
+            </h2>
+            <div
+                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
+            >
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-white/5 text-xs uppercase text-white">
+                        <tr>
+                            <th class="px-6 py-4">Execution Order</th>
+                            <th class="px-6 py-4">Test Case ID</th>
+                            <th class="px-6 py-4">Dependency</th>
+                            <th class="px-6 py-4">Estimated Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr>
+                            <td class="px-6 py-4 text-white">1</td>
+                            <td class="px-6 py-4 font-mono text-eoe-accent"
+                                >TC-LOGIN-001</td
+                            >
+                            <td class="px-6 py-4 text-eoe-muted">None</td>
+                            <td class="px-6 py-4 text-white">2 min</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-white">2</td>
+                            <td class="px-6 py-4 font-mono text-eoe-accent"
+                                >TC-LOGIN-002</td
+                            >
+                            <td class="px-6 py-4 text-eoe-muted"
+                                >TC-LOGIN-001 (Env check)</td
+                            >
+                            <td class="px-6 py-4 text-white">1 min</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-white">3</td>
+                            <td class="px-6 py-4 font-mono text-eoe-accent"
+                                >TC-LOGIN-005</td
+                            >
+                            <td class="px-6 py-4 text-eoe-muted">None</td>
+                            <td class="px-6 py-4 text-white">5 min</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. Automation Code Example -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >3</span
+                >
+                Automation Code (Playwright)
+            </h2>
+            <div
+                class="bg-[#1e1e1e] border border-white/10 rounded-xl p-4 overflow-x-auto"
+            >
+                <pre
+                    is:raw
+                    class="text-sm font-mono text-gray-300"><code><span class="text-purple-400">import</span> { test, expect } <span class="text-purple-400">from</span> <span class="text-green-400">'@playwright/test'</span>;
+
+test(<span class="text-green-400">'TC-LOGIN-001: Verify successful login'</span>, <span class="text-blue-400">async</span> ({ page }) => {
+  <span class="text-gray-500">// 1. Navigate to Login Page</span>
+  <span class="text-purple-400">await</span> page.goto(<span class="text-green-400">'/login'</span>);
+
+  <span class="text-gray-500">// 2. Enter valid Email</span>
+  <span class="text-purple-400">await</span> page.fill(<span class="text-green-400">'input[name="email"]'</span>, <span class="text-green-400">'valid@test.com'</span>);
+
+  <span class="text-gray-500">// 3. Enter valid Password</span>
+  <span class="text-purple-400">await</span> page.fill(<span class="text-green-400">'input[name="password"]'</span>, <span class="text-green-400">'P@ss123'</span>);
+
+  <span class="text-gray-500">// 4. Click Login</span>
+  <span class="text-purple-400">await</span> page.click(<span class="text-green-400">'button[type="submit"]'</span>);
+
+  <span class="text-gray-500">// 5. Verify Redirect</span>
+  <span class="text-purple-400">await</span> expect(page).toHaveURL(<span class="text-green-400">'/dashboard'</span>);
+  <span class="text-purple-400">await</span> expect(page.locator(<span class="text-green-400">'h1'</span>)).toHaveText(<span class="text-green-400">'Welcome Back'</span>);
+});</code></pre>
+            </div>
+        </section>
+    </div>
+</MainLayout>

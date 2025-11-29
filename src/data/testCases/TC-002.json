@@ -1,0 +1,21 @@
+{
+    "id": "TC-002",
+    "name": "Inventory - Add Item",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open inventory (I)",
+            "expected": "Inventory UI opens"
+        },
+        {
+            "step": 2,
+            "action": "Pick up 'Rusty Sword'",
+            "expected": "Item added to inventory"
+        },
+        {
+            "step": 3,
+            "action": "Hover over item",
+            "expected": "Tooltip shows stats"
+        }
+    ]
+}

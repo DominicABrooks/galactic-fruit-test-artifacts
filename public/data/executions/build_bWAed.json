@@ -1,0 +1,30 @@
+{
+    "buildId": "bWAed",
+    "results": [
+        {
+            "testCaseId": "TC-001",
+            "status": "Pass",
+            "notes": "Smooth movement in all directions."
+        },
+        {
+            "testCaseId": "TC-002",
+            "status": "Pass",
+            "notes": "Item added correctly to first slot."
+        },
+        {
+            "testCaseId": "TC-003",
+            "status": "Fail",
+            "notes": "Hit registration delayed by 200ms."
+        },
+        {
+            "testCaseId": "TC-004",
+            "status": "Pass",
+            "notes": "Updates correctly on damage."
+        },
+        {
+            "testCaseId": "TC-005",
+            "status": "Pass",
+            "notes": "Player position persisted."
+        }
+    ]
+}

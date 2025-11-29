@@ -1,0 +1,15 @@
+{
+    "buildId": "xyz88",
+    "results": [
+        {
+            "testCaseId": "TC-001",
+            "status": "Pass",
+            "notes": ""
+        },
+        {
+            "testCaseId": "TC-002",
+            "status": "Pass",
+            "notes": ""
+        }
+    ]
+}

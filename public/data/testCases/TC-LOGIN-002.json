@@ -1,0 +1,21 @@
+{
+    "id": "TC-LOGIN-002",
+    "name": "Verify invalid password error",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter valid Email",
+            "expected": "Field populated"
+        },
+        {
+            "step": 2,
+            "action": "Enter invalid Password",
+            "expected": "Field populated"
+        },
+        {
+            "step": 3,
+            "action": "Click Login button",
+            "expected": "Error message 'Invalid credentials' displayed"
+        }
+    ]
+}

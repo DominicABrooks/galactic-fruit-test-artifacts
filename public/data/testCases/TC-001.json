@@ -1,0 +1,31 @@
+{
+    "id": "TC-001",
+    "name": "Player Movement - WASD",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch game and enter world",
+            "expected": "Player spawns at start point"
+        },
+        {
+            "step": 2,
+            "action": "Press W",
+            "expected": "Player moves forward"
+        },
+        {
+            "step": 3,
+            "action": "Press S",
+            "expected": "Player moves backward"
+        },
+        {
+            "step": 4,
+            "action": "Press A",
+            "expected": "Player moves left"
+        },
+        {
+            "step": 5,
+            "action": "Press D",
+            "expected": "Player moves right"
+        }
+    ]
+}

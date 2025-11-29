@@ -1,0 +1,31 @@
+{
+    "buildId": "1.0.1",
+    "date": "2024-03-25 14:30",
+    "results": [
+        {
+            "testCaseId": "TC-LOGIN-001",
+            "status": "Pass",
+            "notes": "Login successful"
+        },
+        {
+            "testCaseId": "TC-LOGIN-002",
+            "status": "Pass",
+            "notes": "Error displayed correctly"
+        },
+        {
+            "testCaseId": "TC-LOGIN-003",
+            "status": "Pass",
+            "notes": "Validation working"
+        },
+        {
+            "testCaseId": "TC-LOGIN-004",
+            "status": "Fail",
+            "notes": "Defect: Email format not validated on client side. DEF-001"
+        },
+        {
+            "testCaseId": "TC-LOGIN-005",
+            "status": "Pass",
+            "notes": "Lockout triggered"
+        }
+    ]
+}

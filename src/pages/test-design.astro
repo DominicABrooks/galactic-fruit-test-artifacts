@@ -1,0 +1,232 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Test Design" currentPath="/test-design">
+    <div class="space-y-8 text-eoe-muted max-w-5xl mx-auto">
+        <!-- Header -->
+        <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+            <h1 class="text-3xl font-bold text-white mb-2">Test Design</h1>
+            <p class="text-lg text-eoe-muted">
+                Detailed test cases and data design for Galactic Fruit.
+            </p>
+        </div>
+
+        <!-- 1. Functional Test Cases -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >1</span
+                >
+                Functional Test Cases
+            </h2>
+            <div
+                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
+            >
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-white/5 text-xs uppercase text-white">
+                            <tr>
+                                <th class="px-6 py-4">ID</th>
+                                <th class="px-6 py-4">Title</th>
+                                <th class="px-6 py-4">Preconditions</th>
+                                <th class="px-6 py-4">Test Steps</th>
+                                <th class="px-6 py-4">Expected Result</th>
+                                <th class="px-6 py-4">Test Data</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 font-mono text-eoe-accent"
+                                    >TC-LOGIN-001</td
+                                >
+                                <td class="px-6 py-4 text-white"
+                                    >Verify successful login</td
+                                >
+                                <td class="px-6 py-4"
+                                    >User exists and is active</td
+                                >
+                                <td class="px-6 py-4">
+                                    1. Navigate to Login Page<br />
+                                    2. Enter valid Email<br />
+                                    3. Enter valid Password<br />
+                                    4. Click Login
+                                </td>
+                                <td class="px-6 py-4"
+                                    >User is redirected to Dashboard</td
+                                >
+                                <td class="px-6 py-4 font-mono text-xs"
+                                    >user: valid@test.com<br />pass: P@ss123</td
+                                >
+                            </tr>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 font-mono text-eoe-accent"
+                                    >TC-LOGIN-002</td
+                                >
+                                <td class="px-6 py-4 text-white"
+                                    >Verify invalid password error</td
+                                >
+                                <td class="px-6 py-4">User exists</td>
+                                <td class="px-6 py-4">
+                                    1. Enter valid Email<br />
+                                    2. Enter invalid Password<br />
+                                    3. Click Login
+                                </td>
+                                <td class="px-6 py-4"
+                                    >Error "Invalid credentials" shown</td
+                                >
+                                <td class="px-6 py-4 font-mono text-xs"
+                                    >user: valid@test.com<br />pass: wrongpass</td
+                                >
+                            </tr>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 font-mono text-eoe-accent"
+                                    >TC-LOGIN-003</td
+                                >
+                                <td class="px-6 py-4 text-white"
+                                    >Verify empty fields validation</td
+                                >
+                                <td class="px-6 py-4">None</td>
+                                <td class="px-6 py-4">
+                                    1. Leave Email & Password empty<br />
+                                    2. Click Login
+                                </td>
+                                <td class="px-6 py-4"
+                                    >"Required field" errors shown</td
+                                >
+                                <td class="px-6 py-4 font-mono text-xs">N/A</td>
+                            </tr>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 font-mono text-eoe-accent"
+                                    >TC-LOGIN-004</td
+                                >
+                                <td class="px-6 py-4 text-white"
+                                    >Verify email format validation</td
+                                >
+                                <td class="px-6 py-4">None</td>
+                                <td class="px-6 py-4">
+                                    1. Enter "invalid-email"<br />
+                                    2. Click Login
+                                </td>
+                                <td class="px-6 py-4"
+                                    >"Invalid email format" error shown</td
+                                >
+                                <td class="px-6 py-4 font-mono text-xs"
+                                    >email: plainaddress</td
+                                >
+                            </tr>
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 font-mono text-eoe-accent"
+                                    >TC-LOGIN-005</td
+                                >
+                                <td class="px-6 py-4 text-white"
+                                    >Verify account lockout</td
+                                >
+                                <td class="px-6 py-4">User exists</td>
+                                <td class="px-6 py-4">
+                                    1. Enter invalid password 5 times<br />
+                                    2. Enter valid password on 6th try
+                                </td>
+                                <td class="px-6 py-4"
+                                    >Account locked message shown</td
+                                >
+                                <td class="px-6 py-4 font-mono text-xs"
+                                    >user: locked@test.com</td
+                                >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Test Data Design (EP/BVA) -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >2</span
+                >
+                Test Data Design (EP/BVA)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3 class="text-white font-medium mb-4">
+                        Equivalence Partitioning (Email Field)
+                    </h3>
+                    <ul class="space-y-3 text-sm">
+                        <li
+                            class="flex justify-between border-b border-white/5 pb-2"
+                        >
+                            <span>Valid Email</span>
+                            <span class="font-mono text-green-400"
+                                >user@domain.com</span
+                            >
+                        </li>
+                        <li
+                            class="flex justify-between border-b border-white/5 pb-2"
+                        >
+                            <span>Missing @</span>
+                            <span class="font-mono text-red-400"
+                                >userdomain.com</span
+                            >
+                        </li>
+                        <li
+                            class="flex justify-between border-b border-white/5 pb-2"
+                        >
+                            <span>Missing Domain</span>
+                            <span class="font-mono text-red-400">user@</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Empty String</span>
+                            <span class="font-mono text-red-400">""</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3 class="text-white font-medium mb-4">
+                        Boundary Value Analysis (Password Length)
+                    </h3>
+                    <p class="text-xs text-eoe-muted mb-4">
+                        Requirement: Password must be 8-20 characters.
+                    </p>
+                    <ul class="space-y-3 text-sm">
+                        <li
+                            class="flex justify-between border-b border-white/5 pb-2"
+                        >
+                            <span>7 chars (Invalid)</span>
+                            <span class="font-mono text-red-400">Pass123</span>
+                        </li>
+                        <li
+                            class="flex justify-between border-b border-white/5 pb-2"
+                        >
+                            <span>8 chars (Valid)</span>
+                            <span class="font-mono text-green-400"
+                                >Pass1234</span
+                            >
+                        </li>
+                        <li
+                            class="flex justify-between border-b border-white/5 pb-2"
+                        >
+                            <span>20 chars (Valid)</span>
+                            <span class="font-mono text-green-400"
+                                >P@ssword123456789012</span
+                            >
+                        </li>
+                        <li class="flex justify-between">
+                            <span>21 chars (Invalid)</span>
+                            <span class="font-mono text-red-400"
+                                >P@ssword1234567890123</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</MainLayout>

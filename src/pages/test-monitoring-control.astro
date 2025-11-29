@@ -1,0 +1,274 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+    title="Test Monitoring & Control"
+    currentPath="/test-monitoring-control"
+>
+    <div class="space-y-8 text-eoe-muted max-w-5xl mx-auto">
+        <!-- Header -->
+        <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+            <h1 class="text-3xl font-bold text-white mb-2">
+                Monitoring & Control
+            </h1>
+            <p class="text-lg text-eoe-muted">
+                Real-time status tracking and metrics for Galactic Fruit.
+            </p>
+        </div>
+
+        <!-- 1. Status Report -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >1</span
+                >
+                Weekly Status Report
+            </h2>
+            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div
+                        class="p-4 bg-white/5 rounded-lg border border-white/10"
+                    >
+                        <div
+                            class="text-xs text-eoe-muted uppercase tracking-wider mb-1"
+                        >
+                            Period
+                        </div>
+                        <div class="text-white font-medium">
+                            Mar 18 - Mar 24
+                        </div>
+                    </div>
+                    <div
+                        class="p-4 bg-white/5 rounded-lg border border-white/10"
+                    >
+                        <div
+                            class="text-xs text-eoe-muted uppercase tracking-wider mb-1"
+                        >
+                            Execution Progress
+                        </div>
+                        <div class="text-green-400 font-bold text-xl">85%</div>
+                    </div>
+                    <div
+                        class="p-4 bg-white/5 rounded-lg border border-white/10"
+                    >
+                        <div
+                            class="text-xs text-eoe-muted uppercase tracking-wider mb-1"
+                        >
+                            Pass Rate
+                        </div>
+                        <div class="text-yellow-400 font-bold text-xl">92%</div>
+                    </div>
+                    <div
+                        class="p-4 bg-white/5 rounded-lg border border-white/10"
+                    >
+                        <div
+                            class="text-xs text-eoe-muted uppercase tracking-wider mb-1"
+                        >
+                            Blocking Defects
+                        </div>
+                        <div class="text-red-400 font-bold text-xl">0</div>
+                    </div>
+                </div>
+                <div class="space-y-2 text-sm">
+                    <h4 class="text-white font-medium">Key Highlights:</h4>
+                    <ul class="list-disc list-inside space-y-1 ml-2">
+                        <li>
+                            Smoke tests for Build 1.0.1 passed successfully.
+                        </li>
+                        <li>
+                            Regression testing for "Account Lockout" feature
+                            completed.
+                        </li>
+                        <li>New defect found in Email Validation (DEF-001).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Charts (Burn-down & Pass/Fail) -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >2</span
+                >
+                Metrics & Charts
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Burn-down Chart (CSS/HTML representation) -->
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                    <h3 class="text-white font-medium mb-6">
+                        Test Execution Burn-down
+                    </h3>
+                    <div
+                        class="relative h-48 border-l border-b border-white/10 ml-4 mb-4"
+                    >
+                        <!-- Y-axis labels -->
+                        <div class="absolute -left-6 top-0 text-xs">50</div>
+                        <div class="absolute -left-6 top-1/2 text-xs">25</div>
+                        <div class="absolute -left-4 bottom-0 text-xs">0</div>
+
+                        <!-- Ideal Line (Dotted) -->
+                        <div
+                            class="absolute top-0 left-0 w-full h-full border-t border-r border-white/5 transform origin-top-left rotate-[25deg] scale-x-110 pointer-events-none opacity-30"
+                        >
+                        </div>
+
+                        <!-- Actual Line (Bars for simplicity) -->
+                        <div
+                            class="absolute bottom-0 left-[10%] w-4 h-[80%] bg-blue-500/50 rounded-t"
+                            title="Day 1"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-[30%] w-4 h-[60%] bg-blue-500/50 rounded-t"
+                            title="Day 2"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-[50%] w-4 h-[45%] bg-blue-500/50 rounded-t"
+                            title="Day 3"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-[70%] w-4 h-[20%] bg-blue-500/50 rounded-t"
+                            title="Day 4"
+                        >
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-[90%] w-4 h-[10%] bg-green-500/50 rounded-t"
+                            title="Day 5"
+                        >
+                        </div>
+                    </div>
+                    <div
+                        class="flex justify-between text-xs text-eoe-muted px-4"
+                    >
+                        <span>Day 1</span>
+                        <span>Day 2</span>
+                        <span>Day 3</span>
+                        <span>Day 4</span>
+                        <span>Day 5</span>
+                    </div>
+                </div>
+
+                <!-- Pass/Fail Chart -->
+                <div
+                    class="bg-eoe-panel border border-white/5 rounded-xl p-6 flex flex-col items-center justify-center"
+                >
+                    <h3 class="text-white font-medium mb-6 self-start">
+                        Pass / Fail Distribution
+                    </h3>
+                    <div
+                        class="relative w-40 h-40 rounded-full border-8 border-green-500 flex items-center justify-center"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-1/2 h-full bg-eoe-panel"
+                        >
+                        </div>
+                        <!-- Mask for pie effect -->
+                        <div
+                            class="absolute top-0 right-0 w-1/2 h-1/2 bg-red-500 rounded-tr-full transform rotate-12 origin-bottom-left"
+                        >
+                        </div>
+
+                        <div class="text-center z-10">
+                            <div class="text-2xl font-bold text-white">92%</div>
+                            <div class="text-xs text-green-400">Pass Rate</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 mt-8 text-sm">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full">
+                            </div>
+                            <span>Pass (46)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <span>Fail (4)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Defect Summary -->
+        <section>
+            <h2
+                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+            >
+                <span
+                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
+                    >3</span
+                >
+                Defect Summary & Triage
+            </h2>
+            <div
+                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
+            >
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-white/5 text-xs uppercase text-white">
+                        <tr>
+                            <th class="px-6 py-4">ID</th>
+                            <th class="px-6 py-4">Summary</th>
+                            <th class="px-6 py-4">Severity</th>
+                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4">Triage Note</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr class="hover:bg-white/[0.02]">
+                            <td class="px-6 py-4 font-mono text-eoe-accent"
+                                ><a
+                                    href="/defects/DEF-001"
+                                    class="hover:underline">DEF-001</a
+                                ></td
+                            >
+                            <td class="px-6 py-4 text-white"
+                                >Email format validation missing</td
+                            >
+                            <td class="px-6 py-4"
+                                ><span class="text-yellow-400">Medium</span></td
+                            >
+                            <td class="px-6 py-4"
+                                ><span
+                                    class="px-2 py-0.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded text-xs"
+                                    >Open</span
+                                ></td
+                            >
+                            <td class="px-6 py-4 text-eoe-muted italic"
+                                >"Fix scheduled for v1.0.2"</td
+                            >
+                        </tr>
+                        <tr class="hover:bg-white/[0.02]">
+                            <td class="px-6 py-4 font-mono text-eoe-accent"
+                                >DEF-002</td
+                            >
+                            <td class="px-6 py-4 text-white"
+                                >Login button misalignment on mobile</td
+                            >
+                            <td class="px-6 py-4"
+                                ><span class="text-green-400">Low</span></td
+                            >
+                            <td class="px-6 py-4"
+                                ><span
+                                    class="px-2 py-0.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded text-xs"
+                                    >Deferred</span
+                                ></td
+                            >
+                            <td class="px-6 py-4 text-eoe-muted italic"
+                                >"Cosmetic only. Defer to v1.1"</td
+                            >
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</MainLayout>
