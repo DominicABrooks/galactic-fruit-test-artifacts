@@ -1,0 +1,74 @@
+{
+    "testConditions": [
+        {
+            "id": "TC-COND-001",
+            "category": "Authentication",
+            "condition": "Valid login with correct credentials",
+            "priority": "High",
+            "linkedTestCases": [
+                "TC-LOGIN-001"
+            ],
+            "exploratoryNoteId": "EXP-AUTH-001"
+        },
+        {
+            "id": "TC-COND-002",
+            "category": "Authentication",
+            "condition": "Invalid login (wrong password)",
+            "priority": "High",
+            "linkedTestCases": [
+                "TC-LOGIN-002"
+            ],
+            "exploratoryNoteId": "EXP-AUTH-001"
+        },
+        {
+            "id": "TC-COND-003",
+            "category": "Authentication",
+            "condition": "Invalid login (unregistered email)",
+            "priority": "Medium",
+            "linkedTestCases": [
+                "TC-LOGIN-003"
+            ],
+            "exploratoryNoteId": "EXP-AUTH-001"
+        },
+        {
+            "id": "TC-COND-004",
+            "category": "Authentication",
+            "condition": "Empty fields validation",
+            "priority": "Medium",
+            "linkedTestCases": [
+                "TC-LOGIN-004"
+            ],
+            "exploratoryNoteId": "EXP-AUTH-001"
+        },
+        {
+            "id": "TC-COND-005",
+            "category": "Authentication",
+            "condition": "Account lockout after N failed attempts",
+            "priority": "High",
+            "linkedTestCases": [
+                "TC-LOGIN-005"
+            ],
+            "exploratoryNoteId": "EXP-AUTH-001"
+        }
+    ],
+    "rtm": [
+        {
+            "requirementId": "REQ-001",
+            "requirementDesc": "User Authentication",
+            "testConditionId": "TC-COND-001",
+            "testCaseId": "TC-LOGIN-001"
+        },
+        {
+            "requirementId": "REQ-001",
+            "requirementDesc": "User Authentication",
+            "testConditionId": "TC-COND-002",
+            "testCaseId": "TC-LOGIN-002"
+        },
+        {
+            "requirementId": "REQ-002",
+            "requirementDesc": "Security & Lockout",
+            "testConditionId": "TC-COND-005",
+            "testCaseId": "TC-LOGIN-005"
+        }
+    ]
+}

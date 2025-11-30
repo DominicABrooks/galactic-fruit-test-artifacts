@@ -1,283 +1,145 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import testAnalysisData from "../data/test-analysis.json";
+import testSetsData from "../data/test-sets.json";
+
+const { testConditions, rtm } = testAnalysisData;
+const { testSets } = testSetsData;
+
+// Fetch Exploratory Notes from Markdown files
+const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
 ---
 
 <MainLayout title="Test Analysis" currentPath="/test-analysis">
-    <div class="space-y-8 text-eoe-muted max-w-5xl mx-auto">
+    <div class="space-y-12 text-eoe-muted max-w-6xl mx-auto pb-20">
         <!-- Header -->
         <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
             <h1 class="text-3xl font-bold text-white mb-2">Test Analysis</h1>
             <p class="text-lg text-eoe-muted">
-                Analysis of requirements and identification of test conditions
-                for Galactic Fruit.
+                Discovery of test basis, exploratory findings, and identification of test conditions.
             </p>
         </div>
 
-        <!-- 1. Test Conditions -->
+        <!-- 1. Exploratory Notes (Test Basis) -->
         <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >1</span
-                >
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">1</span>
+                Test Basis (Exploratory Notes)
+            </h2>
+            <div class="grid grid-cols-1 gap-4">
+                {exploratoryNotes.map((note) => (
+                    <div id={note.frontmatter.id} class="bg-eoe-panel border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors scroll-mt-24">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded">{note.frontmatter.id}</span>
+                                <span class="text-xs font-medium text-eoe-muted uppercase tracking-wider">{note.frontmatter.category}</span>
+                            </div>
+                        </div>
+                        <h3 class="text-white font-medium mb-2">{note.frontmatter.title}</h3>
+                        <div class="text-sm text-eoe-muted mb-4 leading-relaxed prose prose-invert max-w-none">
+                            <note.Content />
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            {note.frontmatter.derivedFeatures.map((feature: string) => (
+                                <span class="text-xs bg-white/5 text-white px-2 py-1 rounded border border-white/5">
+                                    {feature}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <!-- 2. Test Conditions -->
+        <section>
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">2</span>
                 Test Conditions
             </h2>
-            <div
-                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
-            >
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-white/5 text-xs uppercase text-white">
                         <tr>
-                            <th class="px-6 py-4">Condition ID</th>
-                            <th class="px-6 py-4">Description</th>
+                            <th class="px-6 py-4">ID</th>
+                            <th class="px-6 py-4">Category</th>
+                            <th class="px-6 py-4">Condition</th>
+                            <th class="px-6 py-4">Test Basis</th>
                             <th class="px-6 py-4">Priority</th>
+                            <th class="px-6 py-4">Linked Cases</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/5">
-                        <tr class="hover:bg-white/[0.02]">
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-001</td
-                            >
-                            <td class="px-6 py-4 text-white"
-                                >Valid login with correct credentials</td
-                            >
-                            <td class="px-6 py-4"
-                                ><span class="text-red-400 font-medium"
-                                    >High</span
-                                ></td
-                            >
-                        </tr>
-                        <tr class="hover:bg-white/[0.02]">
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-002</td
-                            >
-                            <td class="px-6 py-4 text-white"
-                                >Invalid login (wrong password)</td
-                            >
-                            <td class="px-6 py-4"
-                                ><span class="text-red-400 font-medium"
-                                    >High</span
-                                ></td
-                            >
-                        </tr>
-                        <tr class="hover:bg-white/[0.02]">
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-003</td
-                            >
-                            <td class="px-6 py-4 text-white"
-                                >Invalid login (unregistered email)</td
-                            >
-                            <td class="px-6 py-4"
-                                ><span class="text-yellow-400 font-medium"
-                                    >Medium</span
-                                ></td
-                            >
-                        </tr>
-                        <tr class="hover:bg-white/[0.02]">
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-004</td
-                            >
-                            <td class="px-6 py-4 text-white"
-                                >Empty fields validation</td
-                            >
-                            <td class="px-6 py-4"
-                                ><span class="text-yellow-400 font-medium"
-                                    >Medium</span
-                                ></td
-                            >
-                        </tr>
-                        <tr class="hover:bg-white/[0.02]">
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-005</td
-                            >
-                            <td class="px-6 py-4 text-white"
-                                >Account lockout after N failed attempts</td
-                            >
-                            <td class="px-6 py-4"
-                                ><span class="text-red-400 font-medium"
-                                    >High</span
-                                ></td
-                            >
-                        </tr>
-                        <tr class="hover:bg-white/[0.02]">
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-006</td
-                            >
-                            <td class="px-6 py-4 text-white"
-                                >Password masking in UI</td
-                            >
-                            <td class="px-6 py-4"
-                                ><span class="text-green-400 font-medium"
-                                    >Low</span
-                                ></td
-                            >
-                        </tr>
+                        {testConditions.map((condition) => (
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4 font-mono text-eoe-accent text-xs">{condition.id}</td>
+                                <td class="px-6 py-4 text-eoe-muted text-xs">{condition.category}</td>
+                                <td class="px-6 py-4 text-white">{condition.condition}</td>
+                                <td class="px-6 py-4">
+                                    {condition.exploratoryNoteId ? (
+                                        <a href={`#${condition.exploratoryNoteId}`} class="text-xs font-mono text-purple-300 hover:text-purple-200 hover:underline">
+                                            {condition.exploratoryNoteId}
+                                        </a>
+                                    ) : (
+                                        <span class="text-eoe-muted text-xs">-</span>
+                                    )}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class={`text-xs font-medium ${
+                                        condition.priority === 'High' ? 'text-red-400' : 
+                                        condition.priority === 'Medium' ? 'text-yellow-400' : 'text-green-400'
+                                    }`}>
+                                        {condition.priority}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex gap-1 flex-wrap">
+                                        {condition.linkedTestCases.map((tc) => (
+                                            <a href={`/test-implementation#${tc}`} class="text-xs font-mono bg-white/5 hover:bg-white/10 text-eoe-accent px-1.5 py-0.5 rounded transition-colors">
+                                                {tc}
+                                            </a>
+                                        ))}
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- 2. Requirement Mapping -->
+        <!-- 3. Traceability Matrix (RTM) -->
         <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >2</span
-                >
-                Requirement Mapping
-            </h2>
-            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                <p class="mb-6 text-sm">
-                    Mapping of Business Requirements (BR) to specific Test
-                    Conditions.
-                </p>
-                <div class="grid grid-cols-1 gap-4">
-                    <div
-                        class="bg-white/[0.02] border border-white/5 rounded-lg p-4"
-                    >
-                        <div class="flex justify-between items-start mb-2">
-                            <span
-                                class="text-xs font-mono bg-blue-500/20 text-blue-400 px-2 py-1 rounded"
-                                >REQ-001: User Authentication</span
-                            >
-                            <span class="text-xs text-eoe-muted"
-                                >Coverage: 100%</span
-                            >
-                        </div>
-                        <p class="text-white text-sm mb-3">
-                            System must allow users with valid credentials to
-                            access the dashboard.
-                        </p>
-                        <div class="flex gap-2">
-                            <span
-                                class="text-xs font-mono bg-white/5 border border-white/10 px-2 py-1 rounded text-eoe-accent"
-                                >TC-COND-001</span
-                            >
-                            <span
-                                class="text-xs font-mono bg-white/5 border border-white/10 px-2 py-1 rounded text-eoe-accent"
-                                >TC-COND-002</span
-                            >
-                        </div>
-                    </div>
-
-                    <div
-                        class="bg-white/[0.02] border border-white/5 rounded-lg p-4"
-                    >
-                        <div class="flex justify-between items-start mb-2">
-                            <span
-                                class="text-xs font-mono bg-blue-500/20 text-blue-400 px-2 py-1 rounded"
-                                >REQ-002: Security & Lockout</span
-                            >
-                            <span class="text-xs text-eoe-muted"
-                                >Coverage: 100%</span
-                            >
-                        </div>
-                        <p class="text-white text-sm mb-3">
-                            Account must be locked for 15 minutes after 5
-                            consecutive failed attempts.
-                        </p>
-                        <div class="flex gap-2">
-                            <span
-                                class="text-xs font-mono bg-white/5 border border-white/10 px-2 py-1 rounded text-eoe-accent"
-                                >TC-COND-005</span
-                            >
-                        </div>
-                    </div>
-
-                    <div
-                        class="bg-white/[0.02] border border-white/5 rounded-lg p-4"
-                    >
-                        <div class="flex justify-between items-start mb-2">
-                            <span
-                                class="text-xs font-mono bg-blue-500/20 text-blue-400 px-2 py-1 rounded"
-                                >REQ-003: Input Validation</span
-                            >
-                            <span class="text-xs text-eoe-muted"
-                                >Coverage: 100%</span
-                            >
-                        </div>
-                        <p class="text-white text-sm mb-3">
-                            All fields are mandatory. Email must be valid
-                            format.
-                        </p>
-                        <div class="flex gap-2">
-                            <span
-                                class="text-xs font-mono bg-white/5 border border-white/10 px-2 py-1 rounded text-eoe-accent"
-                                >TC-COND-003</span
-                            >
-                            <span
-                                class="text-xs font-mono bg-white/5 border border-white/10 px-2 py-1 rounded text-eoe-accent"
-                                >TC-COND-004</span
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. Traceability Matrix -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >3</span
-                >
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">3</span>
                 Traceability Matrix (RTM)
             </h2>
-            <div
-                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
-            >
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-white/5 text-xs uppercase text-white">
                         <tr>
                             <th class="px-6 py-4">Requirement</th>
                             <th class="px-6 py-4">Test Condition</th>
-                            <th class="px-6 py-4">Test Case ID</th>
+                            <th class="px-6 py-4">Test Case</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/5">
-                        <tr>
-                            <td class="px-6 py-4 font-mono text-blue-400"
-                                >REQ-001</td
-                            >
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-001</td
-                            >
-                            <td class="px-6 py-4 text-white">TC-LOGIN-001</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-mono text-blue-400"
-                                >REQ-001</td
-                            >
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-002</td
-                            >
-                            <td class="px-6 py-4 text-white">TC-LOGIN-002</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-mono text-blue-400"
-                                >REQ-002</td
-                            >
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-005</td
-                            >
-                            <td class="px-6 py-4 text-white">TC-LOGIN-005</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 font-mono text-blue-400"
-                                >REQ-003</td
-                            >
-                            <td class="px-6 py-4 font-mono text-eoe-accent"
-                                >TC-COND-004</td
-                            >
-                            <td class="px-6 py-4 text-white">TC-LOGIN-003</td>
-                        </tr>
+                        {rtm.map((row) => (
+                            <tr class="hover:bg-white/[0.02]">
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-col">
+                                        <span class="font-mono text-blue-400 text-xs mb-1">{row.requirementId}</span>
+                                        <span class="text-eoe-muted text-xs">{row.requirementDesc}</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 font-mono text-eoe-accent text-xs">{row.testConditionId}</td>
+                                <td class="px-6 py-4">
+                                    <a href={`/test-implementation#${row.testCaseId}`} class="font-mono text-white hover:text-eoe-accent transition-colors text-xs">
+                                        {row.testCaseId}
+                                    </a>
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

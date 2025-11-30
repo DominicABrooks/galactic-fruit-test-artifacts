@@ -2,186 +2,36 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import BuildList from "../components/BuildList.astro";
 import builds from "../data/builds.json";
+
+// Fetch Exploratory Notes
+const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
 ---
 
 <MainLayout title="Test Execution" currentPath="/test-execution">
-    <div class="flex flex-col md:flex-row gap-6 h-[calc(100vh-200px)]">
-        <!-- Left Panel: Build List -->
-        <div
-            class="w-full md:w-1/3 bg-eoe-panel border border-white/5 rounded-xl overflow-hidden flex flex-col"
-        >
-            <div class="p-4 border-b border-white/5 bg-white/[0.02]">
-                <div class="relative">
-                    <input
-                        type="text"
-                        placeholder="Search builds..."
-                        class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-eoe-accent/50 transition-colors"
-                    />
-                    <svg
-                        class="w-4 h-4 text-eoe-muted absolute right-3 top-2.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        ><path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        ></path></svg
-                    >
-                </div>
-            </div>
-            <div class="flex-1 overflow-y-auto p-4 custom-scrollbar">
-                <BuildList builds={builds} />
-            </div>
+    <div class="flex flex-col h-[calc(100vh-140px)]">
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-white/10 mb-6">
+            <button id="tab-execution" class="px-6 py-3 text-sm font-medium text-white border-b-2 border-eoe-accent transition-colors">
+                Test Execution
+            </button>
+            <button id="tab-exploratory" class="px-6 py-3 text-sm font-medium text-eoe-muted hover:text-white border-b-2 border-transparent transition-colors">
+                Exploratory Notes
+            </button>
         </div>
 
-        <!-- Right Panel: Content Area -->
-        <div
-            class="w-full md:w-2/3 bg-eoe-panel border border-white/5 rounded-xl overflow-hidden flex flex-col relative"
-        >
-            <!-- Empty State -->
-            <div
-                id="empty-state"
-                class="absolute inset-0 flex flex-col items-center justify-center text-eoe-muted p-8 text-center"
-            >
-                <div
-                    class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4"
-                >
-                    <svg
-                        class="w-8 h-8 opacity-50"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        ><path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-                        ></path></svg
-                    >
-                </div>
-                <h3 class="text-lg font-medium text-white mb-2">
-                    Select a Build
-                </h3>
-                <p class="text-sm max-w-xs">
-                    Choose a test execution from the list to view detailed test
-                    cases and results.
-                </p>
-            </div>
-
-            <!-- Test Cases Table View -->
-            <div
-                id="test-cases-view"
-                class="hidden flex-col h-full animate-fade-in"
-            >
-                <div
-                    class="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]"
-                >
-                    <div>
-                        <h2
-                            id="selected-build-name"
-                            class="text-xl font-bold text-white"
-                        >
-                        </h2>
-                        <p
-                            id="selected-build-meta"
-                            class="text-sm text-eoe-muted mt-1"
-                        >
-                        </p>
-                    </div>
-                    <div class="flex gap-3">
-                        <div
-                            class="text-center px-4 py-2 bg-black/20 rounded-lg border border-white/5"
-                        >
-                            <div
-                                class="text-xs text-eoe-muted uppercase tracking-wider"
-                            >
-                                Total
-                            </div>
-                            <div
-                                id="stat-total"
-                                class="text-lg font-bold text-white"
-                            >
-                                0
-                            </div>
-                        </div>
-                        <div
-                            class="text-center px-4 py-2 bg-green-500/10 rounded-lg border border-green-500/20"
-                        >
-                            <div
-                                class="text-xs text-green-400 uppercase tracking-wider"
-                            >
-                                Pass
-                            </div>
-                            <div
-                                id="stat-pass"
-                                class="text-lg font-bold text-green-400"
-                            >
-                                0
-                            </div>
-                        </div>
-                        <div
-                            class="text-center px-4 py-2 bg-red-500/10 rounded-lg border border-red-500/20"
-                        >
-                            <div
-                                class="text-xs text-red-400 uppercase tracking-wider"
-                            >
-                                Fail
-                            </div>
-                            <div
-                                id="stat-fail"
-                                class="text-lg font-bold text-red-400"
-                            >
-                                0
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex-1 overflow-y-auto p-0">
-                    <table class="w-full text-left border-collapse">
-                        <thead
-                            class="bg-black/20 text-xs uppercase text-eoe-muted sticky top-0 backdrop-blur-md"
-                        >
-                            <tr>
-                                <th class="px-6 py-4 font-medium tracking-wider"
-                                    >ID</th
-                                >
-                                <th class="px-6 py-4 font-medium tracking-wider"
-                                    >Test Case Name</th
-                                >
-                                <th class="px-6 py-4 font-medium tracking-wider"
-                                    >Status</th
-                                >
-                                <th class="px-6 py-4 font-medium tracking-wider"
-                                    >Notes</th
-                                >
-                            </tr>
-                        </thead>
-                        <tbody
-                            id="test-cases-body"
-                            class="divide-y divide-white/5 text-sm"
-                        >
-                            <!-- Rows injected by JS -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Test Case Detail View -->
-            <div
-                id="test-detail-view"
-                class="hidden flex-col h-full animate-fade-in bg-eoe-panel absolute inset-0 z-10"
-            >
-                <div
-                    class="p-6 border-b border-white/5 flex items-center gap-4 bg-white/[0.02]"
-                >
-                    <button
-                        id="back-to-table"
-                        class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white"
-                    >
+        <!-- Execution View -->
+        <div id="view-execution" class="flex flex-col md:flex-row gap-6 flex-1 min-h-0">
+            <!-- Left Panel: Build List -->
+            <div class="w-full md:w-1/3 bg-eoe-panel border border-white/5 rounded-xl overflow-hidden flex flex-col">
+                <div class="p-4 border-b border-white/5 bg-white/[0.02]">
+                    <div class="relative">
+                        <input
+                            type="text"
+                            placeholder="Search builds..."
+                            class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-eoe-accent/50 transition-colors"
+                        />
                         <svg
-                            class="w-5 h-5"
+                            class="w-4 h-4 text-eoe-muted absolute right-3 top-2.5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -189,99 +39,195 @@ import builds from "../data/builds.json";
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            ></path></svg
                         >
-                    </button>
-                    <div>
-                        <h2
-                            id="detail-name"
-                            class="text-xl font-bold text-white"
-                        >
-                        </h2>
-                        <div class="flex items-center gap-3 mt-1">
-                            <span
-                                id="detail-id"
-                                class="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-eoe-muted"
-                            ></span>
-                            <span
-                                id="detail-status"
-                                class="text-xs px-2 py-0.5 rounded-full border"
-                            ></span>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-y-auto p-4 custom-scrollbar">
+                    <BuildList builds={builds} />
+                </div>
+            </div>
+
+            <!-- Right Panel: Content Area -->
+            <div class="w-full md:w-2/3 bg-eoe-panel border border-white/5 rounded-xl overflow-hidden flex flex-col relative">
+                <!-- Empty State -->
+                <div id="empty-state" class="absolute inset-0 flex flex-col items-center justify-center text-eoe-muted p-8 text-center">
+                    <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-2">Select a Build</h3>
+                    <p class="text-sm max-w-xs">Choose a test execution from the list to view test sets and results.</p>
+                </div>
+
+                <!-- Test Sets View -->
+                <div id="test-sets-view" class="hidden flex-col h-full animate-fade-in">
+                    <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+                        <div>
+                            <h2 id="sets-build-name" class="text-xl font-bold text-white"></h2>
+                            <p id="sets-build-meta" class="text-sm text-eoe-muted mt-1"></p>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="text-center px-4 py-2 bg-black/20 rounded-lg border border-white/5">
+                                <div class="text-xs text-eoe-muted uppercase tracking-wider">Sets</div>
+                                <div id="sets-total" class="text-lg font-bold text-white">0</div>
+                            </div>
+                            <div class="text-center px-4 py-2 bg-green-500/10 rounded-lg border border-green-500/20">
+                                <div class="text-xs text-green-400 uppercase tracking-wider">Avg Pass %</div>
+                                <div id="sets-avg-pass" class="text-lg font-bold text-green-400">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-6">
+                        <div id="test-sets-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Test sets injected by JS -->
                         </div>
                     </div>
                 </div>
-                <div class="flex-1 overflow-y-auto p-8">
-                    <div class="max-w-3xl mx-auto">
-                        <h3
-                            class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-4"
-                        >
-                            Test Steps
-                        </h3>
-                        <div class="space-y-4">
-                            <div
-                                id="steps-container"
-                                class="relative border-l-2 border-white/10 ml-3 pl-8 space-y-8 py-2"
-                            >
-                                <!-- Steps injected by JS -->
-                            </div>
-                        </div>
 
-                        <div
-                            class="mt-12 p-6 bg-red-500/5 border border-red-500/10 rounded-xl hidden"
-                            id="defect-panel"
-                        >
-                            <h4
-                                class="text-red-400 font-semibold mb-2 flex items-center gap-2"
-                            >
-                                <svg
-                                    class="w-4 h-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    ><path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                                    ></path></svg
-                                >
-                                Defect Report
-                            </h4>
-                            <p id="defect-notes" class="text-sm text-eoe-muted">
-                            </p>
-                        </div>
-
-                        <!-- Failure Artifacts -->
-                        <div
-                            id="failure-artifacts"
-                            class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 hidden"
-                        >
-                            <div
-                                class="bg-black/20 border border-white/5 rounded-xl p-4"
-                            >
-                                <h4
-                                    class="text-xs text-eoe-muted uppercase tracking-wider mb-3"
-                                >
-                                    Execution Log
-                                </h4>
-                                <div
-                                    id="execution-log"
-                                    class="bg-black/40 rounded p-3 overflow-x-auto"
-                                >
+                <!-- Test Cases Table View -->
+                <div id="test-cases-view" class="hidden flex-col h-full animate-fade-in">
+                    <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
+                        <div class="flex items-center gap-4">
+                            <button id="back-to-sets" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            </button>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h2 id="selected-build-name" class="text-xl font-bold text-white"></h2>
+                                    <span class="text-eoe-muted">•</span>
+                                    <span id="selected-set-name" class="text-lg text-eoe-accent"></span>
                                 </div>
+                                <p id="selected-build-meta" class="text-sm text-eoe-muted mt-1"></p>
                             </div>
-                            <div
-                                class="bg-black/20 border border-white/5 rounded-xl p-4"
-                            >
-                                <h4
-                                    class="text-xs text-eoe-muted uppercase tracking-wider mb-3"
-                                >
-                                    Screenshots
-                                </h4>
-                                <div id="screenshots-container"></div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="text-center px-4 py-2 bg-black/20 rounded-lg border border-white/5">
+                                <div class="text-xs text-eoe-muted uppercase tracking-wider">Total</div>
+                                <div id="stat-total" class="text-lg font-bold text-white">0</div>
+                            </div>
+                            <div class="text-center px-4 py-2 bg-green-500/10 rounded-lg border border-green-500/20">
+                                <div class="text-xs text-green-400 uppercase tracking-wider">Pass</div>
+                                <div id="stat-pass" class="text-lg font-bold text-green-400">0</div>
+                            </div>
+                            <div class="text-center px-4 py-2 bg-red-500/10 rounded-lg border border-red-500/20">
+                                <div class="text-xs text-red-400 uppercase tracking-wider">Fail</div>
+                                <div id="stat-fail" class="text-lg font-bold text-red-400">0</div>
                             </div>
                         </div>
                     </div>
+                    <div class="flex-1 overflow-y-auto p-0">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-black/20 text-xs uppercase text-eoe-muted sticky top-0 backdrop-blur-md">
+                                <tr>
+                                    <th class="px-6 py-4 font-medium tracking-wider">ID</th>
+                                    <th class="px-6 py-4 font-medium tracking-wider">Test Case Name</th>
+                                    <th class="px-6 py-4 font-medium tracking-wider">Status</th>
+                                    <th class="px-6 py-4 font-medium tracking-wider">Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="test-cases-body" class="divide-y divide-white/5 text-sm">
+                                <!-- Rows injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Test Case Detail View -->
+                <div id="test-detail-view" class="hidden flex-col h-full animate-fade-in bg-eoe-panel absolute inset-0 z-10">
+                    <div class="p-6 border-b border-white/5 flex items-center gap-4 bg-white/[0.02]">
+                        <button id="back-to-table" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                        </button>
+                        <div>
+                            <h2 id="detail-name" class="text-xl font-bold text-white"></h2>
+                            <div class="flex items-center gap-3 mt-1">
+                                <span id="detail-id" class="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-eoe-muted"></span>
+                                <span id="detail-status" class="text-xs px-2 py-0.5 rounded-full border"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-1 overflow-y-auto p-8">
+                        <div class="max-w-3xl mx-auto">
+                            <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-4">Test Steps</h3>
+                            <div class="space-y-4">
+                                <div id="steps-container" class="relative border-l-2 border-white/10 ml-3 pl-8 space-y-8 py-2">
+                                    <!-- Steps injected by JS -->
+                                </div>
+                            </div>
+
+                            <div class="mt-12 p-6 bg-red-500/5 border border-red-500/10 rounded-xl hidden" id="defect-panel">
+                                <h4 class="text-red-400 font-semibold mb-2 flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    Defect Report
+                                </h4>
+                                <p id="defect-notes" class="text-sm text-eoe-muted"></p>
+                            </div>
+
+                            <!-- Failure Artifacts -->
+                            <div id="failure-artifacts" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
+                                <div class="bg-black/20 border border-white/5 rounded-xl p-4">
+                                    <h4 class="text-xs text-eoe-muted uppercase tracking-wider mb-3">Execution Log</h4>
+                                    <div id="execution-log" class="bg-black/40 rounded p-3 overflow-x-auto"></div>
+                                </div>
+                                <div class="bg-black/20 border border-white/5 rounded-xl p-4">
+                                    <h4 class="text-xs text-eoe-muted uppercase tracking-wider mb-3">Screenshots</h4>
+                                    <div id="screenshots-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exploratory View -->
+        <div id="view-exploratory" class="hidden flex-1 min-h-0 overflow-y-auto custom-scrollbar">
+            <div class="max-w-6xl mx-auto space-y-6 pb-20">
+                <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">Exploratory Notes</h2>
+                    <p class="text-eoe-muted">Reference notes and findings from exploratory testing sessions.</p>
+                </div>
+
+                <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-white/5 text-xs uppercase text-white sticky top-0">
+                            <tr>
+                                <th class="px-6 py-4 w-32">ID</th>
+                                <th class="px-6 py-4 w-40">Category</th>
+                                <th class="px-6 py-4 w-48">Title</th>
+                                <th class="px-6 py-4">Content</th>
+                                <th class="px-6 py-4 w-64">Features</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            {exploratoryNotes.map((note) => (
+                                <tr class="hover:bg-white/[0.02]">
+                                    <td class="px-6 py-4">
+                                        <span class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded">{note.frontmatter.id}</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="text-xs font-medium text-eoe-muted uppercase tracking-wider">{note.frontmatter.category}</span>
+                                    </td>
+                                    <td class="px-6 py-4 text-white font-medium">{note.frontmatter.title}</td>
+                                    <td class="px-6 py-4 text-eoe-muted">
+                                        <div class="prose prose-invert prose-sm max-w-none line-clamp-2">
+                                            <note.Content />
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex flex-wrap gap-1">
+                                            {note.frontmatter.derivedFeatures.map((feature: string) => (
+                                                <span class="text-xs bg-white/5 text-white px-2 py-1 rounded border border-white/5">
+                                                    {feature}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
