@@ -243,6 +243,14 @@ import MainLayout from "../layouts/MainLayout.astro";
                             after a new build is deployed to ensure no new defects have been introduced.
                         </li>
                         <li>
+                            <strong class="text-white">Exploratory Testing:</strong> Testing the game without a specific plan to
+                            identify unexpected issues and validate the overall gameplay experience.
+                        </li>
+                        <li>
+                            <strong class="text-white">Smoke Testing:</strong> Testing the game to ensure it is stable and
+                            free of critical defects.
+                        </li>
+                        <li>
                             <strong class="text-white">Usability Testing:</strong>
                             Ensuring the game is easy to use and navigate.
                         </li>
@@ -395,7 +403,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                                 </li>
                                 <li>
                                     <strong class="text-white">Tools:</strong> OBS Studio (Recording), ShareX (Screenshots),
-                                    Discord (Tracking)
+                                    Github Issues (Tracking)
                                 </li>
                             </ul>
                         </div>
@@ -483,9 +491,21 @@ import MainLayout from "../layouts/MainLayout.astro";
                 <div>
                     <h3 id="section-6-4" class="text-white font-medium mb-4">6.4 Defect Management</h3>
                     <p class="mb-4">
-                        Defects will be tracked using Discord. Each defect must include reproduction steps, expected vs.
-                        actual results, and evidence (screenshot/video).
+                        Defects will be tracked using GitHub Issues. Each defect report must be written clearly and unambiguously.
                     </p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li><strong class="text-white">Title:</strong> A concise, descriptive summary of the problem (what is wrong, where it occurs).</li>
+                        <li><strong class="text-white">Description:</strong> A clear explanation of the defect, including its impact on gameplay or test objectives.</li>
+                        <li><strong class="text-white">Preconditions:</strong> Any required setup such as game version, platform/OS, etc.</li>
+                        <li><strong class="text-white">Steps to Reproduce:</strong> Numbered, detailed steps to reliably reproduce the defect from a known state.</li>
+                        <li><strong class="text-white">Expected Result:</strong> The correct behavior as per requirements or design.</li>
+                        <li><strong class="text-white">Actual Result:</strong> The observed incorrect behavior.</li>
+                        <li><strong class="text-white">Attachments:</strong> Screenshots or video evidence demonstrating the defect.</li>
+                        <li><strong class="text-white">Additional Information:</strong> Any relevant logs, patterns, or workarounds.</li>
+                        <li><strong class="text-white">Severity and Priority:</strong> Assigned based on impact and urgency (see below).</li>
+                    </ul>
+                    <br>
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
                             <h4 class="text-white font-medium mb-4">Severity Levels</h4>
