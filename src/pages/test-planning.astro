@@ -2,493 +2,620 @@
 import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<MainLayout title="Test Planning" currentPath="/galactic-fruit-test-artifacts/test-planning">
-    <div class="space-y-8 text-eoe-muted max-w-5xl mx-auto">
+<MainLayout title="Test Plan" currentPath="/galactic-fruit-test-artifacts/test-planning">
+    <div class="space-y-12 text-eoe-muted max-w-5xl mx-auto pb-20">
         <!-- Header / Document Info -->
-        <div
-            class="bg-eoe-panel border border-white/5 rounded-xl p-8 relative overflow-hidden"
-        >
+        <div class="bg-eoe-panel border border-white/5 rounded-xl p-8 relative overflow-hidden">
             <div class="absolute top-0 right-0 p-4 opacity-10">
-                <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"
-                    ><path
+                <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
+                    <path
                         d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"
-                    ></path></svg
-                >
+                    >
+                    </path>
+                </svg>
             </div>
             <h1 class="text-3xl font-bold text-white mb-2">Master Test Plan</h1>
             <p class="text-lg text-eoe-accent mb-6">Project: Galactic Fruit</p>
 
-            <div
-                class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm border-t border-white/10 pt-6"
-            >
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm border-t border-white/10 pt-6">
                 <div>
-                    <span
-                        class="block text-eoe-muted uppercase text-xs tracking-wider"
-                        >Document ID</span
-                    >
-                    <span class="text-white font-mono">MTP-SL-001</span>
+                    <span class="block text-eoe-muted uppercase text-xs tracking-wider">Document ID</span>
+                    <span class="text-white font-mono">MTP-GF-001</span>
                 </div>
                 <div>
-                    <span
-                        class="block text-eoe-muted uppercase text-xs tracking-wider"
-                        >Version</span
-                    >
-                    <span class="text-white">1.0</span>
+                    <span class="block text-eoe-muted uppercase text-xs tracking-wider">Version</span>
+                    <span class="text-white">1.2</span>
                 </div>
                 <div>
-                    <span
-                        class="block text-eoe-muted uppercase text-xs tracking-wider"
-                        >Date</span
-                    >
-                    <span class="text-white">2024-03-20</span>
+                    <span class="block text-eoe-muted uppercase text-xs tracking-wider">Date</span>
+                    <span class="text-white">2025-11-30</span>
                 </div>
                 <div>
-                    <span
-                        class="block text-eoe-muted uppercase text-xs tracking-wider"
-                        >Author</span
-                    >
-                    <span class="text-white">QA Lead</span>
+                    <span class="block text-eoe-muted uppercase text-xs tracking-wider">Authors</span>
+                    <span class="text-white">D. Brooks, C. Rojas</span>
                 </div>
             </div>
         </div>
 
-        <!-- 1. Objectives -->
-        <section>
+        <!-- Table of Contents -->
+        <section class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+            <h2 class="text-2xl font-bold text-white mb-6">Table of Contents</h2>
+            <nav class="space-y-2 text-sm">
+                <div>
+                    <a href="#section-1" class="text-eoe-accent hover:underline font-medium">1.0 INTRODUCTION</a>
+                    <div class="ml-6 mt-1 space-y-1">
+                        <div><a href="#section-1-1" class="text-eoe-muted hover:text-white">1.1 Purpose</a></div>
+                        <div>
+                            <a href="#section-1-2" class="text-eoe-muted hover:text-white">1.2 Product Overview</a>
+                        </div>
+                        <div><a href="#section-1-3" class="text-eoe-muted hover:text-white">1.3 Acronyms</a></div>
+                        <div><a href="#section-1-4" class="text-eoe-muted hover:text-white">1.4 References</a></div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <a href="#section-2" class="text-eoe-accent hover:underline font-medium">2.0 APPROACH</a>
+                    <div class="ml-6 mt-1 space-y-1">
+                        <div>
+                            <a href="#section-2-1" class="text-eoe-muted hover:text-white">
+                                2.1 Assumptions and Constraints
+                            </a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="#section-2-1-1" class="text-eoe-muted hover:text-white text-xs">
+                                2.1.1 Assumptions
+                            </a>
+                        </div>
+                        <div class="ml-4">
+                            <a href="#section-2-1-2" class="text-eoe-muted hover:text-white text-xs">
+                                2.1.2 Constraints
+                            </a>
+                        </div>
+                        <div><a href="#section-2-2" class="text-eoe-muted hover:text-white">2.2 Coverage</a></div>
+                        <div><a href="#section-2-3" class="text-eoe-muted hover:text-white">2.3 Test Types</a></div>
+                        <div><a href="#section-2-4" class="text-eoe-muted hover:text-white">2.4 Test Data</a></div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <a href="#section-3" class="text-eoe-accent hover:underline font-medium">3.0 PLAN</a>
+                    <div class="ml-6 mt-1 space-y-1">
+                        <div><a href="#section-3-1" class="text-eoe-muted hover:text-white">3.1 Test Team</a></div>
+                        <div>
+                            <a href="#section-3-2" class="text-eoe-muted hover:text-white">
+                                3.2 Major Tasks and Deliverables
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#section-3-3" class="text-eoe-muted hover:text-white">3.3 Environmental Needs</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <a href="#section-4" class="text-eoe-accent hover:underline font-medium">
+                        4.0 FEATURES TO BE TESTED
+                    </a>
+                    <div class="ml-6 mt-1 space-y-1">
+                        <div>
+                            <a href="#section-4-1" class="text-eoe-muted hover:text-white">
+                                WIP
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <a href="#section-5" class="text-eoe-accent hover:underline font-medium">
+                        5.0 FEATURES NOT TO BE TESTED
+                    </a>
+                </div>
+
+                <div class="pt-2">
+                    <a href="#section-6" class="text-eoe-accent hover:underline font-medium">6.0 TESTING PROCEDURES</a>
+                    <div class="ml-6 mt-1 space-y-1">
+                        <div><a href="#section-6-1" class="text-eoe-muted hover:text-white">6.1 Test Execution</a></div>
+                        <div>
+                            <a href="#section-6-2" class="text-eoe-muted hover:text-white">6.2 Pass/Fail Criteria</a>
+                        </div>
+                        <div>
+                            <a href="#section-6-3" class="text-eoe-muted hover:text-white">6.3 Suspension Criteria</a>
+                        </div>
+                        <div>
+                            <a href="#section-6-4" class="text-eoe-muted hover:text-white">6.4 Defect Management</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <a href="#section-7" class="text-eoe-accent hover:underline font-medium">
+                        7.0 RISKS AND CONTINGENCIES
+                    </a>
+                </div>
+                <div class="pt-2">
+                    <a href="#approvals" class="text-eoe-accent hover:underline font-medium">APPROVALS</a>
+                </div>
+            </nav>
+        </section>
+
+        <!-- 1.0 Introduction -->
+        <section id="section-1">
             <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
+                id="section-1-0"
+                class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-white/10 pb-2"
             >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >1</span
-                >
-                Objectives
+                <span class="text-eoe-accent">1.0</span> Introduction
+            </h2>
+            <div class="space-y-6 text-sm leading-relaxed">
+                <div>
+                    <h3 id="section-1-1" class="text-white font-medium mb-2">1.1 Purpose</h3>
+                    <p>
+                        This Master Test Plan (MTP) outlines the comprehensive strategy, objectives, scope, approach,
+                        environment, resources, and schedule for the testing activities of the <strong>
+                            Galactic Fruit
+                        </strong> game. It serves as the primary agreement between the Quality Assurance team and developer
+                        regarding what will be tested, how quality will be assured for the pre-release build, and the criteria
+                        for release readiness. Since formal feature documentation is limited, this plan also defines the exploratory
+                        approach used to derive test conditions.
+                    </p>
+                </div>
+                <div>
+                    <h3 id="section-1-2" class="text-white font-medium mb-2">1.2 Product Overview</h3>
+                    <p>
+                        <strong>Galactic Fruit</strong> is a single-player short story horror game. The player navigates a
+                        through different stages in a spaceship, playing minigames and using terminals to complete each task
+                        before sleeping and moving to the next stage. Key features include a core progression loop (A → B),
+                        inventory management, mini-games, and a power health system.
+                    </p>
+                </div>
+                <div>
+                    <h3 id="section-1-3" class="text-white font-medium mb-2">1.3 Acronyms</h3>
+                    <ul class="list-disc list-inside space-y-1 ml-4">
+                        <li><strong>FPS:</strong> Frames Per Second</li>
+                        <li><strong>HUD:</strong> Heads-Up Display</li>
+                        <li><strong>NPC:</strong> Non-Player Character</li>
+                        <li><strong>UI/UX:</strong> User Interface / User Experience</li>
+                        <li><strong>SUT:</strong> System Under Test</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 id="section-1-4" class="text-white font-medium mb-2">1.4 References</h3>
+                    <ul class="list-disc list-inside space-y-1 ml-4">
+                        <li><a href="https://store.steampowered.com/app/3049470/Echoes_of_Exile/" target="_blank"
+                                class="text-eoe-accent hover:underline">Steam Store Page</a>
+                        </li>
+                        <li>Informal Communication With Developer</li>
+                        <li>Exploratory Notes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2.0 Approach -->
+        <section id="section-2">
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-white/10 pb-2">
+                <span class="text-eoe-accent">2.0</span> Approach
+            </h2>
+            <div class="space-y-6 text-sm leading-relaxed">
+                <div>
+                    <h3 id="section-2-1" class="text-white font-medium mb-2">2.1 Assumptions and Constraints</h3>
+                    <div class="pl-4 border-l-2 border-white/10 space-y-4">
+                        <div>
+                            <h4 id="section-2-1-1" class="text-eoe-muted font-medium mb-1">2.1.1 Assumptions</h4>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>The game will only be available on the Steam client for PC.</li>
+                                <li>Each build of the game will have passed unit and unit-to-unit testing before it is transferred to the system integration testing environment.</li>
+                                <li>White box testing and analysis will be performed by the developer.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 id="section-2-1-2" class="text-eoe-muted font-medium mb-1">2.1.2 Constraints</h4>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><strong>Single Developer:</strong> Turnaround time for bug fixes may vary depending on complexity.</li>
+                                <li><strong>Limited Hardware:</strong> Testing is constrained to the specific hardware configurations available to the QA team (see Section 3.4).</li>
+                                <li><strong>No Automation:</strong> Due to all tooling be controlled by developer, and lack of resources, all testing will be manual.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 id="section-2-2" class="text-white font-medium mb-2">2.2 Coverage</h3>
+                    <p class="mb-2">
+                        Test coverage will be measured by the execution of test cases against identified requirements
+                        and features. In the event that coverage levels are not met due to time constraints, the QA Lead
+                        will determine if the actual levels are adequate based on risk assessment.
+                    </p>
+                    <p>Coverage targets include:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>100% of Critical Path (A → B progression) features.</li>
+                        <li>100% of UI/Menu functionality (Start, Options, Quit).</li>
+                        <li>100% of scan feature coverage.</li>
+                        <li>100% of terminal feature coverage.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 id="section-2-3" class="text-white font-medium mb-2">2.3 Test Types</h3>
+                    <p class="mb-3">
+                        The following types of testing will be performed during system integration testing:
+                    </p>
+                    <ul class="space-y-3 ml-4">
+                        <li>
+                            <strong class="text-white">Functional Testing:</strong> Execution of test cases based on gameplay
+                            mechanics (e.g., movement, interaction) to ensure they behave as intended.
+                        </li>
+                        <li>
+                            <strong class="text-white">Regression Testing:</strong> Re-testing previously validated functionality
+                            after a new build is deployed to ensure no new defects have been introduced.
+                        </li>
+                        <li>
+                            <strong class="text-white">Usability Testing:</strong>
+                            Ensuring the game is easy to use and navigate.
+                        </li>
+                        <li>
+                            <strong class="text-white">Recovery Testing:</strong>
+                            Ensuring the game can handle unexpected closures (Alt+F4) without corrupting save data.
+                        </li>
+                        <li>
+                            <strong class="text-white">Performance Testing:</strong>
+                            Ensuring the game runs at a minimum of 60 FPS on our spec hardware.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 id="section-2-4" class="text-white font-medium mb-2">2.4 Test Data</h3>
+                    <p>To perform system integration testing, test data will be supplied from two sources:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>
+                            <strong>Fresh Saves:</strong> New game states created at the start of each test cycle.
+                        </li>
+                        <li>
+                            <strong>Dev Tools:</strong> Tools provided by the developer to jump specifically
+                            to late-game sections without playing through the full loop using the [F3] dev tool menu.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.0 Plan -->
+        <section id="section-3">
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-white/10 pb-2">
+                <span class="text-eoe-accent">3.0</span> Plan
+            </h2>
+            <div class="space-y-8 text-sm leading-relaxed">
+                <div>
+                    <h3 id="section-3-1" class="text-white font-medium mb-4">3.1 Test Team</h3>
+                    <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+                        <table class="w-full text-left">
+                            <thead class="bg-white/5 text-xs uppercase text-white">
+                                <tr>
+                                    <th class="px-6 py-3">Name</th>
+                                    <th class="px-6 py-3">Role</th>
+                                    <th class="px-6 py-3">Responsibilities</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Dominic Brooks</td>
+                                    <td class="px-6 py-4">QA Lead</td>
+                                    <td class="px-6 py-4">
+                                        Lead all testing activities, including test planning, test execution, and status
+                                        reporting. Manage defect triage.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Christopher Rojas</td>
+                                    <td class="px-6 py-4">QA Analyst</td>
+                                    <td class="px-6 py-4">
+                                        Design and execute test cases, create test data, perform exploratory testing,
+                                        and verify bug fixes.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 id="section-3-2" class="text-white font-medium mb-4">3.2 Major Tasks and Deliverables</h3>
+                    <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+                        <table class="w-full text-left">
+                            <thead class="bg-white/5 text-xs uppercase text-white">
+                                <tr>
+                                    <th class="px-6 py-3">Task</th>
+                                    <th class="px-6 py-3">Deliverable(s)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Test Planning</td>
+                                    <td class="px-6 py-4">Master Test Plan</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Test Analysis</td>
+                                    <td class="px-6 py-4">Requirements Traceability Matrix, Risk Analysis Report, Test Basis Documentation</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Test Design</td>
+                                    <td class="px-6 py-4">Test Case Specifications, Test Data Requirements, Test Scenario Documents</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Test Implementation</td>
+                                    <td class="px-6 py-4">Test Cases (Detailed), Test Data Sets, Test Environment Setup Documentation</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Test Execution</td>
+                                    <td class="px-6 py-4">Test Execution Logs, Defect Reports, Test Results, Regression Test Results, Build Reports</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-white">Test Closure</td>
+                                    <td class="px-6 py-4">Test Summary Report, Test Metrics Report, Release Recommendation, Lessons Learned Document</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 id="section-3-3" class="text-white font-medium mb-4">3.3 Environmental Needs</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white/[0.02] p-6 rounded-lg border border-white/5">
+                            <h4 class="text-white font-medium mb-3">Hardware</h4>
+                            <p class="mb-4">
+                                All test cases will be executed on local PC workstations meeting the following minimum
+                                specifications:
+                            </p>
+                            <ul class="space-y-2 font-mono text-xs">
+                                <li class="flex justify-between">
+                                    <span class="text-eoe-muted">CPU:</span>
+                                    <span class="text-white">Ryzen 5 3600 / Intel i5-9400F</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="text-eoe-muted">GPU:</span>
+                                    <span class="text-white">NVIDIA GTX 1060 6GB / AMD RX 580</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="text-eoe-muted">RAM:</span>
+                                    <span class="text-white">16 GB DDR4</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="text-eoe-muted">Storage:</span>
+                                    <span class="text-white">SSD (SATA or NVMe)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/[0.02] p-6 rounded-lg border border-white/5">
+                            <h4 class="text-white font-medium mb-3">Software</h4>
+                            <ul class="space-y-2">
+                                <li>
+                                    <strong class="text-white">OS:</strong> Windows 10 (21H2 or later) / Windows 11
+                                </li>
+                                <li>
+                                    <strong class="text-white">Platform:</strong> Steam Client (Latest Beta or Stable)
+                                </li>
+                                <li>
+                                    <strong class="text-white">Drivers:</strong>
+                                    Latest Game Ready Drivers (NVIDIA) / Adrenalin (AMD)
+                                </li>
+                                <li>
+                                    <strong class="text-white">Tools:</strong> OBS Studio (Recording), ShareX (Screenshots),
+                                    Discord (Tracking)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.0 Features to be Tested -->
+        <section id="section-4">
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-white/10 pb-2">
+                <span class="text-eoe-accent">4.0</span> Features to be Tested
+            </h2>
+            <div class="space-y-8 text-sm leading-relaxed">
+                <div>
+                    <h3 id="section-4-1" class="text-white font-medium mb-3">WIP</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5.0 Features Not to be Tested -->
+        <section id="section-5">
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-white/10 pb-2">
+                <span class="text-eoe-accent">5.0</span> Features Not to be Tested
             </h2>
             <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                <p class="mb-4">
-                    The primary objective of this test plan is to validate the
-                    functionality, security, and usability of the SecureLogin
-                    v1.0 module. Specifically, we aim to:
-                </p>
-                <ul class="list-disc list-inside space-y-2 ml-2">
-                    <li>Verify that valid users can log in successfully.</li>
+                <ul class="list-disc list-inside space-y-2 text-sm">
                     <li>
-                        Ensure invalid login attempts are rejected with
-                        appropriate error messages.
-                    </li>
-                    <li>
-                        Validate that the system handles empty fields and edge
-                        cases correctly.
-                    </li>
-                    <li>
-                        Confirm that the login page meets the specified security
-                        requirements (e.g., password masking).
+                        <strong>Dev Tools:</strong> [F3] Menu including dev & test tools
                     </li>
                 </ul>
             </div>
         </section>
 
-        <!-- 2. Scope -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >2</span
-                >
-                Scope
+        <!-- 6.0 Testing Procedures -->
+        <section id="section-6">
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-white/10 pb-2">
+                <span class="text-eoe-accent">6.0</span> Testing Procedures
             </h2>
-            <div
-                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
-            >
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-white/5 text-xs uppercase text-white">
-                        <tr>
-                            <th class="px-6 py-4 w-1/2">In Scope</th>
-                            <th class="px-6 py-4 w-1/2 border-l border-white/5"
-                                >Out of Scope</th
+            <div class="space-y-8 text-sm leading-relaxed">
+                <div>
+                    <h3 id="section-6-1" class="text-white font-medium mb-2">6.1 Test Execution</h3>
+                    <p class="mb-4">
+                        For each requirement, business process, or system feature to be tested, the tester will execute
+                        a set of pre-defined test cases. Each test case will have a series of actions and expected
+                        results. As each action is performed, the results are evaluated.
+                    </p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>
+                            If the observed results are equal to the expected results, the test case is marked as <strong
+                                class="text-green-400"
                             >
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-white/5">
-                        <tr>
-                            <td class="px-6 py-4 align-top">
-                                <ul
-                                    class="list-disc list-inside space-y-1 text-green-400/90"
-                                >
-                                    <li>Login UI rendering</li>
-                                    <li>
-                                        Authentication logic (valid/invalid)
-                                    </li>
-                                    <li>"Forgot Password" link presence</li>
-                                    <li>Error message validation</li>
-                                    <li>Tab order and keyboard navigation</li>
-                                </ul>
-                            </td>
-                            <td
-                                class="px-6 py-4 align-top border-l border-white/5"
-                            >
-                                <ul
-                                    class="list-disc list-inside space-y-1 text-red-400/90"
-                                >
-                                    <li>"Forgot Password" email flow</li>
-                                    <li>User Registration / Sign Up</li>
-                                    <li>Backend database integrity</li>
-                                    <li>
-                                        Performance testing (>1000 concurrent
-                                        users)
-                                    </li>
-                                    <li>Third-party SSO (Google/Facebook)</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 3. Test Strategy -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >3</span
-                >
-                Test Strategy
-            </h2>
-            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div
-                        class="p-4 bg-white/5 rounded-lg border border-white/10"
-                    >
-                        <h4 class="text-white font-medium mb-2">
-                            Functional Testing
-                        </h4>
-                        <p class="text-xs">
-                            Manual execution of test cases covering positive and
-                            negative scenarios. Focus on boundary value analysis
-                            for input fields.
-                        </p>
-                    </div>
-                    <div
-                        class="p-4 bg-white/5 rounded-lg border border-white/10"
-                    >
-                        <h4 class="text-white font-medium mb-2">
-                            UI/UX Testing
-                        </h4>
-                        <p class="text-xs">
-                            Verification of layout, fonts, colors, and
-                            responsiveness across supported browsers (Chrome,
-                            Firefox, Edge).
-                        </p>
-                    </div>
-                    <div
-                        class="p-4 bg-white/5 rounded-lg border border-white/10"
-                    >
-                        <h4 class="text-white font-medium mb-2">
-                            Security Testing
-                        </h4>
-                        <p class="text-xs">
-                            Basic security checks including SQL injection
-                            attempts on input fields and verification of secure
-                            transmission (HTTPS).
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. Environments & Tools -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >4</span
-                >
-                Environments & Tools
-            </h2>
-            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                <div class="flex flex-wrap gap-3 mb-6">
-                    <span
-                        class="px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-xs"
-                        >Jira (Defect Tracking)</span
-                    >
-                    <span
-                        class="px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 rounded-full text-xs"
-                        >TestRail (Test Management)</span
-                    >
-                    <span
-                        class="px-3 py-1 bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-full text-xs"
-                        >Playwright (Automation)</span
-                    >
-                    <span
-                        class="px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full text-xs"
-                        >Chrome DevTools</span
-                    >
-                </div>
-                <table class="w-full text-sm">
-                    <tr class="border-b border-white/5">
-                        <td class="py-2 text-white font-medium w-1/3"
-                            >Test Environment</td
-                        >
-                        <td class="py-2">QA Staging (v1.0.0-rc1)</td>
-                    </tr>
-                    <tr class="border-b border-white/5">
-                        <td class="py-2 text-white font-medium"
-                            >Browser Support</td
-                        >
-                        <td class="py-2"
-                            >Chrome (Latest), Firefox (Latest), Edge (Latest)</td
-                        >
-                    </tr>
-                    <tr>
-                        <td class="py-2 text-white font-medium">Test Data</td>
-                        <td class="py-2"
-                            >Mock user accounts (Admin, Standard, Locked)</td
-                        >
-                    </tr>
-                </table>
-            </div>
-        </section>
-
-        <!-- 5. Roles & Responsibilities -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >5</span
-                >
-                Roles & Responsibilities
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div
-                    class="bg-eoe-panel border border-white/5 rounded-xl p-4 flex items-start gap-3"
-                >
-                    <div
-                        class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white font-bold"
-                    >
-                        L
-                    </div>
-                    <div>
-                        <h4 class="text-white font-medium">Test Lead</h4>
-                        <p class="text-xs mt-1">
-                            Plan strategy, monitor progress, report status.
-                        </p>
-                    </div>
-                </div>
-                <div
-                    class="bg-eoe-panel border border-white/5 rounded-xl p-4 flex items-start gap-3"
-                >
-                    <div
-                        class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white font-bold"
-                    >
-                        A
-                    </div>
-                    <div>
-                        <h4 class="text-white font-medium">Test Analyst</h4>
-                        <p class="text-xs mt-1">
-                            Design test cases, prepare test data.
-                        </p>
-                    </div>
-                </div>
-                <div
-                    class="bg-eoe-panel border border-white/5 rounded-xl p-4 flex items-start gap-3"
-                >
-                    <div
-                        class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white font-bold"
-                    >
-                        E
-                    </div>
-                    <div>
-                        <h4 class="text-white font-medium">Test Engineer</h4>
-                        <p class="text-xs mt-1">
-                            Execute tests, log defects, verify fixes.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. Entry & Exit Criteria -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >6</span
-                >
-                Entry & Exit Criteria
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                    <h3
-                        class="text-green-400 font-medium mb-3 uppercase text-xs tracking-wider"
-                    >
-                        Entry Criteria
-                    </h3>
-                    <ul class="list-disc list-inside space-y-2 text-sm">
-                        <li>Test Plan approved.</li>
-                        <li>Requirements finalized and signed off.</li>
-                        <li>Test environment ready and accessible.</li>
-                        <li>Smoke test passed (Build is stable).</li>
+                                PASS
+                            </strong>.
+                        </li>
+                        <li>
+                            If the observed results differ, the test case is marked as <strong class="text-red-400">
+                                FAIL
+                            </strong>, and a defect is logged.
+                        </li>
                     </ul>
                 </div>
-                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                    <h3
-                        class="text-red-400 font-medium mb-3 uppercase text-xs tracking-wider"
-                    >
-                        Exit Criteria
-                    </h3>
-                    <ul class="list-disc list-inside space-y-2 text-sm">
-                        <li>100% of critical test cases executed.</li>
-                        <li>95% Pass rate for functional tests.</li>
-                        <li>No Critical or High severity defects open.</li>
-                        <li>Test Closure Report signed off.</li>
+
+                <div>
+                    <h3 id="section-6-2" class="text-white font-medium mb-2">6.2 Pass/Fail Criteria</h3>
+                    <p class="mb-2">To pass the system integration test, the following criteria must be met:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>All core gameplay loops are functional.</li>
+                        <li>No "Critical" (S1) or "High" (S2) defects remain open.</li>
+                        <li>The game launches, runs, and closes without crashing.</li>
+                        <li>Performance maintains a minimum of 60 FPS on our spec hardware.</li>
                     </ul>
+                </div>
+
+                <div>
+                    <h3 id="section-6-3" class="text-white font-medium mb-2">6.3 Suspension Criteria</h3>
+                    <p class="mb-2">Testing will be suspended if any of the following occur:</p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>Build instability causes crashes during a test case over 25% of the time.</li>
+                        <li>A critical progression blocker prevents access to the majority of test cases.</li>
+                        <li>The test environment (Steam/Hardware) becomes unavailable.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 id="section-6-4" class="text-white font-medium mb-4">6.4 Defect Management</h3>
+                    <p class="mb-4">
+                        Defects will be tracked using Discord. Each defect must include reproduction steps, expected vs.
+                        actual results, and evidence (screenshot/video).
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                            <h4 class="text-white font-medium mb-4">Severity Levels</h4>
+                            <div class="space-y-3">
+                                <div class="flex gap-3">
+                                    <span class="px-2 py-1 bg-red-500/20 text-red-400 text-xs rounded font-mono h-fit">
+                                        1 - Critical
+                                    </span>
+                                    <p class="text-xs">System crash, data loss, or progression blocker.</p>
+                                </div>
+                                <div class="flex gap-3">
+                                    <span
+                                        class="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded font-mono h-fit"
+                                    >
+                                        2 - High
+                                    </span>
+                                    <p class="text-xs">
+                                        Major functionality broken. Workaround exists but is difficult.
+                                    </p>
+                                </div>
+                                <div class="flex gap-3">
+                                    <span
+                                        class="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded font-mono h-fit"
+                                    >
+                                        3 - Medium
+                                    </span>
+                                    <p class="text-xs">
+                                        Minor functionality issue or glitch. Does not impede progress.
+                                    </p>
+                                </div>
+                                <div class="flex gap-3">
+                                    <span
+                                        class="px-2 py-1 bg-blue-500/20 text-blue-400 text-xs rounded font-mono h-fit"
+                                    >
+                                        4 - Low
+                                    </span>
+                                    <p class="text-xs">Cosmetic issue (typo, texture clip) or suggestion.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                            <h4 class="text-white font-medium mb-4">Priority Levels</h4>
+                            <div class="space-y-3">
+                                <div class="flex gap-3">
+                                    <span class="px-2 py-1 bg-red-500/20 text-red-400 text-xs rounded font-mono h-fit">
+                                        1 - Immediate
+                                    </span>
+                                    <p class="text-xs">Must be fixed immediately. Blocks further testing.</p>
+                                </div>
+                                <div class="flex gap-3">
+                                    <span
+                                        class="px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded font-mono h-fit"
+                                    >
+                                        2 - High
+                                    </span>
+                                    <p class="text-xs">Must be fixed before the next release/build.</p>
+                                </div>
+                                <div class="flex gap-3">
+                                    <span
+                                        class="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded font-mono h-fit"
+                                    >
+                                        3 - Normal
+                                    </span>
+                                    <p class="text-xs">Fix when time permits. Standard queue.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 7. Risk Assessment -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >7</span
-                >
-                Risk Assessment
+        <!-- 7.0 Risks and Contingencies -->
+        <section id="section-7">
+            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2 border-b border-white/10 pb-2">
+                <span class="text-eoe-accent">7.0</span> Risks and Contingencies
             </h2>
-            <div
-                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
-            >
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-white/5 text-xs uppercase text-white">
                         <tr>
                             <th class="px-6 py-3">Risk</th>
                             <th class="px-6 py-3">Impact</th>
-                            <th class="px-6 py-3">Likelihood</th>
-                            <th class="px-6 py-3">Mitigation</th>
+                            <th class="px-6 py-3">Contingency Plan</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/5">
                         <tr>
-                            <td class="px-6 py-3 text-white"
-                                >Environment Instability</td
-                            >
-                            <td class="px-6 py-3"
-                                ><span class="text-red-400">High</span></td
-                            >
-                            <td class="px-6 py-3"
-                                ><span class="text-yellow-400">Medium</span></td
-                            >
-                            <td class="px-6 py-3"
-                                >Schedule maintenance windows; Have backup
-                                environment ready.</td
-                            >
+                            <td class="px-6 py-4 text-white">Progression Blockers / Soft Locks</td>
+                            <td class="px-6 py-4"><span class="text-red-400">Critical</span></td>
+                            <td class="px-6 py-4">
+                                Since Galactic Fruit is a short story game, any bug that halts progression will effectively soft-lock the player. Prioritize extensive testing of all story checkpoints, stage transitions, and mandatory interactions. Maintain detailed logs of progression paths and validate all critical path scenarios.
+                            </td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-3 text-white"
-                                >Incomplete Requirements</td
-                            >
-                            <td class="px-6 py-3"
-                                ><span class="text-yellow-400">Medium</span></td
-                            >
-                            <td class="px-6 py-3"
-                                ><span class="text-red-400">High</span></td
-                            >
-                            <td class="px-6 py-3"
-                                >Early review meetings with PO; Clarify
-                                assumptions in Test Plan.</td
-                            >
+                            <td class="px-6 py-4 text-white">Control & Progression Intuitiveness</td>
+                            <td class="px-6 py-4"><span class="text-orange-400">High</span></td>
+                            <td class="px-6 py-4">
+                                Players may struggle to understand controls or how to progress through the story. Conduct usability testing with fresh testers unfamiliar with the game. Document any confusing sections and provide feedback to developer for clarity improvements (UI hints, tutorials, etc.).
+                            </td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-3 text-white"
-                                >Resource Unavailability</td
-                            >
-                            <td class="px-6 py-3"
-                                ><span class="text-yellow-400">Medium</span></td
-                            >
-                            <td class="px-6 py-3"
-                                ><span class="text-green-400">Low</span></td
-                            >
-                            <td class="px-6 py-3"
-                                >Cross-train team members; Prioritize critical
-                                paths.</td
-                            >
+                            <td class="px-6 py-4 text-white">Minigame & Terminal Integration Issues</td>
+                            <td class="px-6 py-4"><span class="text-orange-400">High</span></td>
+                            <td class="px-6 py-4">
+                                With many minigames and terminal features developed, integration issues or unexpected combinations may cause bugs that halt progression. Create a comprehensive test matrix covering all minigame-terminal interactions. Test edge cases and unusual player sequences.
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- 8. Schedule -->
-        <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >8</span
-                >
-                Schedule
-            </h2>
-            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                <div class="relative">
-                    <div
-                        class="absolute left-2 top-0 bottom-0 w-0.5 bg-white/10"
-                    >
-                    </div>
-                    <div class="space-y-6">
-                        <div class="relative pl-8">
-                            <div
-                                class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-green-500 border-2 border-eoe-panel"
-                            >
-                            </div>
-                            <div class="text-xs text-eoe-muted">March 20</div>
-                            <div class="text-white font-medium">
-                                Test Planning & Analysis
-                            </div>
-                        </div>
-                        <div class="relative pl-8">
-                            <div
-                                class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-blue-500 border-2 border-eoe-panel"
-                            >
-                            </div>
-                            <div class="text-xs text-eoe-muted">March 22</div>
-                            <div class="text-white font-medium">
-                                Test Design & Review
-                            </div>
-                        </div>
-                        <div class="relative pl-8">
-                            <div
-                                class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-yellow-500 border-2 border-eoe-panel"
-                            >
-                            </div>
-                            <div class="text-xs text-eoe-muted">March 25</div>
-                            <div class="text-white font-medium">
-                                Test Execution (Cycle 1)
-                            </div>
-                        </div>
-                        <div class="relative pl-8">
-                            <div
-                                class="absolute left-0 top-1.5 w-4 h-4 rounded-full bg-purple-500 border-2 border-eoe-panel"
-                            >
-                            </div>
-                            <div class="text-xs text-eoe-muted">March 28</div>
-                            <div class="text-white font-medium">
-                                Test Closure & Sign-off
-                            </div>
-                        </div>
-                    </div>
+        <!-- Approvals -->
+        <section id="approvals" class="border-t border-white/10 pt-8 mt-12">
+            <h2 class="text-lg font-semibold text-white mb-6">Approvals</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <div class="border-b border-white/20 mb-2 h-8"></div>
+                    <p class="text-sm text-white">Dominic Brooks</p>
+                    <p class="text-xs text-eoe-muted">QA Lead</p>
+                </div>
+                <div>
+                    <div class="border-b border-white/20 mb-2 h-8"></div>
+                    <p class="text-sm text-white">Christopher Rojas</p>
+                    <p class="text-xs text-eoe-muted">QA Analyst</p>
                 </div>
             </div>
         </section>
