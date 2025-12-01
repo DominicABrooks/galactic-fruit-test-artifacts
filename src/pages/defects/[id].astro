@@ -140,7 +140,7 @@ const { id } = Astro.params;
     </div>
 
 <script>
-    const segments = window.location.pathname.split('/');
+    const segments = window.location.pathname.replace(/\/$/, '').split('/');
     const defectId = segments[segments.length - 1]; // "DEF-001"
 
   document.addEventListener("DOMContentLoaded", async () => {

@@ -1,6 +1,6 @@
 {
     "id": "DEF-003",
-    "summary": "    ",
+    "summary": "Door Closing Animation Cancelled by Interacting Multiple Times",
     "severity": "Low",
     "status": "Open",
     "environment": "Steam Client Build 20951743",
