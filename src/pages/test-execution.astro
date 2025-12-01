@@ -2,6 +2,8 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import BuildList from "../components/BuildList.astro";
 import builds from "../data/builds.json";
+import fs from 'fs';
+import path from 'path';
 
 // Fetch Exploratory Notes
 const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
@@ -9,6 +11,10 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
 const BASE = import.meta.env.BASE_URL || "/";
 const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
 const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
+
+const defectsDir = path.resolve('./public/data/defects');
+const defectsFiles = fs.readdirSync(defectsDir).filter(f => f.endsWith('.json'));
+const defects = defectsFiles.map(file => JSON.parse(fs.readFileSync(path.join(defectsDir, file), 'utf-8')));
 ---
 
 <MainLayout title="Test Execution" currentPath="/test-execution">
@@ -20,6 +26,9 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
             </button>
             <button id="tab-exploratory" class="px-6 py-3 text-sm font-medium text-eoe-muted hover:text-white border-b-2 border-transparent transition-colors">
                 Exploratory Notes
+            </button>
+            <button id="tab-defects" class="px-6 py-3 text-sm font-medium text-eoe-muted hover:text-white border-b-2 border-transparent transition-colors">
+                Defects
             </button>
         </div>
 
@@ -300,6 +309,63 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                 </div>
             </div>
         </div>
+
+        <!-- Defects View -->
+        <div id="view-defects" class="hidden flex-1 min-h-0 overflow-y-auto custom-scrollbar">
+        <div class="max-w-6xl mx-auto space-y-6 pb-20">
+            <!-- Header -->
+            <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+            <h2 class="text-2xl font-bold text-white mb-2">Defects</h2>
+            <p class="text-eoe-muted">List of defects found during testing.</p>
+            </div>
+
+            <!-- Table -->
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-white/5 text-xs uppercase text-white sticky top-0">
+                <tr>
+                    <th class="px-6 py-4 w-32 whitespace-nowrap">ID</th>
+                    <th class="px-6 py-4 w-40 whitespace-nowrap">Status</th>
+                    <th class="px-6 py-4 w-40 whitespace-nowrap">Severity</th>
+                    <th class="px-6 py-4 whitespace-nowrap">Summary</th>
+                    <th class="px-6 py-4 w-64 whitespace-nowrap">Environment</th>
+                    <th class="px-6 py-4 w-40 whitespace-nowrap">Reporter</th>
+                    <th class="px-6 py-4 w-40 whitespace-nowrap">Date</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5">
+                {defects.map((defect) => (
+                    <tr class="hover:bg-white/[0.02] transition-colors" 
+                        onclick={`window.location.href='${BASE_SLASH}defects/${defect.id}'`}
+                    >
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <a href={`/defects/${defect.id}`} class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded hover:bg-purple-500/30 transition-colors">
+                        {defect.id}
+                        </a>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class={`text-xs font-medium px-2 py-1 rounded ${
+                        defect.status === "Open"
+                            ? "bg-red-500/10 text-red-400 border border-red-500/20"
+                            : "bg-green-500/10 text-green-400 border border-green-500/20"
+                        }`}>
+                        {defect.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">{defect.severity}</td>
+                    <td class="px-6 py-4 text-white font-medium">{defect.summary}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{defect.environment}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{defect.reporter}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{defect.date}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+
+
     </div>
 </MainLayout>
 
@@ -322,6 +388,8 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
         const tabExploratory = document.getElementById("tab-exploratory");
         const viewExecution = document.getElementById("view-execution");
         const viewExploratory = document.getElementById("view-exploratory");
+        const tabDefects = document.getElementById("tab-defects");
+        const viewDefects = document.getElementById("view-defects");
 
         // Tab Switching Logic
         function switchTab(tab: string) {
@@ -335,29 +403,61 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                 
                 tabExploratory?.classList.remove('text-white', 'border-eoe-accent');
                 tabExploratory?.classList.add('text-eoe-muted', 'border-transparent');
+
+                tabDefects?.classList.remove('text-white', 'border-eoe-accent');
+                tabDefects?.classList.add('text-eoe-muted', 'border-transparent');
                 
                 history.replaceState(null, '', '#execution');
-            } else {
+            } else if (tab === 'exploratory') {
                 viewExecution?.classList.add('hidden');
                 viewExecution?.classList.remove('flex');
                 viewExploratory?.classList.remove('hidden');
+
+                viewDefects?.classList.add('hidden');
+                viewDefects?.classList.remove('flex');
                 
                 tabExecution?.classList.remove('text-white', 'border-eoe-accent');
                 tabExecution?.classList.add('text-eoe-muted', 'border-transparent');
                 
                 tabExploratory?.classList.add('text-white', 'border-eoe-accent');
                 tabExploratory?.classList.remove('text-eoe-muted', 'border-transparent');
+
+                tabDefects?.classList.remove('text-white', 'border-eoe-accent');
+                tabDefects?.classList.add('text-eoe-muted', 'border-transparent');
                 
                 history.replaceState(null, '', '#exploratory');
+            }
+            else
+            {
+                viewExecution?.classList.add('hidden');
+                viewExecution?.classList.remove('flex');
+                viewExploratory?.classList.add('hidden');
+                viewExploratory?.classList.remove('flex');
+
+                viewDefects?.classList.remove('hidden');
+                
+                tabExecution?.classList.remove('text-white', 'border-eoe-accent');
+                tabExecution?.classList.add('text-eoe-muted', 'border-transparent');
+                
+                tabExploratory?.classList.remove('text-white', 'border-eoe-accent');
+                tabExploratory?.classList.add('text-eoe-muted', 'border-transparent');
+
+                tabDefects?.classList.add('text-white', 'border-eoe-accent');
+                tabDefects?.classList.remove('text-eoe-muted', 'border-transparent');
+                
+                history.replaceState(null, '', '#defects');
             }
         }
 
         tabExecution?.addEventListener('click', () => switchTab('execution'));
         tabExploratory?.addEventListener('click', () => switchTab('exploratory'));
+        tabDefects?.addEventListener('click', () => switchTab('defects'));
 
         // Initial State from URL
         if (window.location.hash === '#exploratory') {
             switchTab('exploratory');
+        } else if (window.location.hash === '#defects') {
+            switchTab('defects');
         } else {
             switchTab('execution');
         }
@@ -583,6 +683,7 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
             // Show Test Cases View
             if (testSetsView) testSetsView.classList.add("hidden");
             if (testCasesView) testCasesView.classList.remove("hidden");
+            if (testDetailView) testDetailView.classList.add("hidden");
 
             // Update header
             const selectedBtn = document.querySelector(`.build-item[data-id="${currentBuildId}"]`);

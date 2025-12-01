@@ -1,0 +1,26 @@
+{
+    "id": "DEF-002",
+    "summary": "Disabled button does not provide audio feedback on interaction",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build 20951743",
+    "reporter": "Dominic Brooks",
+    "date": "2025-11-30",
+    "description": "During the initial game introduction sequence, interacting with a disabled button next to the door provides no audio feedback. Normally, pressing 'E' on non-interactable objects triggers a 'brrp' sound to indicate invalid interaction, but this feedback is missing for disabled buttons.",
+    "steps": [
+        "1. Launch the game through Steam Client (Build 20951743).",
+        "2. Approach and interact with the suit using [E].",
+        "3. Climb the ladder using [E].",
+        "4. Press [E] in mid-air pointing at nothing; observe 'brrp' audio feedback.",
+        "5. Walk up to the disabled button next to the door and press [E].",
+        "6. Observe that no audio feedback occurs."
+    ],
+    "expected": "Pressing [E] on a disabled button should produce the same 'brrp' sound as interacting with non-interactable objects, indicating the action is invalid.",
+    "actual": "Pressing [E] on the disabled button produces no audio feedback; the player receives no indication the interaction is invalid.",
+    "attachments": [
+        {
+            "name": "screenshot_disabled_button.png",
+            "description": "Shows player interacting with disabled button next to the door."
+        }
+    ]
+}

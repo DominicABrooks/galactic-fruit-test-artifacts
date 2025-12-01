@@ -1,24 +1,24 @@
 {
     "id": "DEF-001",
-    "summary": "Email format validation missing on client side",
-    "severity": "Medium",
+    "summary": "NullReferenceException triggered when pressing [G] on suit during intro sequence",
+    "severity": "High",
     "status": "Open",
-    "environment": "QA Staging v1.0.1",
-    "reporter": "QA Analyst",
-    "date": "2024-03-25",
-    "description": "The login form accepts invalid email formats (e.g. 'userdomain.com' without @) and attempts to send them to the server, instead of showing a client-side validation error.",
+    "environment": "Steam Client Build 20951743",
+    "reporter": "Dominic Brooks",
+    "date": "2025-11-30",
+    "description": "During the initial game introduction sequence, pressing [G] while interacting with the suit triggers a NullReferenceException and switches the player into drone view. This behavior is unintended, as the drone mode is deprecated and not part of the intro sequence.",
     "steps": [
-        "1. Navigate to Login Page",
-        "2. Enter 'userdomain.com' in Email field",
-        "3. Enter valid password",
-        "4. Click Login"
+        "1. Launch the game through Steam Client (Build 20951743).",
+        "2. Wait for intro video to finish.",
+        "3. Approach and interact with the suit embedded in the wall.",
+        "4. Press the 'G' key while interacting with the suit."
     ],
-    "expected": "Client-side error 'Invalid email format' should appear immediately or on submit.",
-    "actual": "No error shown, request sent to server (500 error returned).",
+    "expected": "Pressing 'G' while interacting with the suit does nothing; no errors occur and the player remains in normal view.",
+    "actual": "A NullReferenceException occurs: 'Object reference not set to an instance of an object', and the player is switched into drone view.",
     "attachments": [
         {
-            "name": "screenshot_error.png",
-            "description": "Network tab showing 500 error"
+            "name": "screenshot_null_reference.png",
+            "description": "In-game screen showing NullReferenceException message and drone view mode."
         }
     ]
 }
