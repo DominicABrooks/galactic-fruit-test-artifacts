@@ -1,10 +1,8 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import testAnalysisData from "../data/test-analysis.json";
-import testSetsData from "../data/test-sets.json";
 
 const { testConditions, rtm } = testAnalysisData;
-const { testSets } = testSetsData;
 
 // Fetch Exploratory Notes from Markdown files
 const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
