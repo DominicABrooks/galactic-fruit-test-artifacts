@@ -1,11 +1,53 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import testAnalysisData from "../data/test-analysis.json";
-
-const { testConditions, rtm } = testAnalysisData;
 
 // Fetch Exploratory Notes from Markdown files
 const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
+const notesMap = new Map(exploratoryNotes.map(n => [n.frontmatter.id, n.frontmatter]));
+
+// Load Test Conditions from split JSON files
+const conditionFiles = await import.meta.glob('../data/analysis/conditions/*.json', { eager: true });
+let testConditions = [];
+Object.values(conditionFiles).forEach((mod: any) => {
+    const conditions = mod.default || mod;
+    if (Array.isArray(conditions)) {
+        testConditions.push(...conditions);
+    }
+});
+
+// Sort conditions by ID
+testConditions.sort((a, b) => a.id.localeCompare(b.id));
+
+// Generate RTM Data
+const rtm = [];
+testConditions.forEach(condition => {
+    // Use the condition category as the basis title per user request
+    const basisTitle = condition.category || "General";
+    
+    // If no linked cases, add a row with just the condition
+    if (!condition.linkedTestCases || condition.linkedTestCases.length === 0) {
+        rtm.push({
+            testBasisId: condition.exploratoryNoteId,
+            testBasisTitle: basisTitle,
+            testConditionId: condition.id,
+            testCondition: condition.condition,
+            testCaseId: "—",
+            defectId: null
+        });
+    } else {
+        // Add a row for each linked case
+        condition.linkedTestCases.forEach(caseId => {
+            rtm.push({
+                testBasisId: condition.exploratoryNoteId,
+                testBasisTitle: basisTitle,
+                testConditionId: condition.id,
+                testCondition: condition.condition,
+                testCaseId: caseId,
+                defectId: null 
+            });
+        });
+    }
+});
 
 const BASE = import.meta.env.BASE_URL || "/";
 const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
@@ -68,11 +110,18 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
 
         <!-- 2. Test Conditions -->
         <section>
-            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-                <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">2</span>
-                Test Conditions
-            </h2>
-            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold text-white flex items-center gap-2">
+                    <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">2</span>
+                    Test Conditions
+                </h2>
+                <div class="flex items-center gap-2 text-sm">
+                    <button id="cond-prev" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors">Previous</button>
+                    <span id="cond-page-info" class="text-eoe-muted font-mono">Page 1</span>
+                    <button id="cond-next" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors">Next</button>
+                </div>
+            </div>
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden min-h-[400px]">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-white/5 text-xs uppercase text-white">
                         <tr>
@@ -81,14 +130,8 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                             <th class="px-6 py-4">Condition</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/5">
-                        {testConditions.map((condition) => (
-                            <tr class="hover:bg-white/[0.02]">
-                                <td class="px-6 py-4 font-mono text-eoe-accent text-xs">{condition.id}</td>
-                                <td class="px-6 py-4 text-eoe-muted text-xs">{condition.category}</td>
-                                <td class="px-6 py-4 text-white">{condition.condition}</td>
-                            </tr>
-                        ))}
+                    <tbody id="cond-tbody" class="divide-y divide-white/5">
+                        <!-- Populated by JS -->
                     </tbody>
                 </table>
             </div>
@@ -96,33 +139,150 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
 
         <!-- 3. Traceability Matrix (RTM) -->
         <section>
-            <h2 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-                <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">3</span>
-                Traceability Matrix (RTM)
-            </h2>
-            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold text-white flex items-center gap-2">
+                    <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">3</span>
+                    Traceability Matrix (RTM)
+                </h2>
+                <div class="flex items-center gap-2 text-sm">
+                    <button id="rtm-prev" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors">Previous</button>
+                    <span id="rtm-page-info" class="text-eoe-muted font-mono">Page 1</span>
+                    <button id="rtm-next" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors">Next</button>
+                </div>
+            </div>
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden min-h-[400px]">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-white/5 text-xs uppercase text-white">
                         <tr>
                             <th class="px-6 py-4">Test Basis</th>
                             <th class="px-6 py-4">Test Condition</th>
+                            <th class="px-6 py-4">Test Case</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/5">
-                        {rtm.map((row) => (
-                            <tr class="hover:bg-white/[0.02]">
-                                <td class="px-6 py-4">
-                                    <div class="flex flex-col">
-                                        <span class="font-mono text-blue-400 text-xs mb-1">{row.testBasisId}</span>
-                                        <span class="text-eoe-muted text-xs">{row.testBasisTitle}</span>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 font-mono text-eoe-accent text-xs">{row.testConditionId}</td>
-                            </tr>
-                        ))}
+                    <tbody id="rtm-tbody" class="divide-y divide-white/5">
+                        <!-- Populated by JS -->
                     </tbody>
                 </table>
             </div>
         </section>
     </div>
 </MainLayout>
+
+<script define:vars={{ testConditions, rtm }}>
+    // Pagination Configuration
+    const ITEMS_PER_PAGE = 10;
+    
+    // State
+    const state = {
+        conditions: {
+            data: testConditions,
+            currentPage: 1,
+            totalPages: Math.ceil(testConditions.length / ITEMS_PER_PAGE)
+        },
+        rtm: {
+            data: rtm,
+            currentPage: 1,
+            totalPages: Math.ceil(rtm.length / ITEMS_PER_PAGE)
+        }
+    };
+
+    // DOM Elements
+    const els = {
+        cond: {
+            tbody: document.getElementById('cond-tbody'),
+            prev: document.getElementById('cond-prev'),
+            next: document.getElementById('cond-next'),
+            info: document.getElementById('cond-page-info')
+        },
+        rtm: {
+            tbody: document.getElementById('rtm-tbody'),
+            prev: document.getElementById('rtm-prev'),
+            next: document.getElementById('rtm-next'),
+            info: document.getElementById('rtm-page-info')
+        }
+    };
+
+    // Render Functions
+    function renderConditions() {
+        const { data, currentPage } = state.conditions;
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        const pageData = data.slice(start, end);
+
+        els.cond.tbody.innerHTML = pageData.map(c => `
+            <tr class="hover:bg-white/[0.02]">
+                <td class="px-6 py-4 font-mono text-eoe-accent text-xs">${c.id}</td>
+                <td class="px-6 py-4 text-eoe-muted text-xs">${c.category}</td>
+                <td class="px-6 py-4 text-white">${c.condition}</td>
+            </tr>
+        `).join('');
+
+        els.cond.info.textContent = `Page ${currentPage} of ${state.conditions.totalPages}`;
+        els.cond.prev.disabled = currentPage === 1;
+        els.cond.next.disabled = currentPage === state.conditions.totalPages;
+    }
+
+    function renderRTM() {
+        const { data, currentPage } = state.rtm;
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        const pageData = data.slice(start, end);
+
+        els.rtm.tbody.innerHTML = pageData.map(r => `
+            <tr class="hover:bg-white/[0.02]">
+                <td class="px-6 py-4">
+                    <div class="flex flex-col">
+                        <span class="font-mono text-blue-400 text-xs mb-1">${r.testBasisId}</span>
+                        <span class="text-eoe-muted text-xs">${r.testBasisTitle}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4 font-mono text-eoe-accent text-xs">
+                    <div class="flex flex-col">
+                        <span class="mb-1">${r.testConditionId}</span>
+                        <span class="text-eoe-muted text-[10px] truncate max-w-[200px]">${r.testCondition}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-4 font-mono text-xs ${r.testCaseId === '—' ? 'text-eoe-muted' : 'text-green-400'}">
+                    ${r.testCaseId}
+                </td>
+            </tr>
+        `).join('');
+
+        els.rtm.info.textContent = `Page ${currentPage} of ${state.rtm.totalPages}`;
+        els.rtm.prev.disabled = currentPage === 1;
+        els.rtm.next.disabled = currentPage === state.rtm.totalPages;
+    }
+
+    // Event Listeners
+    els.cond.prev.addEventListener('click', () => {
+        if (state.conditions.currentPage > 1) {
+            state.conditions.currentPage--;
+            renderConditions();
+        }
+    });
+
+    els.cond.next.addEventListener('click', () => {
+        if (state.conditions.currentPage < state.conditions.totalPages) {
+            state.conditions.currentPage++;
+            renderConditions();
+        }
+    });
+
+    els.rtm.prev.addEventListener('click', () => {
+        if (state.rtm.currentPage > 1) {
+            state.rtm.currentPage--;
+            renderRTM();
+        }
+    });
+
+    els.rtm.next.addEventListener('click', () => {
+        if (state.rtm.currentPage < state.rtm.totalPages) {
+            state.rtm.currentPage++;
+            renderRTM();
+        }
+    });
+
+    // Initial Render
+    renderConditions();
+    renderRTM();
+</script>

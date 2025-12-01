@@ -14,10 +14,17 @@ const testCaseFiles = Object.fromEntries(
 );
 
 const testCasesCount = Object.keys(testCaseFiles).length;
-const sampleTestCases = Object.entries(testCaseFiles).slice(0, 5).map(([path, file]: [string, any]) => ({
-    ...(file.default || file),
-    path: path
-}));
+const sampleTestCases = Object.entries(testCaseFiles).slice(0, 5).map(([path, file]: [string, any]) => {
+    // Extract setId from path: /public/data/testCases/intro-tests/TC-INTRO-001.json -> intro-tests
+    const pathParts = path.split('/');
+    const setId = pathParts[pathParts.length - 2];
+    
+    return {
+        ...(file.default || file),
+        path: path,
+        setId: setId
+    };
+});
 
 const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
 const exploratoryCount = exploratoryNotes.length;
@@ -94,7 +101,7 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
                         <div class="space-y-2">
                             {sampleTestCases.map((tc) => (
                                 tc.id !== undefined && (
-                                    <a href={import.meta.env.BASE_URL + "/test-execution"} class="block p-2 rounded-lg hover:bg-white/5 transition-colors">
+                                    <a href={import.meta.env.BASE_URL + `/test-case/${tc.setId}/${tc.id}`} class="block p-2 rounded-lg hover:bg-white/5 transition-colors">
                                         <div class="text-xs font-mono text-blue-400">{tc.id}</div>
                                         <div class="text-xs text-eoe-muted truncate">{tc.name}</div>
                                     </a>

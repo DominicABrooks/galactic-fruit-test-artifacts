@@ -1,0 +1,42 @@
+[
+    {
+        "id": "TC-COND-011",
+        "category": "Map Terminal",
+        "condition": "Verify map terminal displays squad information correctly",
+        "priority": "Low",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-003"
+    },
+    {
+        "id": "TC-COND-012",
+        "category": "Camera System",
+        "condition": "Verify camera terminal UI elements display correctly",
+        "priority": "Medium",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-003"
+    },
+    {
+        "id": "TC-COND-013",
+        "category": "Camera System",
+        "condition": "Verify camera movement controls work correctly with WASD keys",
+        "priority": "High",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-003"
+    },
+    {
+        "id": "TC-COND-014",
+        "category": "Camera System",
+        "condition": "Verify camera boundaries display red line and sound effect when reached",
+        "priority": "Medium",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-003"
+    },
+    {
+        "id": "TC-COND-015",
+        "category": "Course Navigation",
+        "condition": "Verify planet selection and course setting works correctly",
+        "priority": "High",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-003"
+    }
+]

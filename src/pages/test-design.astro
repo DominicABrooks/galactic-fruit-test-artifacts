@@ -1,5 +1,31 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+
+// Load Test Conditions from split JSON files
+const conditionFiles = await import.meta.glob('../data/analysis/conditions/*.json', { eager: true });
+let testConditions = [];
+Object.values(conditionFiles).forEach((mod: any) => {
+    const conditions = mod.default || mod;
+    if (Array.isArray(conditions)) {
+        testConditions.push(...conditions);
+    }
+});
+
+// Sort conditions by ID
+testConditions.sort((a, b) => a.id.localeCompare(b.id));
+
+// Flatten to a list of { condition, testCaseId } for the table
+const tableData = [];
+testConditions.forEach(c => {
+    if (c.linkedTestCases && c.linkedTestCases.length > 0) {
+        c.linkedTestCases.forEach(tcId => {
+            tableData.push({
+                condition: c.condition,
+                testCaseId: tcId
+            });
+        });
+    }
+});
 ---
 
 <MainLayout title="Test Design" currentPath="/test-design">
@@ -14,79 +40,38 @@ import MainLayout from "../layouts/MainLayout.astro";
 
         <!-- 1. Functional Test Cases -->
         <section>
-        <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-            <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">1</span>
-            Functional Test Cases
-        </h2>
-        <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
-            <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm whitespace-nowrap">
-                <thead class="bg-white/5 text-xs uppercase text-white">
-                <tr>
-                    <th class="px-6 py-4">Test Condition</th>
-                    <th class="px-6 py-4">Test Case ID</th>
-                </tr>
-                </thead>
-                <tbody id="test-cases-body" class="divide-y divide-white/5">
-                <!-- Rows injected here -->
-                </tbody>
-            </table>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-semibold text-white flex items-center gap-2">
+                    <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">1</span>
+                    Functional Test Cases
+                </h2>
+                <div class="flex items-center gap-2 text-sm">
+                    <button id="prev-btn" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors">Previous</button>
+                    <span id="page-info" class="text-eoe-muted font-mono">Page 1</span>
+                    <button id="next-btn" class="px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors">Next</button>
+                </div>
             </div>
-        </div>
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden min-h-[300px]">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm whitespace-nowrap">
+                        <thead class="bg-white/5 text-xs uppercase text-white">
+                            <tr>
+                                <th class="px-6 py-4">Test Condition</th>
+                                <th class="px-6 py-4">Test Case ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id="test-cases-body" class="divide-y divide-white/5">
+                            <!-- Rows injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </section>
-
-        <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            try {
-            const response = await fetch(`${import.meta.env.BASE_URL}/src/data/test-analysis.json`);
-            if (!response.ok) throw new Error(`Failed to load JSON: ${response.status}`);
-            const data = await response.json();
-
-            const tbody = document.getElementById("test-cases-body");
-
-            data.testConditions.forEach(condition => {
-                if (condition.linkedTestCases && condition.linkedTestCases.length > 0) {
-                condition.linkedTestCases.forEach(tcId => {
-                    const row = document.createElement("tr");
-                    row.className = "hover:bg-white/[0.02]";
-
-                    const tdCondition = document.createElement("td");
-                    tdCondition.className = "px-6 py-4 font-mono text-eoe-accent";
-                    tdCondition.textContent = condition.condition;
-
-                    const tdTestCase = document.createElement("td");
-                    tdTestCase.className = "px-6 py-4";
-                    const link = document.createElement("a");
-                    link.href = `/test-cases/${tcId}`;
-                    link.textContent = tcId;
-                    link.className = "text-purple-300 hover:underline";
-                    tdTestCase.appendChild(link);
-
-                    row.appendChild(tdCondition);
-                    row.appendChild(tdTestCase);
-
-                    tbody.appendChild(row);
-                });
-                }
-            });
-            } catch (err) {
-            console.error(err);
-            const tbody = document.getElementById("test-cases-body");
-            tbody.innerHTML = `<tr><td colspan="2" class="px-6 py-4 italic text-xs">Failed to load test cases</td></tr>`;
-            }
-        });
-        </script>
-
 
         <!-- 2. Test Case Design (EP/BVA) -->
         <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >2</span
-                >
+            <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">2</span>
                 Test Case Design (EP/BVA)
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -95,25 +80,15 @@ import MainLayout from "../layouts/MainLayout.astro";
                         Equivalence Partitioning (Email Field)
                     </h3>
                     <ul class="space-y-3 text-sm">
-                        <li
-                            class="flex justify-between border-b border-white/5 pb-2"
-                        >
+                        <li class="flex justify-between border-b border-white/5 pb-2">
                             <span>Valid Email</span>
-                            <span class="font-mono text-green-400"
-                                >user@domain.com</span
-                            >
+                            <span class="font-mono text-green-400">user@domain.com</span>
                         </li>
-                        <li
-                            class="flex justify-between border-b border-white/5 pb-2"
-                        >
+                        <li class="flex justify-between border-b border-white/5 pb-2">
                             <span>Missing @</span>
-                            <span class="font-mono text-red-400"
-                                >userdomain.com</span
-                            >
+                            <span class="font-mono text-red-400">userdomain.com</span>
                         </li>
-                        <li
-                            class="flex justify-between border-b border-white/5 pb-2"
-                        >
+                        <li class="flex justify-between border-b border-white/5 pb-2">
                             <span>Missing Domain</span>
                             <span class="font-mono text-red-400">user@</span>
                         </li>
@@ -131,33 +106,21 @@ import MainLayout from "../layouts/MainLayout.astro";
                         Requirement: Password must be 8-20 characters.
                     </p>
                     <ul class="space-y-3 text-sm">
-                        <li
-                            class="flex justify-between border-b border-white/5 pb-2"
-                        >
+                        <li class="flex justify-between border-b border-white/5 pb-2">
                             <span>7 chars (Invalid)</span>
                             <span class="font-mono text-red-400">Pass123</span>
                         </li>
-                        <li
-                            class="flex justify-between border-b border-white/5 pb-2"
-                        >
+                        <li class="flex justify-between border-b border-white/5 pb-2">
                             <span>8 chars (Valid)</span>
-                            <span class="font-mono text-green-400"
-                                >Pass1234</span
-                            >
+                            <span class="font-mono text-green-400">Pass1234</span>
                         </li>
-                        <li
-                            class="flex justify-between border-b border-white/5 pb-2"
-                        >
+                        <li class="flex justify-between border-b border-white/5 pb-2">
                             <span>20 chars (Valid)</span>
-                            <span class="font-mono text-green-400"
-                                >P@ssword123456789012</span
-                            >
+                            <span class="font-mono text-green-400">P@ssword123456789012</span>
                         </li>
                         <li class="flex justify-between">
                             <span>21 chars (Invalid)</span>
-                            <span class="font-mono text-red-400"
-                                >P@ssword1234567890123</span
-                            >
+                            <span class="font-mono text-red-400">P@ssword1234567890123</span>
                         </li>
                     </ul>
                 </div>
@@ -165,3 +128,58 @@ import MainLayout from "../layouts/MainLayout.astro";
         </section>
     </div>
 </MainLayout>
+
+<script define:vars={{ tableData }}>
+    const ITEMS_PER_PAGE = 10;
+    let currentPage = 1;
+    const totalPages = Math.ceil(tableData.length / ITEMS_PER_PAGE) || 1;
+
+    const tbody = document.getElementById("test-cases-body");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const pageInfo = document.getElementById("page-info");
+
+    function renderTable() {
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        const pageData = tableData.slice(start, end);
+
+        if (pageData.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="2" class="px-6 py-4 italic text-xs text-center">No linked test cases found</td></tr>`;
+        } else {
+            tbody.innerHTML = pageData.map(row => `
+                <tr class="hover:bg-white/[0.02]">
+                    <td class="px-6 py-4 font-mono text-eoe-accent text-xs truncate max-w-[400px]" title="${row.condition}">
+                        ${row.condition}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="/galactic-fruit-test-artifacts/test-case/${row.testCaseId.split('-')[1].toLowerCase()}-tests/${row.testCaseId}" class="text-purple-300 hover:underline text-xs font-mono">
+                            ${row.testCaseId}
+                        </a>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderTable();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderTable();
+        }
+    });
+
+    // Initial render
+    renderTable();
+</script>

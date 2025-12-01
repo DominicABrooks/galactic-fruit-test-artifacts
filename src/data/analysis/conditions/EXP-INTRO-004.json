@@ -1,0 +1,66 @@
+[
+    {
+        "id": "TC-COND-016",
+        "category": "Hallway Doors",
+        "condition": "Verify main door opens and closes with proper animation",
+        "priority": "High",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    },
+    {
+        "id": "TC-COND-017",
+        "category": "Hallway Doors",
+        "condition": "Verify door animation cannot be skipped with rapid input",
+        "priority": "Medium",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    },
+    {
+        "id": "TC-COND-018",
+        "category": "Room Interaction",
+        "condition": "Verify side room doors use correct sliding animation",
+        "priority": "Medium",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    },
+    {
+        "id": "TC-COND-019",
+        "category": "Room Interaction",
+        "condition": "Verify side room doors auto-close after approximately 2 seconds",
+        "priority": "Medium",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    },
+    {
+        "id": "TC-COND-020",
+        "category": "Room Interaction",
+        "condition": "Verify accessible rooms (Electrical, Waste) can be entered",
+        "priority": "High",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    },
+    {
+        "id": "TC-COND-021",
+        "category": "Room Interaction",
+        "condition": "Verify locked rooms (Administration, Lounge) cannot be accessed",
+        "priority": "High",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    },
+    {
+        "id": "TC-COND-022",
+        "category": "Hibernation System",
+        "condition": "Verify cryochamber interaction triggers hibernation sequence",
+        "priority": "High",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    },
+    {
+        "id": "TC-COND-023",
+        "category": "Region Transition",
+        "condition": "Verify region transitions from initial to 0b after hibernation",
+        "priority": "High",
+        "linkedTestCases": [],
+        "exploratoryNoteId": "EXP-INTRO-004"
+    }
+]
