@@ -1,0 +1,10 @@
+{
+    "buildId": "1.0.0",
+    "date": "2025-11-29",
+    "results": [
+        {
+            "testCaseId": "TC-AUDIO-001",
+            "notes": "Application crashes on launch DEF-002"
+        }
+    ]
+}

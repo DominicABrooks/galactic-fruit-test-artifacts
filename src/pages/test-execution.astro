@@ -721,7 +721,9 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                     };
 
                     return `
-                        <tr class="hover:bg-white/5 cursor-pointer transition-colors group" onclick="window.viewTestCase('${tc.id}', '${tc.status}', '${tc.notes}', '${setId}')">
+                        <tr class="test-case-row hover:bg-white/5 cursor-pointer transition-colors group" 
+                            data-id="${tc.id}" 
+                            data-set-id="${setId}">
                             <td class="px-6 py-4 font-mono text-eoe-muted group-hover:text-white">${tc.id}</td>
                             <td class="px-6 py-4 font-medium text-white">${tc.name}</td>
                             <td class="px-6 py-4">
@@ -733,6 +735,18 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                         </tr>
                     `;
                 }).join('');
+
+                // Add event listeners safely
+                testCasesBody.querySelectorAll('.test-case-row').forEach(row => {
+                    row.addEventListener('click', () => {
+                        const id = row.getAttribute('data-id');
+                        const setId = row.getAttribute('data-set-id');
+                        const tc = testCaseList.find((t: any) => t.id === id);
+                        if (tc) {
+                            (window as any).viewTestCase(tc.id, tc.status, tc.notes, setId);
+                        }
+                    });
+                });
             }
         };
 

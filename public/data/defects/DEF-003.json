@@ -1,0 +1,27 @@
+{
+    "id": "DEF-003",
+    "summary": "    ",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build 20951743",
+    "reporter": "Dominic Brooks",
+    "date": "2025-12-01",
+    "description": "Rapidly pressing the interaction key [E] while the hallway door is closing causes the animation to be cancelled/skipped abruptly.",
+    "steps": [
+        "1. Launch game through Steam.",
+        "2. Obtain suit and climb ladder to ship.",
+        "3. Interact with ship power button to restore power.",
+        "4. Turn around and open the hallway door using [E].",
+        "5. Wait for the opening animation to complete.",
+        "6. Press [E] to close the door.",
+        "7. Immediately press [E] multiple times rapidly while the door is closing."
+    ],
+    "expected": "The door closing animation should play to completion regardless of additional inputs, or inputs should be ignored during the animation.",
+    "actual": "The door closing animation is cancelled/skipped, snapping the door to a closed state.",
+    "attachments": [
+        {
+            "name": "screenshot_door_closing.png",
+            "description": "Shows player interacting with door while it is closing."
+        }
+    ]
+}
