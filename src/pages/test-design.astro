@@ -14,136 +14,71 @@ import MainLayout from "../layouts/MainLayout.astro";
 
         <!-- 1. Functional Test Cases -->
         <section>
-            <h2
-                class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
-            >
-                <span
-                    class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
-                    >1</span
-                >
-                Functional Test Cases
-            </h2>
-            <div
-                class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden"
-            >
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm whitespace-nowrap">
-                        <thead class="bg-white/5 text-xs uppercase text-white">
-                            <tr>
-                                <th class="px-6 py-4">ID</th>
-                                <th class="px-6 py-4">Title</th>
-                                <th class="px-6 py-4">Preconditions</th>
-                                <th class="px-6 py-4">Test Steps</th>
-                                <th class="px-6 py-4">Expected Result</th>
-                                <th class="px-6 py-4">Test Data</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-white/5">
-                            <tr class="hover:bg-white/[0.02]">
-                                <td class="px-6 py-4 font-mono text-eoe-accent"
-                                    >TC-LOGIN-001</td
-                                >
-                                <td class="px-6 py-4 text-white"
-                                    >Verify successful login</td
-                                >
-                                <td class="px-6 py-4"
-                                    >User exists and is active</td
-                                >
-                                <td class="px-6 py-4">
-                                    1. Navigate to Login Page<br />
-                                    2. Enter valid Email<br />
-                                    3. Enter valid Password<br />
-                                    4. Click Login
-                                </td>
-                                <td class="px-6 py-4"
-                                    >User is redirected to Dashboard</td
-                                >
-                                <td class="px-6 py-4 font-mono text-xs"
-                                    >user: valid@test.com<br />pass: P@ss123</td
-                                >
-                            </tr>
-                            <tr class="hover:bg-white/[0.02]">
-                                <td class="px-6 py-4 font-mono text-eoe-accent"
-                                    >TC-LOGIN-002</td
-                                >
-                                <td class="px-6 py-4 text-white"
-                                    >Verify invalid password error</td
-                                >
-                                <td class="px-6 py-4">User exists</td>
-                                <td class="px-6 py-4">
-                                    1. Enter valid Email<br />
-                                    2. Enter invalid Password<br />
-                                    3. Click Login
-                                </td>
-                                <td class="px-6 py-4"
-                                    >Error "Invalid credentials" shown</td
-                                >
-                                <td class="px-6 py-4 font-mono text-xs"
-                                    >user: valid@test.com<br />pass: wrongpass</td
-                                >
-                            </tr>
-                            <tr class="hover:bg-white/[0.02]">
-                                <td class="px-6 py-4 font-mono text-eoe-accent"
-                                    >TC-LOGIN-003</td
-                                >
-                                <td class="px-6 py-4 text-white"
-                                    >Verify empty fields validation</td
-                                >
-                                <td class="px-6 py-4">None</td>
-                                <td class="px-6 py-4">
-                                    1. Leave Email & Password empty<br />
-                                    2. Click Login
-                                </td>
-                                <td class="px-6 py-4"
-                                    >"Required field" errors shown</td
-                                >
-                                <td class="px-6 py-4 font-mono text-xs">N/A</td>
-                            </tr>
-                            <tr class="hover:bg-white/[0.02]">
-                                <td class="px-6 py-4 font-mono text-eoe-accent"
-                                    >TC-LOGIN-004</td
-                                >
-                                <td class="px-6 py-4 text-white"
-                                    >Verify email format validation</td
-                                >
-                                <td class="px-6 py-4">None</td>
-                                <td class="px-6 py-4">
-                                    1. Enter "invalid-email"<br />
-                                    2. Click Login
-                                </td>
-                                <td class="px-6 py-4"
-                                    >"Invalid email format" error shown</td
-                                >
-                                <td class="px-6 py-4 font-mono text-xs"
-                                    >email: plainaddress</td
-                                >
-                            </tr>
-                            <tr class="hover:bg-white/[0.02]">
-                                <td class="px-6 py-4 font-mono text-eoe-accent"
-                                    >TC-LOGIN-005</td
-                                >
-                                <td class="px-6 py-4 text-white"
-                                    >Verify account lockout</td
-                                >
-                                <td class="px-6 py-4">User exists</td>
-                                <td class="px-6 py-4">
-                                    1. Enter invalid password 5 times<br />
-                                    2. Enter valid password on 6th try
-                                </td>
-                                <td class="px-6 py-4"
-                                    >Account locked message shown</td
-                                >
-                                <td class="px-6 py-4 font-mono text-xs"
-                                    >user: locked@test.com</td
-                                >
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+            <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">1</span>
+            Functional Test Cases
+        </h2>
+        <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+            <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm whitespace-nowrap">
+                <thead class="bg-white/5 text-xs uppercase text-white">
+                <tr>
+                    <th class="px-6 py-4">Test Condition</th>
+                    <th class="px-6 py-4">Test Case ID</th>
+                </tr>
+                </thead>
+                <tbody id="test-cases-body" class="divide-y divide-white/5">
+                <!-- Rows injected here -->
+                </tbody>
+            </table>
             </div>
+        </div>
         </section>
 
-        <!-- 2. Test Data Design (EP/BVA) -->
+        <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            try {
+            const response = await fetch(`${import.meta.env.BASE_URL}/src/data/test-analysis.json`);
+            if (!response.ok) throw new Error(`Failed to load JSON: ${response.status}`);
+            const data = await response.json();
+
+            const tbody = document.getElementById("test-cases-body");
+
+            data.testConditions.forEach(condition => {
+                if (condition.linkedTestCases && condition.linkedTestCases.length > 0) {
+                condition.linkedTestCases.forEach(tcId => {
+                    const row = document.createElement("tr");
+                    row.className = "hover:bg-white/[0.02]";
+
+                    const tdCondition = document.createElement("td");
+                    tdCondition.className = "px-6 py-4 font-mono text-eoe-accent";
+                    tdCondition.textContent = condition.condition;
+
+                    const tdTestCase = document.createElement("td");
+                    tdTestCase.className = "px-6 py-4";
+                    const link = document.createElement("a");
+                    link.href = `/test-cases/${tcId}`;
+                    link.textContent = tcId;
+                    link.className = "text-purple-300 hover:underline";
+                    tdTestCase.appendChild(link);
+
+                    row.appendChild(tdCondition);
+                    row.appendChild(tdTestCase);
+
+                    tbody.appendChild(row);
+                });
+                }
+            });
+            } catch (err) {
+            console.error(err);
+            const tbody = document.getElementById("test-cases-body");
+            tbody.innerHTML = `<tr><td colspan="2" class="px-6 py-4 italic text-xs">Failed to load test cases</td></tr>`;
+            }
+        });
+        </script>
+
+
+        <!-- 2. Test Case Design (EP/BVA) -->
         <section>
             <h2
                 class="text-xl font-semibold text-white mb-4 flex items-center gap-2"
@@ -152,7 +87,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                     class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm"
                     >2</span
                 >
-                Test Data Design (EP/BVA)
+                Test Case Design (EP/BVA)
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">

@@ -279,7 +279,8 @@ const defects = defectsFiles.map(file => JSON.parse(fs.readFileSync(path.join(de
                         </thead>
                         <tbody class="divide-y divide-white/5">
                             {exploratoryNotes.map((note) => (
-                                <tr class="hover:bg-white/[0.02] transition-colors">
+                                <tr class="hover:bg-white/[0.02] transition-colors"
+                                onclick={`window.location.href='${BASE_SLASH}exploratory/${note.frontmatter.id}'`}>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href={makePath(`exploratory/${note.frontmatter.id}`)} class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded hover:bg-purple-500/30 transition-colors">
                                             {note.frontmatter.id}

@@ -36,8 +36,6 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                         <tr>
                             <th class="px-6 py-4">ID</th>
                             <th class="px-6 py-4">Title</th>
-                            <th class="px-6 py-4">Category</th>
-                            <th class="px-6 py-4">Author</th>
                             <th class="px-6 py-4">Derived Features</th>
                         </tr>
                     </thead>
@@ -54,8 +52,6 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                                         {note.frontmatter.title}
                                     </a>
                                 </td>
-                                <td class="px-6 py-4 text-eoe-muted text-xs">{note.frontmatter.category}</td>
-                                <td class="px-6 py-4 text-eoe-muted text-xs">{note.frontmatter.author || '-'}</td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-1 flex-wrap">
                                         {note.frontmatter.derivedFeatures.map((feature: string) => (
@@ -83,11 +79,8 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                     <thead class="bg-white/5 text-xs uppercase text-white">
                         <tr>
                             <th class="px-6 py-4">ID</th>
-                            <th class="px-6 py-4">Category</th>
-                            <th class="px-6 py-4">Condition</th>
                             <th class="px-6 py-4">Test Basis</th>
-                            <th class="px-6 py-4">Priority</th>
-                            <th class="px-6 py-4">Linked Cases</th>
+                            <th class="px-6 py-4">Condition</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/5">
@@ -96,32 +89,6 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                                 <td class="px-6 py-4 font-mono text-eoe-accent text-xs">{condition.id}</td>
                                 <td class="px-6 py-4 text-eoe-muted text-xs">{condition.category}</td>
                                 <td class="px-6 py-4 text-white">{condition.condition}</td>
-                                <td class="px-6 py-4">
-                                    {condition.exploratoryNoteId ? (
-                                        <a href={`#${condition.exploratoryNoteId}`} class="text-xs font-mono text-purple-300 hover:text-purple-200 hover:underline">
-                                            {condition.exploratoryNoteId}
-                                        </a>
-                                    ) : (
-                                        <span class="text-eoe-muted text-xs">-</span>
-                                    )}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class={`text-xs font-medium ${
-                                        condition.priority === 'High' ? 'text-red-400' : 
-                                        condition.priority === 'Medium' ? 'text-yellow-400' : 'text-green-400'
-                                    }`}>
-                                        {condition.priority}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex gap-1 flex-wrap">
-                                        {condition.linkedTestCases.map((tc) => (
-                                            <a href={`/test-implementation#${tc}`} class="text-xs font-mono bg-white/5 hover:bg-white/10 text-eoe-accent px-1.5 py-0.5 rounded transition-colors">
-                                                {tc}
-                                            </a>
-                                        ))}
-                                    </div>
-                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -139,9 +106,8 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                 <table class="w-full text-left text-sm">
                     <thead class="bg-white/5 text-xs uppercase text-white">
                         <tr>
-                            <th class="px-6 py-4">Requirement</th>
+                            <th class="px-6 py-4">Test Basis</th>
                             <th class="px-6 py-4">Test Condition</th>
-                            <th class="px-6 py-4">Test Case</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/5">
@@ -149,16 +115,11 @@ const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
                             <tr class="hover:bg-white/[0.02]">
                                 <td class="px-6 py-4">
                                     <div class="flex flex-col">
-                                        <span class="font-mono text-blue-400 text-xs mb-1">{row.requirementId}</span>
-                                        <span class="text-eoe-muted text-xs">{row.requirementDesc}</span>
+                                        <span class="font-mono text-blue-400 text-xs mb-1">{row.testBasisId}</span>
+                                        <span class="text-eoe-muted text-xs">{row.testBasisTitle}</span>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 font-mono text-eoe-accent text-xs">{row.testConditionId}</td>
-                                <td class="px-6 py-4">
-                                    <a href={`/test-implementation#${row.testCaseId}`} class="font-mono text-white hover:text-eoe-accent transition-colors text-xs">
-                                        {row.testCaseId}
-                                    </a>
-                                </td>
                             </tr>
                         ))}
                     </tbody>

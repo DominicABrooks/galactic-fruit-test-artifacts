@@ -2,73 +2,97 @@
     "testConditions": [
         {
             "id": "TC-COND-001",
-            "category": "Authentication",
-            "condition": "Valid login with correct credentials",
-            "priority": "High",
+            "category": "Introduction / Interaction",
+            "condition": "Verify intro video plays correctly and loops as expected",
+            "priority": "Medium",
             "linkedTestCases": [
-                "TC-LOGIN-001"
+                "TC-INTRO-001"
             ],
-            "exploratoryNoteId": "EXP-AUTH-001"
+            "exploratoryNoteId": "EXP-INTRO-001"
         },
         {
             "id": "TC-COND-002",
-            "category": "Authentication",
-            "condition": "Invalid login (wrong password)",
+            "category": "Interaction Objects",
+            "condition": "Verify suit and ladder are interactable and dependencies enforced",
             "priority": "High",
             "linkedTestCases": [
-                "TC-LOGIN-002"
+                "TC-INTERACT-001",
+                "TC-INTERACT-002"
             ],
-            "exploratoryNoteId": "EXP-AUTH-001"
+            "exploratoryNoteId": "EXP-INTRO-001"
         },
         {
             "id": "TC-COND-003",
-            "category": "Authentication",
-            "condition": "Invalid login (unregistered email)",
+            "category": "Door / Button Interaction",
+            "condition": "Verify disabled buttons provide proper audio feedback when pressed",
             "priority": "Medium",
             "linkedTestCases": [
-                "TC-LOGIN-003"
+                "TC-AUDIO-001"
             ],
-            "exploratoryNoteId": "EXP-AUTH-001"
+            "exploratoryNoteId": "EXP-INTRO-001"
         },
         {
             "id": "TC-COND-004",
-            "category": "Authentication",
-            "condition": "Empty fields validation",
-            "priority": "Medium",
-            "linkedTestCases": [
-                "TC-LOGIN-004"
-            ],
-            "exploratoryNoteId": "EXP-AUTH-001"
-        },
-        {
-            "id": "TC-COND-005",
-            "category": "Authentication",
-            "condition": "Account lockout after N failed attempts",
+            "category": "Suit Interaction",
+            "condition": "Verify pressing 'G' on the suit does not trigger errors or unexpected mode changes",
             "priority": "High",
             "linkedTestCases": [
-                "TC-LOGIN-005"
+                "TC-DEF-001"
             ],
-            "exploratoryNoteId": "EXP-AUTH-001"
+            "exploratoryNoteId": "EXP-INTRO-001"
         }
     ],
     "rtm": [
         {
-            "requirementId": "REQ-001",
-            "requirementDesc": "User Authentication",
+            "testBasisId": "EXP-INTRO-001",
+            "testBasisTitle": "Introduction Interaction System",
             "testConditionId": "TC-COND-001",
-            "testCaseId": "TC-LOGIN-001"
+            "testCondition": "Verify intro video plays correctly and loops as expected",
+            "testCaseId": "TC-INTRO-001"
         },
         {
-            "requirementId": "REQ-001",
-            "requirementDesc": "User Authentication",
+            "testBasisId": "EXP-INTRO-001",
+            "testBasisTitle": "Door / Button Interaction",
+            "testConditionId": "TC-COND-003",
+            "testCondition": "Verify disabled buttons provide proper audio feedback when pressed",
+            "testCaseId": "TC-AUDIO-001",
+            "defectId": "DEF-002"
+        },
+        {
+            "testBasisId": "EXP-INTRO-001",
+            "testBasisTitle": "Suit Interaction",
+            "testConditionId": "TC-COND-004",
+            "testCondition": "Verify pressing 'G' on the suit does not trigger errors or unexpected mode changes",
+            "testCaseId": "TC-DEF-001",
+            "defectId": "DEF-001"
+        },
+        {
+            "testBasisId": "EXP-INTRO-001",
+            "testBasisTitle": "Ladder Interaction",
             "testConditionId": "TC-COND-002",
-            "testCaseId": "TC-LOGIN-002"
+            "testCondition": "Verify suit and ladder are interactable and dependencies enforced",
+            "testCaseId": "TC-INTERACT-001"
         },
         {
-            "requirementId": "REQ-002",
-            "requirementDesc": "Security & Lockout",
+            "testBasisId": "EXP-INTRO-001",
+            "testBasisTitle": "Ladder Interaction",
+            "testConditionId": "TC-COND-002",
+            "testCondition": "Verify suit and ladder are interactable and dependencies enforced",
+            "testCaseId": "TC-INTERACT-002"
+        },
+        {
+            "testBasisId": "EXP-INTRO-001",
+            "testBasisTitle": "Ship Transition",
             "testConditionId": "TC-COND-005",
-            "testCaseId": "TC-LOGIN-005"
+            "testCondition": "Verify player orientation and transition after climbing the ladder",
+            "testCaseId": "TC-SHIP-001"
+        },
+        {
+            "testBasisId": "EXP-INTRO-001",
+            "testBasisTitle": "Audio Feedback",
+            "testConditionId": "TC-COND-003",
+            "testCondition": "Verify all invalid interactions produce correct audio feedback",
+            "testCaseId": "TC-AUDIO-002"
         }
     ]
 }

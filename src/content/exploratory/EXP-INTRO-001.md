@@ -3,7 +3,7 @@ id: "EXP-INTRO-001"
 title: "Initial Game Launch & Introduction"
 category: "General"
 author: "Dominic Brooks"
-derivedFeatures: ["Introduction", "Interaction System"]
+derivedFeatures: ["Introduction", "Interaction System", "Door / Button Interaction", "Suit Interaction", "Ladder Interaction", "Ship Transition", "Audio Feedback"]
 ---
 
 ## Session Overview
