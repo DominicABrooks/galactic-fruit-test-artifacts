@@ -42,6 +42,7 @@ const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
             <!-- Background ambient glow removed -->
 
             <div class="max-w-7xl mx-auto p-8 md:p-12">
+                            {title !== "Home" && (
                 <header class="mb-12">
                     <h2
                         class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight"
@@ -50,6 +51,7 @@ const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
                     </h2>
                     <div class="h-1 w-20 bg-eoe-accent rounded-full"></div>
                 </header>
+            )}
 
                 <div class="animate-fade-in">
                     <slot />

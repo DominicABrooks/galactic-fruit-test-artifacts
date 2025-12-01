@@ -1,7 +1,0 @@
-{
-    "TC-LOGIN-001": "Verify successful login",
-    "TC-LOGIN-002": "Verify invalid password error",
-    "TC-LOGIN-003": "Verify empty fields validation",
-    "TC-LOGIN-004": "Verify email format validation",
-    "TC-LOGIN-005": "Verify account lockout"
-}

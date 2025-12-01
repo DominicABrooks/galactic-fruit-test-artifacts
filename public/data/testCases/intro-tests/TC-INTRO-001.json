@@ -1,0 +1,50 @@
+{
+    "id": "TC-INTRO-001",
+    "name": "Verify Intro Video Playback",
+    "description": "Validates that the introduction video plays correctly and displays the final message as expected.",
+    "testObjective": "Ensure the intro video sequence functions properly and provides the expected narrative conclusion.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-01",
+    "lastModified": "2025-12-01",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game is not yet launched",
+        "Steam client is running"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game through Steam Client",
+            "expected": "Game launches successfully and intro video begins playing immediately"
+        },
+        {
+            "step": 2,
+            "action": "Observe the video playing through the projector on the wall",
+            "expected": "Video plays smoothly without interruption"
+        },
+        {
+            "step": 3,
+            "action": "Wait for the video to complete",
+            "expected": "Video completes and displays final frame with message: 'Galactic Fruit thanks you for your sacrifice.'"
+        },
+        {
+            "step": 4,
+            "action": "Continue observing to check for looping behavior",
+            "expected": "Video does not loop and remains on final frame"
+        }
+    ],
+    "postconditions": [
+        "Player can proceed to interact with environment",
+        "Video remains on final frame"
+    ],
+    "tags": [
+        "intro",
+        "video",
+        "functional",
+        "medium-priority"
+    ]
+}

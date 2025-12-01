@@ -1,19 +1,19 @@
 {
     "sets": [
         {
-            "id": "smoke-tests",
-            "name": "Smoke Tests",
-            "description": "Critical path validation tests"
+            "id": "audio-tests",
+            "name": "Audio Tests",
+            "description": "Audio validation tests"
         },
         {
-            "id": "login-tests",
-            "name": "Login Tests",
-            "description": "Authentication and login functionality"
+            "id": "interaction-tests",
+            "name": "Interaction Tests",
+            "description": "Interaction validation tests"
         },
         {
-            "id": "navigation-tests",
-            "name": "Navigation Tests",
-            "description": "Menu and stage progression tests"
+            "id": "intro-tests",
+            "name": "Intro Tests",
+            "description": "Intro validation tests"
         }
     ]
 }
