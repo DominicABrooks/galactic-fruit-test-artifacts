@@ -1,0 +1,57 @@
+{
+    "id": "TC-NAV-001",
+    "name": "Verify menu navigation",
+    "description": "Verify that all menu options are accessible and that navigation between menu screens works correctly",
+    "testObjective": "Validate that the menu system is fully functional and users can navigate through all options",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "QA Team",
+    "createdDate": "2025-11-20",
+    "lastModified": "2025-11-30",
+    "preconditions": [
+        "Application is running",
+        "Main menu is displayed",
+        "User is not in an active game session"
+    ],
+    "testData": null,
+    "environment": "All Environments",
+    "steps": [
+        {
+            "step": 1,
+            "action": "From main menu, click 'Options'",
+            "expected": "Options/Settings screen opens with available settings visible"
+        },
+        {
+            "step": 2,
+            "action": "Verify all settings categories are accessible",
+            "expected": "Audio, Video, Controls, and Gameplay settings are all clickable"
+        },
+        {
+            "step": 3,
+            "action": "Click 'Back' button",
+            "expected": "Returns to main menu without any errors"
+        },
+        {
+            "step": 4,
+            "action": "Click 'Credits'",
+            "expected": "Credits screen displays"
+        },
+        {
+            "step": 5,
+            "action": "Click 'Back' button",
+            "expected": "Returns to main menu"
+        }
+    ],
+    "postconditions": [
+        "User is back on main menu",
+        "No navigation errors occurred",
+        "All menu options remain accessible"
+    ],
+    "estimatedExecutionTime": "3 minutes",
+    "tags": [
+        "navigation",
+        "menu",
+        "ui",
+        "usability"
+    ]
+}

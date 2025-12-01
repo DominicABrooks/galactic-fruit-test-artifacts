@@ -2,6 +2,7 @@
 id: "EXP-AUTH-001"
 title: "Login Screen Behavior"
 category: "Authentication"
+author: "Christopher Rojas"
 derivedFeatures: ["Login", "Security"]
 ---
 

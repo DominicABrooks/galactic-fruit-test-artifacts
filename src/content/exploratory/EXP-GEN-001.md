@@ -2,6 +2,7 @@
 id: "EXP-GEN-001"
 title: "Initial Game Launch & Menu"
 category: "General"
+author: "Dominic Brooks"
 derivedFeatures: ["Main Menu", "Audio System"]
 ---
 

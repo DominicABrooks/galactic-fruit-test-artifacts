@@ -5,6 +5,10 @@ import builds from "../data/builds.json";
 
 // Fetch Exploratory Notes
 const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
+
+const BASE = import.meta.env.BASE_URL || "/";
+const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
+const makePath = (p: string) => `${BASE_SLASH}${p.replace(/^\//, "")}`;
 ---
 
 <MainLayout title="Test Execution" currentPath="/test-execution">
@@ -134,7 +138,7 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
                 </div>
 
                 <!-- Test Case Detail View -->
-                <div id="test-detail-view" class="hidden flex-col h-full animate-fade-in bg-eoe-panel absolute inset-0 z-10">
+                <div id="test-detail-view" class="hidden animate-fade-in bg-eoe-panel absolute inset-0 z-10 flex flex-col h-full">
                     <div class="p-6 border-b border-white/5 flex items-center gap-4 bg-white/[0.02]">
                         <button id="back-to-table" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -147,13 +151,78 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
                             </div>
                         </div>
                     </div>
-                    <div class="flex-1 overflow-y-auto p-8">
-                        <div class="max-w-3xl mx-auto">
-                            <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-4">Test Steps</h3>
-                            <div class="space-y-4">
-                                <div id="steps-container" class="relative border-l-2 border-white/10 ml-3 pl-8 space-y-8 py-2">
-                                    <!-- Steps injected by JS -->
+                    <div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+                        <div class="max-w-4xl mx-auto space-y-8 pb-8">
+                            <!-- Test Case Metadata -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 max-h-40 flex flex-col">
+                                    <h4 class="text-xs text-eoe-muted uppercase tracking-wider mb-2 flex-shrink-0">Description</h4>
+                                    <p id="detail-description" class="text-sm text-white overflow-y-auto custom-scrollbar flex-1"></p>
                                 </div>
+                                <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 max-h-40 flex flex-col">
+                                    <h4 class="text-xs text-eoe-muted uppercase tracking-wider mb-2 flex-shrink-0">Test Objective</h4>
+                                    <p id="detail-objective" class="text-sm text-white overflow-y-auto custom-scrollbar flex-1"></p>
+                                </div>
+                            </div>
+
+                            <!-- Metadata Grid -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Priority</div>
+                                    <div id="detail-priority" class="text-sm font-medium text-white"></div>
+                                </div>
+                                <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Type</div>
+                                    <div id="detail-type" class="text-sm font-medium text-white"></div>
+                                </div>
+                                <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Author</div>
+                                    <div id="detail-author" class="text-sm font-medium text-white"></div>
+                                </div>
+                                <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
+                                    <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Est. Time</div>
+                                    <div id="detail-time" class="text-sm font-medium text-white"></div>
+                                </div>
+                            </div>
+
+                            <!-- Preconditions -->
+                            <div id="preconditions-section" class="bg-blue-500/5 border border-blue-500/10 rounded-xl p-6">
+                                <h3 class="text-sm font-semibold text-blue-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    Preconditions
+                                </h3>
+                                <ul id="preconditions-list" class="space-y-2"></ul>
+                            </div>
+
+                            <!-- Test Data -->
+                            <div id="test-data-section" class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                                <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-3">Test Data</h3>
+                                <div id="test-data-content" class="font-mono text-xs bg-black/40 rounded p-4 overflow-auto custom-scrollbar max-h-60"></div>
+                            </div>
+
+                            <!-- Test Steps -->
+                            <div>
+                                <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-4">Test Steps</h3>
+                                <div class="space-y-4">
+                                    <div id="steps-container" class="relative border-l-2 border-white/10 ml-3 pl-8 space-y-8 py-2">
+                                        <!-- Steps injected by JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Postconditions -->
+                            <div id="postconditions-section" class="bg-green-500/5 border border-green-500/10 rounded-xl p-6">
+                                <h3 class="text-sm font-semibold text-green-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                    Postconditions
+                                </h3>
+                                <ul id="postconditions-list" class="space-y-2"></ul>
+                            </div>
+
+                            <!-- Tags -->
+                            <div id="tags-section">
+                                <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-3">Tags</h3>
+                                <div id="tags-container" class="flex flex-wrap gap-2"></div>
                             </div>
 
                             <div class="mt-12 p-6 bg-red-500/5 border border-red-500/10 rounded-xl hidden" id="defect-panel">
@@ -193,29 +262,29 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
                     <table class="w-full text-left text-sm">
                         <thead class="bg-white/5 text-xs uppercase text-white sticky top-0">
                             <tr>
-                                <th class="px-6 py-4 w-32">ID</th>
-                                <th class="px-6 py-4 w-40">Category</th>
-                                <th class="px-6 py-4 w-48">Title</th>
-                                <th class="px-6 py-4">Content</th>
-                                <th class="px-6 py-4 w-64">Features</th>
+                                <th class="px-6 py-4 w-32 whitespace-nowrap">ID</th>
+                                <th class="px-6 py-4 w-40 whitespace-nowrap">Category</th>
+                                <th class="px-6 py-4 whitespace-nowrap">Title</th>
+                                <th class="px-6 py-4 w-64 whitespace-nowrap">Features</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-white/5">
                             {exploratoryNotes.map((note) => (
-                                <tr class="hover:bg-white/[0.02]">
-                                    <td class="px-6 py-4">
-                                        <span class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded">{note.frontmatter.id}</span>
+                                <tr class="hover:bg-white/[0.02] transition-colors">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href={makePath(`exploratory/${note.frontmatter.id}`)} class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded hover:bg-purple-500/30 transition-colors">
+                                            {note.frontmatter.id}
+                                        </a>
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="text-xs font-medium text-eoe-muted uppercase tracking-wider">{note.frontmatter.category}</span>
                                     </td>
-                                    <td class="px-6 py-4 text-white font-medium">{note.frontmatter.title}</td>
-                                    <td class="px-6 py-4 text-eoe-muted">
-                                        <div class="prose prose-invert prose-sm max-w-none line-clamp-2">
-                                            <note.Content />
-                                        </div>
+                                    <td class="px-6 py-4 text-white font-medium whitespace-nowrap">
+                                        <a href={makePath(`exploratory/${note.frontmatter.id}`)} class="hover:text-eoe-accent transition-colors block">
+                                            {note.frontmatter.title}
+                                        </a>
                                     </td>
-                                    <td class="px-6 py-4">
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex flex-wrap gap-1">
                                             {note.frontmatter.derivedFeatures.map((feature: string) => (
                                                 <span class="text-xs bg-white/5 text-white px-2 py-1 rounded border border-white/5">
@@ -238,55 +307,149 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
     // Client-side logic
     const base = import.meta.env.BASE_URL || '/';
     const baseSlash = base.endsWith('/') ? base : base + '/';
+    
     document.addEventListener("DOMContentLoaded", async () => {
         const buildItems = document.querySelectorAll(".build-item");
         const emptyState = document.getElementById("empty-state");
+        const testSetsView = document.getElementById("test-sets-view");
         const testCasesView = document.getElementById("test-cases-view");
         const testDetailView = document.getElementById("test-detail-view");
-        const testCasesBody = document.getElementById("test-cases-body");
+        const backToSetsBtn = document.getElementById("back-to-sets");
         const backButton = document.getElementById("back-to-table");
 
-        // Load Test Case Index
-        let testCaseIndex = {};
-        try {
-            const response = await fetch(`${baseSlash}data/testCaseIndex.json`);
-            testCaseIndex = await response.json();
-        } catch (e) {
-            console.error("Failed to load test case index", e);
+        // Tab Elements
+        const tabExecution = document.getElementById("tab-execution");
+        const tabExploratory = document.getElementById("tab-exploratory");
+        const viewExecution = document.getElementById("view-execution");
+        const viewExploratory = document.getElementById("view-exploratory");
+
+        // Tab Switching Logic
+        function switchTab(tab: string) {
+            if (tab === 'execution') {
+                viewExecution?.classList.remove('hidden');
+                viewExecution?.classList.add('flex');
+                viewExploratory?.classList.add('hidden');
+                
+                tabExecution?.classList.add('text-white', 'border-eoe-accent');
+                tabExecution?.classList.remove('text-eoe-muted', 'border-transparent');
+                
+                tabExploratory?.classList.remove('text-white', 'border-eoe-accent');
+                tabExploratory?.classList.add('text-eoe-muted', 'border-transparent');
+                
+                history.replaceState(null, '', '#execution');
+            } else {
+                viewExecution?.classList.add('hidden');
+                viewExecution?.classList.remove('flex');
+                viewExploratory?.classList.remove('hidden');
+                
+                tabExecution?.classList.remove('text-white', 'border-eoe-accent');
+                tabExecution?.classList.add('text-eoe-muted', 'border-transparent');
+                
+                tabExploratory?.classList.add('text-white', 'border-eoe-accent');
+                tabExploratory?.classList.remove('text-eoe-muted', 'border-transparent');
+                
+                history.replaceState(null, '', '#exploratory');
+            }
         }
 
+        tabExecution?.addEventListener('click', () => switchTab('execution'));
+        tabExploratory?.addEventListener('click', () => switchTab('exploratory'));
+
+        // Initial State from URL
+        if (window.location.hash === '#exploratory') {
+            switchTab('exploratory');
+        } else {
+            switchTab('execution');
+        }
+
+        // Show loading state on builds
+        buildItems.forEach((item) => {
+            // TODO: Maybe make this shimmer or something?
+            item.classList.add('opacity-50', 'pointer-events-none');
+        });
+
+        // Load Test Sets metadata
+        let testSets: any[] = [];
+        try {
+            const response = await fetch(`${baseSlash}data/testSets.json`);
+            const data = await response.json();
+            testSets = data.sets || [];
+        } catch (e) {
+            console.error("Failed to load test sets", e);
+        }
+
+        // Load all test cases from all sets
+        async function loadAllTestCases() {
+            const allTestCases: any = {};
+            
+            for (const set of testSets) {
+                try {
+                    // Fetch directory listing - we'll try to fetch known test cases
+                    // In a real scenario, you might have an index file per set
+                    const testCaseFiles = [];
+                    
+                    // Try to load test cases with common patterns
+                    for (let i = 1; i <= 10; i++) {
+                        const paddedNum = String(i).padStart(3, '0');
+                        const prefixes = set.id === 'smoke-tests' ? ['SMOKE'] : 
+                                       set.id === 'login-tests' ? ['LOGIN'] : 
+                                       set.id === 'navigation-tests' ? ['NAV'] : [];
+                        
+                        for (const prefix of prefixes) {
+                            const tcId = `TC-${prefix}-${paddedNum}`;
+                            try {
+                                const response = await fetch(`${baseSlash}data/testCases/${set.id}/${tcId}.json`);
+                                if (response.ok) {
+                                    const testCase = await response.json();
+                                    if (!allTestCases[set.id]) allTestCases[set.id] = [];
+                                    allTestCases[set.id].push(testCase);
+                                }
+                            } catch (e) {
+                                // Test case doesn't exist, skip
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error(`Failed to load test cases for set ${set.id}`, e);
+                }
+            }
+            
+            return allTestCases;
+        }
+
+        const allTestCases = await loadAllTestCases();
+
+        // Remove loading state from builds - data is ready
+        buildItems.forEach((item) => {
+            item.classList.remove('opacity-50', 'pointer-events-none');
+        });
+
         // State
-        let currentBuildId = null;
+        let currentBuildId: string | null = null;
+        let currentSetId: string | null = null;
+        let executionData: any = null;
 
         // Handle Build Selection
         buildItems.forEach((item) => {
             item.addEventListener("click", () => {
                 const buildId = (item as HTMLElement).dataset.id;
-                selectBuild(buildId);
+                if (buildId) selectBuild(buildId);
             });
         });
 
-        async function selectBuild(buildId) {
+        async function selectBuild(buildId: string) {
             currentBuildId = buildId;
 
             // Fetch Execution Data
-            let executionData: any = null;
             try {
-                const response = await fetch(
-                    `${baseSlash}data/executions/build_${buildId}.json`,
-                );
+                const response = await fetch(`${baseSlash}data/executions/build_${buildId}.json`);
                 executionData = await response.json();
             } catch (e) {
-                console.error(
-                    `Failed to load execution data for ${buildId}`,
-                    e,
-                );
+                console.error(`Failed to load execution data for ${buildId}`, e);
                 return;
             }
 
             if (!executionData) return;
-
-            const cases = executionData.results || [];
 
             // Update UI Active State
             buildItems.forEach((btn) => {
@@ -300,122 +463,266 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
                 }
             });
 
-            // Show Table View
+            // Show Test Sets View
             if (emptyState) emptyState.classList.add("hidden");
+            if (testCasesView) testCasesView.classList.add("hidden");
             if (testDetailView) testDetailView.classList.add("hidden");
+            if (testSetsView) testSetsView.classList.remove("hidden");
+
+            // Populate Test Sets
+            renderTestSets(buildId);
+        }
+
+        function renderTestSets(buildId: string) {
+            const selectedBtn = document.querySelector(`.build-item[data-id="${buildId}"]`);
+            const buildName = selectedBtn?.querySelector(".font-medium")?.textContent ?? "";
+            const buildDate = selectedBtn?.querySelector(".text-eoe-muted span:first-child")?.textContent ?? "";
+
+            const setBuildName = document.getElementById("sets-build-name");
+            const setBuildMeta = document.getElementById("sets-build-meta");
+            if (setBuildName) setBuildName.textContent = buildName;
+            if (setBuildMeta) setBuildMeta.textContent = buildDate;
+
+            const setsContainer = document.getElementById("test-sets-container");
+            if (!setsContainer) return;
+
+            // Calculate stats for each set
+            const setStats = testSets.map(set => {
+                const testCases = allTestCases[set.id] || [];
+                const results = executionData?.results || [];
+                
+                let passed = 0, failed = 0, blocked = 0, skipped = 0;
+                
+                testCases.forEach((tc: any) => {
+                    const result = results.find((r: any) => r.testCaseId === tc.id);
+                    if (!result) {
+                        passed++; // Default is Pass
+                    } else {
+                        const status = result.status || 'Fail';
+                        if (status === 'Pass') passed++;
+                        else if (status === 'Fail') failed++;
+                        else if (status === 'Blocked') blocked++;
+                        else if (status === 'Skip') skipped++;
+                    }
+                });
+
+                const total = testCases.length;
+                const passRate = total > 0 ? Math.round((passed / total) * 100) : 0;
+
+                return { set, total, passed, failed, blocked, skipped, passRate };
+            });
+
+            // Calculate overall stats
+            const totalTests = setStats.reduce((sum, s) => sum + s.total, 0);
+            const totalPassed = setStats.reduce((sum, s) => sum + s.passed, 0);
+            const avgPassRate = totalTests > 0 ? Math.round((totalPassed / totalTests) * 100) : 0;
+
+            const setsTotal = document.getElementById("sets-total");
+            const setsAvgPass = document.getElementById("sets-avg-pass");
+            if (setsTotal) setsTotal.textContent = testSets.length.toString();
+            if (setsAvgPass) setsAvgPass.textContent = `${avgPassRate}%`;
+
+            // Render set cards
+            setsContainer.innerHTML = setStats.map(({ set, total, passed, failed, blocked, skipped, passRate }) => `
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-all cursor-pointer group" onclick="selectSet('${set.id}')">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-white font-semibold group-hover:text-eoe-accent transition-colors">${set.name}</h3>
+                            <p class="text-xs text-eoe-muted mt-1">${set.description}</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold ${passRate === 100 ? 'text-green-400' : passRate >= 80 ? 'text-yellow-400' : 'text-red-400'}">${passRate}%</div>
+                            <div class="text-xs text-eoe-muted">Pass Rate</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 text-xs">
+                        <div class="flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-white/20"></span>
+                            <span class="text-eoe-muted">Total:</span>
+                            <span class="text-white font-medium">${total}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                            <span class="text-green-400">${passed}</span>
+                        </div>
+                        ${failed > 0 ? `<div class="flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                            <span class="text-red-400">${failed}</span>
+                        </div>` : ''}
+                        ${blocked > 0 ? `<div class="flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                            <span class="text-orange-400">${blocked}</span>
+                        </div>` : ''}
+                        ${skipped > 0 ? `<div class="flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+                            <span class="text-gray-400">${skipped}</span>
+                        </div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        (window as any).selectSet = function(setId: string) {
+            currentSetId = setId;
+            const set = testSets.find(s => s.id === setId);
+            if (!set) return;
+
+            const testCases = allTestCases[setId] || [];
+            const results = executionData?.results || [];
+
+            // Build full test case list with statuses
+            const testCaseList = testCases.map((tc: any) => {
+                const result = results.find((r: any) => r.testCaseId === tc.id);
+                return {
+                    ...tc,
+                    status: result ? (result.status || 'Fail') : 'Pass',
+                    notes: result?.notes || ''
+                };
+            });
+
+            // Show Test Cases View
+            if (testSetsView) testSetsView.classList.add("hidden");
             if (testCasesView) testCasesView.classList.remove("hidden");
 
-            // Populate Header (Name/Date come from the list item data attributes or we could fetch builds.json again,
-            // but simpler to grab from the clicked element's text for now or pass it in)
-            // Actually, we can just use the text content we already have in the DOM or passed via data attributes
-            // For now, let's grab it from the clicked element
-            const selectedBtn = document.querySelector(
-                `.build-item[data-id="${buildId}"]`,
-            );
-            if (selectedBtn) {
-                const buildName =
-                    selectedBtn.querySelector(".font-medium")?.textContent ??
-                    "";
-                const buildDate =
-                    selectedBtn.querySelector(
-                        ".text-eoe-muted span:first-child",
-                    )?.textContent ?? "";
+            // Update header
+            const selectedBtn = document.querySelector(`.build-item[data-id="${currentBuildId}"]`);
+            const buildName = selectedBtn?.querySelector(".font-medium")?.textContent ?? "";
+            const buildDate = selectedBtn?.querySelector(".text-eoe-muted span:first-child")?.textContent ?? "";
 
-                const selectedBuildName = document.getElementById(
-                    "selected-build-name",
-                );
-                const selectedBuildMeta = document.getElementById(
-                    "selected-build-meta",
-                );
+            const selectedBuildName = document.getElementById("selected-build-name");
+            const selectedSetName = document.getElementById("selected-set-name");
+            const selectedBuildMeta = document.getElementById("selected-build-meta");
 
-                if (selectedBuildName && buildName)
-                    selectedBuildName.textContent = buildName;
-                if (selectedBuildMeta && buildDate)
-                    selectedBuildMeta.textContent = buildDate;
-            }
+            if (selectedBuildName) selectedBuildName.textContent = buildName;
+            if (selectedSetName) selectedSetName.textContent = set.name;
+            if (selectedBuildMeta) selectedBuildMeta.textContent = buildDate;
 
-            // Stats
-            const total = cases.length;
-            const passed = cases.filter((c) => c.status === "Pass").length;
-            const failed = cases.filter((c) => c.status === "Fail").length;
+            // Calculate stats
+            const total = testCaseList.length;
+            const passed = testCaseList.filter((tc: any) => tc.status === 'Pass').length;
+            const failed = testCaseList.filter((tc: any) => tc.status === 'Fail').length;
 
             const statTotal = document.getElementById("stat-total");
             const statPass = document.getElementById("stat-pass");
             const statFail = document.getElementById("stat-fail");
 
-            if (statTotal) statTotal.textContent = total;
-            if (statPass) statPass.textContent = passed;
-            if (statFail) statFail.textContent = failed;
+            if (statTotal) statTotal.textContent = total.toString();
+            if (statPass) statPass.textContent = passed.toString();
+            if (statFail) statFail.textContent = failed.toString();
 
-            // Populate Table
+            // Populate table
+            const testCasesBody = document.getElementById("test-cases-body");
             if (testCasesBody) {
-                testCasesBody.innerHTML = cases
-                    .map(
-                        (tc) => `
-                <tr class="hover:bg-white/5 cursor-pointer transition-colors group" onclick="window.viewTestCase('${tc.testCaseId}', '${tc.status}', '${tc.notes || ""}')">
-                    <td class="px-6 py-4 font-mono text-eoe-muted group-hover:text-white">${tc.testCaseId}</td>
-                    <td class="px-6 py-4 font-medium text-white">${testCaseIndex[tc.testCaseId] || "Unknown Test Case"}</td>
-                    <td class="px-6 py-4">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                            tc.status === "Pass"
-                                ? "bg-green-500/10 text-green-400 border border-green-500/20"
-                                : "bg-red-500/10 text-red-400 border border-red-500/20"
-                        }">
-                            ${tc.status}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 text-eoe-muted truncate max-w-xs">${tc.notes || "-"}</td>
-                </tr>
-            `,
-                    )
-                    .join("");
+                testCasesBody.innerHTML = testCaseList.map((tc: any) => {
+                    const statusColors: Record<string, string> = {
+                        'Pass': 'bg-green-500/10 text-green-400 border-green-500/20',
+                        'Fail': 'bg-red-500/10 text-red-400 border-red-500/20',
+                        'Blocked': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+                        'Skip': 'bg-gray-500/10 text-gray-400 border-gray-500/20'
+                    };
+
+                    return `
+                        <tr class="hover:bg-white/5 cursor-pointer transition-colors group" onclick="window.viewTestCase('${tc.id}', '${tc.status}', '${tc.notes}', '${setId}')">
+                            <td class="px-6 py-4 font-mono text-eoe-muted group-hover:text-white">${tc.id}</td>
+                            <td class="px-6 py-4 font-medium text-white">${tc.name}</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[tc.status] || statusColors['Fail']}">
+                                    ${tc.status}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-eoe-muted truncate max-w-xs">${tc.notes || '-'}</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+        };
+
+        (window as any).viewTestCase = async function(testId: string, status: string, notes: string, setId: string) {
+            // Fetch test case from correct set directory
+            let testCaseDef: any = null;
+            try {
+                const response = await fetch(`${baseSlash}data/testCases/${setId}/${testId}.json`);
+                testCaseDef = await response.json();
+            } catch (e) {
+                console.error(`Failed to load test case ${testId}`, e);
+                return;
             }
 
-            // Handle Test Case Selection
-            (window as any).viewTestCase = async (testId, status, notes) => {
-                // Fetch Test Case Definition
-                let testCaseDef: any = null;
-                try {
-                    const response = await fetch(
-                        `${baseSlash}data/testCases/${testId}.json`,
-                    );
-                    testCaseDef = await response.json();
-                } catch (e) {
-                    console.error(
-                        `Failed to load test case definition for ${testId}`,
-                        e,
-                    );
-                    return;
+            if (!testCaseDef) return;
+
+            if (testCasesView) testCasesView.classList.add("hidden");
+            if (testDetailView) testDetailView.classList.remove("hidden");
+
+            // Populate header
+            const detailName = document.getElementById("detail-name");
+            const detailId = document.getElementById("detail-id");
+            const statusEl = document.getElementById("detail-status");
+
+            if (detailName) detailName.textContent = testCaseDef.name;
+            if (detailId) detailId.textContent = testCaseDef.id;
+
+            const statusColors: Record<string, string> = {
+                'Pass': 'bg-green-500/10 text-green-400 border-green-500/20',
+                'Fail': 'bg-red-500/10 text-red-400 border-red-500/20',
+                'Blocked': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+                'Skip': 'bg-gray-500/10 text-gray-400 border-gray-500/20'
+            };
+
+            if (statusEl) {
+                statusEl.textContent = status;
+                statusEl.className = `text-xs px-2 py-0.5 rounded-full border ${statusColors[status] || statusColors['Fail']}`;
+            }
+
+            // Populate metadata
+            const description = document.getElementById("detail-description");
+            const objective = document.getElementById("detail-objective");
+            const priority = document.getElementById("detail-priority");
+            const type = document.getElementById("detail-type");
+            const author = document.getElementById("detail-author");
+            const time = document.getElementById("detail-time");
+
+            if (description) description.textContent = testCaseDef.description || '-';
+            if (objective) objective.textContent = testCaseDef.testObjective || '-';
+            if (priority) priority.textContent = testCaseDef.priority || '-';
+            if (type) type.textContent = testCaseDef.type || '-';
+            if (author) author.textContent = testCaseDef.author || '-';
+            if (time) time.textContent = testCaseDef.estimatedExecutionTime || '-';
+
+            // Populate preconditions
+            const preconditionsSection = document.getElementById("preconditions-section");
+            const preconditionsList = document.getElementById("preconditions-list");
+            if (testCaseDef.preconditions && testCaseDef.preconditions.length > 0) {
+                if (preconditionsSection) preconditionsSection.classList.remove("hidden");
+                if (preconditionsList) {
+                    preconditionsList.innerHTML = testCaseDef.preconditions.map((pc: string) => `
+                        <li class="flex items-start gap-2 text-sm text-white">
+                            <svg class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                            <span>${pc}</span>
+                        </li>
+                    `).join('');
                 }
+            } else {
+                if (preconditionsSection) preconditionsSection.classList.add("hidden");
+            }
 
-                if (!testCaseDef) return;
+            // Populate test data
+            const testDataSection = document.getElementById("test-data-section");
+            const testDataContent = document.getElementById("test-data-content");
+            if (testCaseDef.testData) {
+                if (testDataSection) testDataSection.classList.remove("hidden");
+                if (testDataContent) {
+                    testDataContent.textContent = JSON.stringify(testCaseDef.testData, null, 2);
+                }
+            } else {
+                if (testDataSection) testDataSection.classList.add("hidden");
+            }
 
-                if (testCasesView) testCasesView.classList.add("hidden");
-                if (testDetailView) testDetailView.classList.remove("hidden");
-
-                // Populate Detail Header
-                const detailName = document.getElementById("detail-name");
-                if (detailName) detailName.textContent = testCaseDef.name;
-
-                const detailId = document.getElementById("detail-id");
-                if (detailId) detailId.textContent = testCaseDef.id;
-
-                const statusEl = document.getElementById("detail-status");
-                if (statusEl) statusEl.textContent = status;
-                if (statusEl)
-                    statusEl.className = `text-xs px-2 py-0.5 rounded-full border ${
-                        status === "Pass"
-                            ? "bg-green-500/10 text-green-400 border-green-500/20"
-                            : "bg-red-500/10 text-red-400 border-red-500/20"
-                    }`;
-
-                // Populate Steps
-                const stepsContainer =
-                    document.getElementById("steps-container");
-                if (stepsContainer) {
-                    stepsContainer.innerHTML = testCaseDef.steps
-                        .map(
-                            (step) => `
+            // Populate steps
+            const stepsContainer = document.getElementById("steps-container");
+            if (stepsContainer) {
+                stepsContainer.innerHTML = testCaseDef.steps.map((step: any) => `
                     <div class="relative">
                         <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-eoe-panel border border-white/20 flex items-center justify-center text-xs text-eoe-muted font-mono">
                             ${step.step}
@@ -425,6 +732,7 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
                                 <div>
                                     <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Action</div>
                                     <div class="text-sm text-white">${step.action}</div>
+                                    ${step.testData ? `<div class="mt-2 text-xs text-blue-300 font-mono">Data: ${step.testData}</div>` : ''}
                                 </div>
                                 <div>
                                     <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Expected Result</div>
@@ -433,82 +741,87 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
                             </div>
                         </div>
                     </div>
-                `,
-                        )
-                        .join("");
-                }
-
-                // Defect Panel & Failure Artifacts
-                const defectPanel = document.getElementById("defect-panel");
-                const defectNotes = document.getElementById("defect-notes");
-                const failureArtifacts =
-                    document.getElementById("failure-artifacts");
-
-                if (status === "Fail") {
-                    if (defectPanel) defectPanel.classList.remove("hidden");
-                    if (failureArtifacts)
-                        failureArtifacts.classList.remove("hidden");
-
-                    // Parse Defect ID from notes (e.g. "Defect: ... DEF-001")
-                    const defectMatch = notes.match(/(DEF-\d+)/);
-                    if (defectNotes) {
-                        if (defectMatch) {
-                            const defectId = defectMatch[1];
-                                defectNotes.innerHTML = `${notes.replace(defectId, "")} <a href="${baseSlash}defects/\${defectId}" class="text-eoe-accent hover:underline font-mono ml-1">\${defectId} ↗</a>`;
-                        } else {
-                            defectNotes.textContent =
-                                notes || "Test failed. No defect ID linked.";
-                        }
-                    }
-
-                    // Mock Execution Log
-                    const executionLog =
-                        document.getElementById("execution-log");
-                    if (executionLog) {
-                        executionLog.innerHTML = `
-                    <div class="font-mono text-xs text-eoe-muted space-y-1">
-                        <div>[INFO] Starting test execution for ${testId}</div>
-                        <div>[INFO] Navigating to /login</div>
-                        <div>[INFO] Entering credentials...</div>
-                        <div class="text-red-400">[ERROR] Assertion failed: Expected error message not found.</div>
-                        <div>[INFO] Taking screenshot...</div>
-                    </div>
-                `;
-                    }
-
-                    // Mock Screenshot
-                    const screenshotsContainer = document.getElementById(
-                        "screenshots-container",
-                    );
-                    if (screenshotsContainer) {
-                        screenshotsContainer.innerHTML = `
-                    <div class="group relative aspect-video bg-black/50 rounded-lg border border-white/10 flex items-center justify-center overflow-hidden">
-                        <div class="text-xs text-eoe-muted">Screenshot: error_state.png</div>
-                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="text-white text-xs">View Full Size</span>
-                        </div>
-                    </div>
-                `;
-                    }
-                } else {
-                    if (defectPanel) defectPanel.classList.add("hidden");
-                    if (failureArtifacts)
-                        failureArtifacts.classList.add("hidden");
-                }
-            };
-
-            // Back Button
-            if (backButton) {
-                backButton.addEventListener("click", () => {
-                    if (testDetailView) testDetailView.classList.add("hidden");
-                    if (testCasesView) testCasesView.classList.remove("hidden");
-                });
+                `).join('');
             }
+
+            // Populate postconditions
+            const postconditionsSection = document.getElementById("postconditions-section");
+            const postconditionsList = document.getElementById("postconditions-list");
+            if (testCaseDef.postconditions && testCaseDef.postconditions.length > 0) {
+                if (postconditionsSection) postconditionsSection.classList.remove("hidden");
+                if (postconditionsList) {
+                    postconditionsList.innerHTML = testCaseDef.postconditions.map((pc: string) => `
+                        <li class="flex items-start gap-2 text-sm text-white">
+                            <svg class="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>${pc}</span>
+                        </li>
+                    `).join('');
+                }
+            } else {
+                if (postconditionsSection) postconditionsSection.classList.add("hidden");
+            }
+
+            // Populate tags
+            const tagsSection = document.getElementById("tags-section");
+            const tagsContainer = document.getElementById("tags-container");
+            if (testCaseDef.tags && testCaseDef.tags.length > 0) {
+                if (tagsSection) tagsSection.classList.remove("hidden");
+                if (tagsContainer) {
+                    tagsContainer.innerHTML = testCaseDef.tags.map((tag: string) => `
+                        <span class="text-xs bg-purple-500/10 text-purple-300 px-3 py-1 rounded-full border border-purple-500/20">
+                            #${tag}
+                        </span>
+                    `).join('');
+                }
+            } else {
+                if (tagsSection) tagsSection.classList.add("hidden");
+            }
+
+            // Handle defect panel
+            const defectPanel = document.getElementById("defect-panel");
+            const defectNotes = document.getElementById("defect-notes");
+            const failureArtifacts = document.getElementById("failure-artifacts");
+
+            if (status === 'Fail') {
+                if (defectPanel) defectPanel.classList.remove("hidden");
+                if (failureArtifacts) failureArtifacts.classList.remove("hidden");
+
+                const defectMatch = notes.match(/(DEF-\d+)/);
+                if (defectNotes) {
+                    if (defectMatch) {
+                        const defectId = defectMatch[1];
+                        defectNotes.innerHTML = `${notes.replace(defectId, "")} <a href="${baseSlash}defects/${defectId}" class="text-eoe-accent hover:underline font-mono ml-1">${defectId} ↗</a>`;
+                    } else {
+                        defectNotes.textContent = notes || "Test failed. No defect ID linked.";
+                    }
+                }
+            } else {
+                if (defectPanel) defectPanel.classList.add("hidden");
+                if (failureArtifacts) failureArtifacts.classList.add("hidden");
+            }
+        };
+
+        // Back buttons
+        if (backToSetsBtn) {
+            backToSetsBtn.addEventListener("click", () => {
+                if (testCasesView) testCasesView.classList.add("hidden");
+                if (testSetsView) testSetsView.classList.remove("hidden");
+            });
+        }
+
+        if (backButton) {
+            backButton.addEventListener("click", () => {
+                if (testDetailView) testDetailView.classList.add("hidden");
+                if (testCasesView) testCasesView.classList.remove("hidden");
+            });
         }
     });
 </script>
 
 <style>
+
     .custom-scrollbar::-webkit-scrollbar {
         width: 4px;
     }
@@ -521,5 +834,41 @@ const exploratoryNotes = await Astro.glob('../content/exploratory/*.md');
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Shimmer loading animation */
+    @keyframes shimmer {
+        0% {
+            background-position: -1000px 0;
+        }
+        100% {
+            background-position: 1000px 0;
+        }
+    }
+
+    .shimmer-loading {
+        animation: shimmer 2s infinite linear;
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.02) 0%,
+            rgba(255, 255, 255, 0.08) 50%,
+            rgba(255, 255, 255, 0.02) 100%
+        );
+        background-size: 1000px 100%;
+        pointer-events: none;
+        position: relative;
+    }
+
+    .shimmer-loading::after {
+        content: "Loading...";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
     }
 </style>

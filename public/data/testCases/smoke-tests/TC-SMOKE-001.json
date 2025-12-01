@@ -1,0 +1,40 @@
+{
+    "id": "TC-SMOKE-001",
+    "name": "Verify application launch",
+    "description": "Verify that the application launches successfully and displays the main menu without any critical errors",
+    "testObjective": "Validate that the application can start and reach a usable initial state",
+    "priority": "Critical",
+    "type": "Smoke",
+    "author": "QA Team",
+    "createdDate": "2025-11-15",
+    "lastModified": "2025-11-30",
+    "preconditions": [
+        "Application is installed",
+        "System meets minimum requirements",
+        "No other instances are running"
+    ],
+    "testData": null,
+    "environment": "All Environments",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the application",
+            "expected": "Application starts without errors and splash screen is displayed"
+        },
+        {
+            "step": 2,
+            "action": "Wait for application to fully load",
+            "expected": "Main menu is visible and all menu options are clickable"
+        }
+    ],
+    "postconditions": [
+        "Application is running",
+        "Main menu is accessible"
+    ],
+    "estimatedExecutionTime": "1 minute",
+    "tags": [
+        "smoke",
+        "critical",
+        "startup"
+    ]
+}

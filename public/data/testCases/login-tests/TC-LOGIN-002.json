@@ -1,0 +1,65 @@
+{
+    "id": "TC-LOGIN-002",
+    "name": "Verify invalid password error",
+    "description": "Verify that the system displays an appropriate error message when a user attempts to login with an invalid password",
+    "testObjective": "Validate that authentication properly rejects invalid credentials and displays user-friendly error messages",
+    "priority": "High",
+    "type": "Functional",
+    "author": "QA Team",
+    "createdDate": "2025-11-01",
+    "lastModified": "2025-11-30",
+    "preconditions": [
+        "User account exists in the system",
+        "User has a valid email (valid@test.com)",
+        "Application is accessible",
+        "User is logged out"
+    ],
+    "testData": {
+        "email": "valid@test.com",
+        "validPassword": "P@ss123",
+        "invalidPassword": "WrongPassword123"
+    },
+    "environment": "Test Environment",
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to Login Page",
+            "expected": "Login page loads with email and password fields visible"
+        },
+        {
+            "step": 2,
+            "action": "Enter valid Email",
+            "expected": "Email field is populated",
+            "testData": "valid@test.com"
+        },
+        {
+            "step": 3,
+            "action": "Enter invalid Password",
+            "expected": "Password field is populated (characters are masked)",
+            "testData": "WrongPassword123"
+        },
+        {
+            "step": 4,
+            "action": "Click Login button",
+            "expected": "Error message is displayed: 'Invalid email or password'"
+        },
+        {
+            "step": 5,
+            "action": "Verify user remains on login page",
+            "expected": "User is not authenticated and stays on login page"
+        }
+    ],
+    "postconditions": [
+        "User is not logged in",
+        "Login form is still displayed",
+        "Error message is visible to user"
+    ],
+    "estimatedExecutionTime": "2 minutes",
+    "tags": [
+        "authentication",
+        "login",
+        "negative-testing",
+        "error-handling",
+        "security"
+    ]
+}

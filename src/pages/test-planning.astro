@@ -69,6 +69,7 @@ import MainLayout from "../layouts/MainLayout.astro";
                         <div><a href="#section-2-2" class="text-eoe-muted hover:text-white">2.2 Coverage</a></div>
                         <div><a href="#section-2-3" class="text-eoe-muted hover:text-white">2.3 Test Types</a></div>
                         <div><a href="#section-2-4" class="text-eoe-muted hover:text-white">2.4 Test Data</a></div>
+                        <div><a href="#section-2-5" class="text-eoe-muted hover:text-white">2.5 Test Basis Derivation</a></div>
                     </div>
                 </div>
                 <div class="pt-2">
@@ -117,6 +118,9 @@ import MainLayout from "../layouts/MainLayout.astro";
                         </div>
                         <div>
                             <a href="#section-6-4" class="text-eoe-muted hover:text-white">6.4 Defect Management</a>
+                        </div>
+                        <div>
+                            <a href="#section-6-5" class="text-eoe-muted hover:text-white">6.5 Test Case Standards</a>
                         </div>
                     </div>
                 </div>
@@ -276,6 +280,49 @@ import MainLayout from "../layouts/MainLayout.astro";
                             to late-game sections without playing through the full loop using the [F3] dev tool menu.
                         </li>
                     </ul>
+                </div>
+
+                <div>
+                    <h3 id="section-2-5" class="text-white font-medium mb-2">2.5 Test Basis Derivation Strategy</h3>
+                    <p class="mb-4">
+                        In the absence of formal requirement specifications, the Test Basis and subsequent Test Conditions
+                        will be derived primarily from <strong>Exploratory Notes</strong>. This approach allows the QA team to
+                        reverse-engineer requirements based on the current state of the application and developer intent.
+                    </p>
+                    
+                    <div class="pl-4 border-l-2 border-white/10 space-y-6">
+                        <div>
+                            <h4 class="text-eoe-muted font-medium mb-2">2.5.1 Definition of Exploratory Notes</h4>
+                            <p class="mb-2">
+                                Exploratory Notes are unstructured records created during time-boxed exploration sessions.
+                                They serve as the raw data for our test planning.
+                            </p>
+                            <ul class="list-disc list-inside ml-4 space-y-2">
+                                <li>
+                                    <strong class="text-white">Observations:</strong> The actual results observed during exploration. These form the base test basis and the foundation for expected outcomes.
+                                </li>
+                                <li>
+                                    <strong class="text-white">Inferences:</strong> Hypotheses about how the system <em>should</em> work. These are later confirmed by design, developer input, or extended exploration.
+                                </li>
+                                <li>
+                                    <strong class="text-white">Questions:</strong> Identified gaps in understanding or missing requirement areas. These require clarification to lock in expected behavior.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="text-eoe-muted font-medium mb-2">2.5.2 Derivation Logic</h4>
+                            <p class="mb-3">
+                                The transformation from notes to formal features follows this logic:
+                            </p>
+                            <div class="bg-white/5 p-4 rounded-lg border border-white/10 mb-4 font-mono text-xs text-eoe-accent">
+                                Observations + Answers/Confirmations &rarr; Features
+                            </div>
+                            <p class="mb-2">
+                                <strong>Note:</strong> If a question has an obvious answer based on domain knowledge or standard gaming conventions (e.g., "Spacebar should jump"), the feature can be derived immediately without a formal Q&A cycle.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -573,6 +620,75 @@ import MainLayout from "../layouts/MainLayout.astro";
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    <h3 id="section-6-5" class="text-white font-medium mb-4">6.5 Test Case Requirements</h3>
+                    <p class="mb-4">
+                        All test cases must follow a standardized structure to ensure consistency, clarity, and full traceability across the testing effort. 
+                        Each test case must include the following required components:
+                    </p>
+
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+
+                        <li><strong class="text-white">ID:</strong> 
+                            A unique identifier following the project’s naming conventions (e.g., <code>TC-SMOKE-002</code>).
+                        </li>
+
+                        <li><strong class="text-white">Name:</strong> 
+                            A clear, concise title summarizing the scenario being validated.
+                        </li>
+
+                        <li><strong class="text-white">Description:</strong> 
+                            A high-level explanation of the scenario, feature, or user flow under test.
+                        </li>
+
+                        <li><strong class="text-white">Test Objective:</strong> 
+                            The specific purpose of the test case, stating what functionality or behavior is being validated.
+                        </li>
+
+                        <li><strong class="text-white">Priority:</strong> 
+                            Business or risk-based importance (e.g., Critical, High, Medium, Low).
+                        </li>
+
+                        <li><strong class="text-white">Type:</strong> 
+                            The classification of the test (e.g., Smoke, Regression, Functional).
+                        </li>
+
+                        <li><strong class="text-white">Author & Dates:</strong> 
+                            Metadata including test case creator, creation date, and last modified date.
+                        </li>
+
+                        <li><strong class="text-white">Preconditions:</strong> 
+                            Required setup steps, system states, or test environment conditions that must be true before execution.
+                        </li>
+
+                        <li><strong class="text-white">Test Data:</strong> 
+                            Any structured values needed to execute the scenario (e.g., player name, difficulty, inventory items).
+                        </li>
+
+                        <li><strong class="text-white">Environment:</strong> 
+                            The target environment(s) for execution (e.g., Windows, console builds, staging server).
+                        </li>
+
+                        <li><strong class="text-white">Steps:</strong> 
+                            A numbered, ordered list of user actions paired with the expected result for each step.  
+                            <em>(Each step must define “action” and “expected.”)</em>
+                        </li>
+
+                        <li><strong class="text-white">Postconditions:</strong> 
+                            The expected end state of the game or system once the test case completes successfully.
+                        </li>
+
+                        <li><strong class="text-white">Estimated Execution Time:</strong> 
+                            Approximate time needed to execute the test manually.
+                        </li>
+
+                        <li><strong class="text-white">Tags:</strong> 
+                            Keywords supporting filtering, reporting, grouping, and suite organization (e.g., <code>smoke</code>, <code>navigation</code>, <code>critical-path</code>).
+                        </li>
+                    </ul>
+                    <br>
                 </div>
             </div>
         </section>

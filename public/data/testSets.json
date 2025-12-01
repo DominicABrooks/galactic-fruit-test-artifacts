@@ -1,0 +1,19 @@
+{
+    "sets": [
+        {
+            "id": "smoke-tests",
+            "name": "Smoke Tests",
+            "description": "Critical path validation tests"
+        },
+        {
+            "id": "login-tests",
+            "name": "Login Tests",
+            "description": "Authentication and login functionality"
+        },
+        {
+            "id": "navigation-tests",
+            "name": "Navigation Tests",
+            "description": "Menu and stage progression tests"
+        }
+    ]
+}

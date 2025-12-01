@@ -1,21 +1,19 @@
 {
     "buildId": "1.0.0",
-    "date": "2024-03-24 09:15",
+    "date": "2025-11-29",
     "results": [
         {
+            "testCaseId": "TC-SMOKE-001",
+            "notes": "Application crashes on launch DEF-002"
+        },
+        {
+            "testCaseId": "TC-SMOKE-002",
+            "status": "Skip",
+            "notes": "Skipped due to critical blocker"
+        },
+        {
             "testCaseId": "TC-LOGIN-001",
-            "status": "Pass",
-            "notes": "Login successful"
-        },
-        {
-            "testCaseId": "TC-LOGIN-002",
-            "status": "Pass",
-            "notes": "Error displayed correctly"
-        },
-        {
-            "testCaseId": "TC-LOGIN-003",
-            "status": "Pass",
-            "notes": "Validation working"
+            "notes": "Login button not responding"
         }
     ]
 }
