@@ -1,0 +1,68 @@
+{
+    "id": "TC-1-006",
+    "name": "Verify Cerebellum Minigame - Timing Challenge",
+    "description": "Validates that the Cerebellum.kp4 minigame functions correctly with slider timing mechanics.",
+    "testObjective": "Ensure timing-based minigame mechanics work correctly and can be completed successfully.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "4 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has scanned Cerebellum planet",
+        "Cerebellum.kp4 file exists in Filesystem",
+        "Player has accessed Filesystem terminal"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate and run the Cerebellum.kp4 file from Filesystem",
+            "expected": "Minigame initiates and displays circular track with slider"
+        },
+        {
+            "step": 2,
+            "action": "Observe the slider moving around the circular track",
+            "expected": "Slider moves continuously around the circle"
+        },
+        {
+            "step": 3,
+            "action": "Identify the small red sections on the track",
+            "expected": "Red target zones are visible on the circular track"
+        },
+        {
+            "step": 4,
+            "action": "Click [LMB] when slider is NOT in a red section",
+            "expected": "Click registers as miss or incorrect timing"
+        },
+        {
+            "step": 5,
+            "action": "Click [LMB] when slider reaches a red section",
+            "expected": "Click registers as successful hit"
+        },
+        {
+            "step": 6,
+            "action": "Complete all required timing hits",
+            "expected": "Minigame completes successfully"
+        },
+        {
+            "step": 7,
+            "action": "Check Filesystem for new files after completion",
+            "expected": "New file 'report.kp4' has been added to Filesystem"
+        }
+    ],
+    "postconditions": [
+        "Cerebellum minigame is completed",
+        "report.kp4 file is generated"
+    ],
+    "tags": [
+        "region-1",
+        "minigame",
+        "cerebellum",
+        "timing",
+        "functional",
+        "high-priority"
+    ]
+}

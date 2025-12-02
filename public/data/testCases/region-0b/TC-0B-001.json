@@ -1,0 +1,52 @@
+{
+    "id": "TC-0B-001",
+    "name": "Verify Neuros Terminal Discovery and Access",
+    "description": "Validates that the Neuros terminal appears in the cockpit upon entering region 0b and can be accessed correctly.",
+    "testObjective": "Ensure the Neuros terminal is discoverable and interactive in region 0b.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed hibernation from intro region",
+        "Player is in region 0b",
+        "Player has navigated to the cockpit"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Look to the left side of the cockpit",
+            "expected": "Neuros terminal is visible and appears as a new terminal type not present in previous regions"
+        },
+        {
+            "step": 2,
+            "action": "Approach the Neuros terminal until interaction prompt appears",
+            "expected": "Interaction prompt appears indicating [E] or [LMB] to interact"
+        },
+        {
+            "step": 3,
+            "action": "Press [E] or click [LMB] on the Neuros terminal",
+            "expected": "CLI tool interface opens on the terminal screen"
+        },
+        {
+            "step": 4,
+            "action": "Observe the initial terminal display",
+            "expected": "Terminal immediately prints 'NEUROS ONLINE'"
+        }
+    ],
+    "postconditions": [
+        "Neuros terminal is accessible",
+        "CLI interface is active and ready for input"
+    ],
+    "tags": [
+        "region-0b",
+        "neuros",
+        "terminal",
+        "functional",
+        "high-priority"
+    ]
+}

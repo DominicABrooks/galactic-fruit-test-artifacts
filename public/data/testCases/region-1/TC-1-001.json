@@ -1,0 +1,48 @@
+{
+    "id": "TC-1-001",
+    "name": "Verify Hallway Lighting Sequence on Region 1 Entry",
+    "description": "Validates that upon entering region 1, the hallway lights activate incrementally from the opposite side.",
+    "testObjective": "Ensure the hallway lighting sequence provides visual feedback for region 1 entry.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed region 0b",
+        "Player has entered hibernation",
+        "Player has awakened in region 1"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with the door button to open the hallway door",
+            "expected": "Door opens successfully"
+        },
+        {
+            "step": 2,
+            "action": "Observe the hallway lighting behavior",
+            "expected": "Lights begin activating from the opposite side of the hallway"
+        },
+        {
+            "step": 3,
+            "action": "Continue observing the lighting sequence",
+            "expected": "Lights turn on incrementally in sequence, not all at once"
+        }
+    ],
+    "postconditions": [
+        "All hallway lights are fully activated",
+        "Hallway is properly illuminated for navigation"
+    ],
+    "tags": [
+        "region-1",
+        "lighting",
+        "hallway",
+        "visual",
+        "functional",
+        "medium-priority"
+    ]
+}

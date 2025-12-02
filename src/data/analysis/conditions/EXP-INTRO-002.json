@@ -4,7 +4,9 @@
         "category": "Power System",
         "condition": "Verify power activation button triggers terminal activation sequence correctly",
         "priority": "High",
-        "linkedTestCases": [],
+        "linkedTestCases": [
+            "TC-INTRO-007"
+        ],
         "exploratoryNoteId": "EXP-INTRO-002"
     },
     {
@@ -12,7 +14,9 @@
         "category": "Terminal System",
         "condition": "Verify terminal can be opened and closed using correct controls",
         "priority": "High",
-        "linkedTestCases": [],
+        "linkedTestCases": [
+            "TC-INTRO-008"
+        ],
         "exploratoryNoteId": "EXP-INTRO-002"
     },
     {
@@ -20,7 +24,9 @@
         "category": "Terminal System",
         "condition": "Verify terminal displays correct sections (Power header, Temp, Disk)",
         "priority": "Medium",
-        "linkedTestCases": [],
+        "linkedTestCases": [
+            "TC-INTRO-009"
+        ],
         "exploratoryNoteId": "EXP-INTRO-002"
     },
     {
@@ -28,7 +34,9 @@
         "category": "Authentication Minigame",
         "condition": "Verify authentication minigame launches and completes successfully",
         "priority": "High",
-        "linkedTestCases": [],
+        "linkedTestCases": [
+            "TC-INTRO-010"
+        ],
         "exploratoryNoteId": "EXP-INTRO-002"
     },
     {
@@ -36,7 +44,9 @@
         "category": "Tutorial Progression",
         "condition": "Verify tutorial progression unlocks files in correct sequence",
         "priority": "High",
-        "linkedTestCases": [],
+        "linkedTestCases": [
+            "TC-INTRO-011"
+        ],
         "exploratoryNoteId": "EXP-INTRO-002"
     },
     {
@@ -44,7 +54,19 @@
         "category": "Operations Manual",
         "condition": "Verify operations manual displays all pages and navigation works correctly",
         "priority": "Medium",
-        "linkedTestCases": [],
+        "linkedTestCases": [
+            "TC-INTRO-012"
+        ],
+        "exploratoryNoteId": "EXP-INTRO-002"
+    },
+    {
+        "id": "TC-COND-010A",
+        "category": "Camera Terminal Unlock",
+        "condition": "Verify camera terminal becomes available after completing operations manual",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-INTRO-013"
+        ],
         "exploratoryNoteId": "EXP-INTRO-002"
     }
 ]

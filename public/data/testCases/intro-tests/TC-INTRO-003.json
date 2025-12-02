@@ -1,0 +1,59 @@
+{
+    "id": "TC-INTRO-003",
+    "name": "Verify Suit Must Be Obtained Before Ladder Access",
+    "description": "Validates that the ladder cannot be climbed without first obtaining the suit from the wall.",
+    "testObjective": "Ensure proper item dependency and progression gating for ladder access.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game has launched",
+        "Intro video has completed",
+        "Player has identified the suit and ladder in the wall"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Identify the glowing suit and ladder embedded in the wall",
+            "expected": "Both suit and ladder are visible and appear interactable"
+        },
+        {
+            "step": 2,
+            "action": "Approach the ladder without obtaining the suit",
+            "expected": "Ladder shows interaction prompt or appears blocked"
+        },
+        {
+            "step": 3,
+            "action": "Attempt to interact with the ladder using [E]",
+            "expected": "Ladder cannot be climbed (interaction is blocked or produces no effect)"
+        },
+        {
+            "step": 4,
+            "action": "Approach and interact with the suit using [E]",
+            "expected": "Suit is obtained and removed from the wall"
+        },
+        {
+            "step": 5,
+            "action": "Return to the ladder and interact using [E]",
+            "expected": "Ladder is now accessible and player can climb"
+        }
+    ],
+    "postconditions": [
+        "Player has obtained the suit",
+        "Ladder is accessible after suit acquisition"
+    ],
+    "tags": [
+        "intro",
+        "suit",
+        "ladder",
+        "dependency",
+        "progression-gate",
+        "functional",
+        "high-priority"
+    ]
+}

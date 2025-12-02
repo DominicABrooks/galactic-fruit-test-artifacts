@@ -1,0 +1,80 @@
+{
+    "id": "TC-INTRO-012",
+    "name": "Verify Operations Manual Navigation and Content",
+    "description": "Validates that Operations Manual.b opens correctly, displays 13 pages, and navigation controls work properly.",
+    "testObjective": "Ensure operations manual provides complete tutorial information with functional page navigation.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Next Steps video has been completed",
+        "Operations Manual.b file exists in Temp directory",
+        "Filesystem terminal is open"
+    ],
+    "testData": {
+        "totalPages": 13,
+        "sections": [
+            "Operations Manual (pages 1-2)",
+            "File System (page 3)",
+            "Map (page 4)",
+            "Camera (pages 5-6)",
+            "Sending Report (pages 7-10)",
+            "Moving On (pages 11-12)",
+            "End text (page 13)"
+        ]
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate and run Operations Manual.b from Temp directory",
+            "expected": "Operations Manual opens displaying first page"
+        },
+        {
+            "step": 2,
+            "action": "Press [D] key to move to next page",
+            "expected": "Manual advances to page 2"
+        },
+        {
+            "step": 3,
+            "action": "Press [A] key to move to previous page",
+            "expected": "Manual returns to page 1"
+        },
+        {
+            "step": 4,
+            "action": "Navigate through all 13 pages using [D]",
+            "expected": "All pages display correctly with proper content: Operations Manual (1-2), File System (3), Map (4), Camera (5-6), Sending Report (7-10), Moving On (11-12), End text (13)"
+        },
+        {
+            "step": 5,
+            "action": "Attempt to press [D] on page 13 (last page)",
+            "expected": "Manual does not advance beyond page 13"
+        },
+        {
+            "step": 6,
+            "action": "Navigate back to page 1 using [A]",
+            "expected": "Can navigate backwards through all pages"
+        },
+        {
+            "step": 7,
+            "action": "Attempt to press [A] on page 1 (first page)",
+            "expected": "Manual does not go before page 1"
+        }
+    ],
+    "postconditions": [
+        "Operations Manual content fully accessible",
+        "Navigation controls function correctly",
+        "All 13 pages are present"
+    ],
+    "tags": [
+        "intro",
+        "operations-manual",
+        "tutorial",
+        "navigation",
+        "functional",
+        "high-priority"
+    ]
+}

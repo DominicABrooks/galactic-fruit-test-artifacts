@@ -1,0 +1,61 @@
+{
+    "id": "TC-1-002",
+    "name": "Verify SAFETY.a File and Training Video",
+    "description": "Validates that SAFETY.a file appears in the Filesystem and plays the power restoration training video.",
+    "testObjective": "Ensure SAFETY.a training content is accessible and provides correct information.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 1 cockpit",
+        "Player has accessed Filesystem terminal"
+    ],
+    "testData": {
+        "fileName": "SAFETY.a",
+        "videoContent": "Power restoration procedures in electrical room"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with Filesystem terminal",
+            "expected": "Filesystem opens and displays file list"
+        },
+        {
+            "step": 2,
+            "action": "Locate the SAFETY.a file",
+            "expected": "SAFETY.a file is present in the file list"
+        },
+        {
+            "step": 3,
+            "action": "Run the SAFETY.a file",
+            "expected": "Training video begins playing"
+        },
+        {
+            "step": 4,
+            "action": "Watch the video content",
+            "expected": "Video explains: 'If power goes out, restore it in the electrical room'"
+        },
+        {
+            "step": 5,
+            "action": "Wait for video to complete",
+            "expected": "Video completes and returns to normal view"
+        }
+    ],
+    "postconditions": [
+        "Player has received power restoration training",
+        "SAFETY.a content has been viewed"
+    ],
+    "tags": [
+        "region-1",
+        "filesystem",
+        "safety",
+        "training",
+        "video",
+        "functional",
+        "high-priority"
+    ]
+}

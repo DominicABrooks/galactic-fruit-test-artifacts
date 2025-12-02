@@ -1,0 +1,63 @@
+{
+    "id": "TC-INTRO-016",
+    "name": "Verify Camera Movement Controls Using WASD",
+    "description": "Validates that camera can be controlled using WASD keys with smooth and responsive movement.",
+    "testObjective": "Ensure camera navigation controls function correctly for exploring space view.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Camera terminal is open",
+        "Player is viewing camera interface"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Press [W] key",
+            "expected": "Camera view moves upward smoothly"
+        },
+        {
+            "step": 2,
+            "action": "Press [S] key",
+            "expected": "Camera view moves downward smoothly"
+        },
+        {
+            "step": 3,
+            "action": "Press [A] key",
+            "expected": "Camera view moves left smoothly"
+        },
+        {
+            "step": 4,
+            "action": "Press [D] key",
+            "expected": "Camera view moves right smoothly"
+        },
+        {
+            "step": 5,
+            "action": "Hold [W] continuously",
+            "expected": "Camera continues moving upward in a smooth, continuous motion"
+        },
+        {
+            "step": 6,
+            "action": "Test diagonal movement by holding [W] and [D] together",
+            "expected": "Camera moves diagonally (up and right) smoothly"
+        }
+    ],
+    "postconditions": [
+        "Camera responds to all WASD inputs",
+        "Movement is smooth and responsive"
+    ],
+    "tags": [
+        "intro",
+        "camera",
+        "controls",
+        "wasd",
+        "movement",
+        "functional",
+        "high-priority"
+    ]
+}

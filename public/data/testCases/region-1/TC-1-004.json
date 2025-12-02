@@ -1,0 +1,50 @@
+{
+    "id": "TC-1-004",
+    "name": "Verify Ladagocia Planet Blocks Interaction Until Report Complete",
+    "description": "Validates that Ladagocia planet displays blocking message until Cerebellum report is completed.",
+    "testObjective": "Ensure game progression gate functions correctly for planet interactions.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 1 cockpit",
+        "Player is viewing camera system",
+        "Player has not completed Cerebellum report"
+    ],
+    "testData": {
+        "blockingMessage": "REPORT ON PLANET BEFORE CONTINUING"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate Ladagocia planet in camera view",
+            "expected": "Ladagocia planet is visible in the camera"
+        },
+        {
+            "step": 2,
+            "action": "Click [E] or [LMB] to interact with Ladagocia",
+            "expected": "System displays message: 'REPORT ON PLANET BEFORE CONTINUING'"
+        },
+        {
+            "step": 3,
+            "action": "Attempt to interact again",
+            "expected": "Same blocking message appears, preventing course setting"
+        }
+    ],
+    "postconditions": [
+        "Ladagocia interaction is blocked until prerequisites met",
+        "Player understands they must complete a report first"
+    ],
+    "tags": [
+        "region-1",
+        "camera",
+        "ladagocia",
+        "progression-gate",
+        "functional",
+        "high-priority"
+    ]
+}

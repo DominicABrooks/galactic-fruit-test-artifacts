@@ -1,0 +1,75 @@
+{
+    "id": "TC-INTRO-010",
+    "name": "Verify Authentication Minigame Completion",
+    "description": "Validates that the Authentication.kp4 file can be run and the face recognition minigame completes successfully.",
+    "testObjective": "Ensure authentication minigame functions correctly and progresses tutorial upon completion.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Filesystem terminal is open",
+        "Authentication.kp4 file is visible in Temp directory"
+    ],
+    "testData": {
+        "newFileName": "Next Steps.kp4"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Click [E] or [LMB] on Authentication.kp4 file",
+            "expected": "Modal opens displaying Title: 'Authentication', [Run] button, and [X] close option"
+        },
+        {
+            "step": 2,
+            "action": "Click [X] to test cancel functionality",
+            "expected": "Modal closes without running the file"
+        },
+        {
+            "step": 3,
+            "action": "Click Authentication.kp4 again and click [Run] button",
+            "expected": "Authentication minigame launches"
+        },
+        {
+            "step": 4,
+            "action": "Read the minigame prompt: 'Click [E] when a face is displayed'",
+            "expected": "Instructions are clear and understandable"
+        },
+        {
+            "step": 5,
+            "action": "Wait for a face to appear on screen",
+            "expected": "Face appears after brief delay"
+        },
+        {
+            "step": 6,
+            "action": "Press [E] when face is displayed",
+            "expected": "Minigame registers successful completion"
+        },
+        {
+            "step": 7,
+            "action": "Observe completion and check for new files",
+            "expected": "Minigame ends, modal closes, notification indicates 'Next Steps.kp4' is available"
+        },
+        {
+            "step": 8,
+            "action": "Check Temp directory",
+            "expected": "New file 'Next Steps.kp4' appears in Temp section"
+        }
+    ],
+    "postconditions": [
+        "Authentication minigame completed",
+        "Next Steps.kp4 file generated",
+        "Tutorial progression continues"
+    ],
+    "tags": [
+        "intro",
+        "authentication",
+        "minigame",
+        "tutorial",
+        "functional",
+        "critical-priority"
+    ]
+}

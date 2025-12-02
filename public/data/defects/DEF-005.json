@@ -1,0 +1,31 @@
+{
+    "id": "DEF-005",
+    "summary": "Unable to Set Course to After Completing Report Using [C]",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build 20951743",
+    "reporter": "Dominic Brooks",
+    "date": "2025-12-01",
+    "description": "After completing the Cerebellum report and returning to the camera interface, interacting with Ladagocia displays the prompt \"[X] SET COURSE [C]\" as expected. However, pressing [C] does not trigger any action, and no feedback or course-setting sequence occurs.",
+    "steps": [
+        "1. Launch the game through Steam.",
+        "2. Complete exploration in Region 0b and transition to Region 1.",
+        "3. Access the Filesystem terminal and run SAFETY.a.",
+        "4. Use the camera system to locate and scan the scannable planet.",
+        "5. Complete the Cerebellum.kp4 timing minigame.",
+        "6. Run report.kp4 and finalize the Cerebellum report.",
+        "7. Observe the map update and automatic refocus onto Ladagocia.",
+        "8. Interact with Ladagocia to display the prompt \"[X] SET COURSE [C]\".",
+        "9. Press [X] to attempt to cancel set course.",
+        "10. Interact with Ladagocia to display the prompt \"[X] SET COURSE [C]\".",
+        "11. Press [C] to attempt to set course."
+    ],
+    "expected": "Pressing [C] should initiate the course-setting action, updating mission state and triggering any associated animations, UI updates, or system changes.",
+    "actual": "Pressing [C] produces no response. No action, UI change, or feedback occurs, leaving the player unable to set course to Ladagocia.",
+    "attachments": [
+        {
+            "name": "ladagocia_course_prompt.png",
+            "description": "Screenshot showing the '[X] SET COURSE [C]' prompt prior to pressing [C]."
+        }
+    ]
+}

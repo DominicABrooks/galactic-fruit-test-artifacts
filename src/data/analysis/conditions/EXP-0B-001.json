@@ -1,0 +1,52 @@
+[
+    {
+        "id": "TC-COND-011",
+        "category": "Neuros Terminal",
+        "condition": "Verify Neuros terminal appears and is accessible in region 0b cockpit",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-0B-001"
+        ],
+        "exploratoryNoteId": "EXP-0B-001"
+    },
+    {
+        "id": "TC-COND-012",
+        "category": "Neuros CLI",
+        "condition": "Verify Neuros CLI accepts input with uppercase conversion and HELP command displays database entries",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-0B-002"
+        ],
+        "exploratoryNoteId": "EXP-0B-001"
+    },
+    {
+        "id": "TC-COND-013",
+        "category": "Object Placement",
+        "condition": "Verify paper placement does not obstruct Neuros terminal interaction",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-0B-003"
+        ],
+        "exploratoryNoteId": "EXP-0B-001"
+    },
+    {
+        "id": "TC-COND-014",
+        "category": "Minigame",
+        "condition": "Verify Evaluation.kp4 file appears and reaction minigame functions correctly",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-0B-004"
+        ],
+        "exploratoryNoteId": "EXP-0B-001"
+    },
+    {
+        "id": "TC-COND-015",
+        "category": "Camera System",
+        "condition": "Verify camera system displays 0/0 and no scannable objects in region 0b",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-0B-005"
+        ],
+        "exploratoryNoteId": "EXP-0B-001"
+    }
+]

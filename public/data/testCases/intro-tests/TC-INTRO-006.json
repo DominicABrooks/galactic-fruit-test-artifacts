@@ -1,0 +1,56 @@
+{
+    "id": "TC-INTRO-006",
+    "name": "Verify G Key Does Not Trigger NullReferenceException",
+    "description": "Validates that pressing the G key during intro sequence does not cause a NullReferenceException or switch to drone view.",
+    "testObjective": "Ensure G key functionality is properly disabled during intro sequence to prevent unintended mode switches.",
+    "priority": "High",
+    "type": "Defect Verification",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in the ship room during intro sequence",
+        "Player is near the door button"
+    ],
+    "testData": {
+        "defectDescription": "NullReferenceException: Object reference not set to an instance of an object"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Position player near the door in the ship room",
+            "expected": "Player is in normal first-person view"
+        },
+        {
+            "step": 2,
+            "action": "Press the G key",
+            "expected": "No error occurs, player remains in first-person view"
+        },
+        {
+            "step": 3,
+            "action": "Check console/logs for exceptions",
+            "expected": "No NullReferenceException is logged"
+        },
+        {
+            "step": 4,
+            "action": "Verify player view mode",
+            "expected": "Player remains in first-person view (does NOT switch to drone view)"
+        }
+    ],
+    "postconditions": [
+        "No exceptions are thrown",
+        "Player remains in correct view mode",
+        "Game state is not corrupted"
+    ],
+    "tags": [
+        "intro",
+        "defect",
+        "null-reference",
+        "g-key",
+        "drone-view",
+        "high-priority",
+        "critical-path"
+    ]
+}

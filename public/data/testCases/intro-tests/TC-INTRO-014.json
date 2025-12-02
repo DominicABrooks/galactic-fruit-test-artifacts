@@ -1,0 +1,58 @@
+{
+    "id": "TC-INTRO-014",
+    "name": "Verify Map Terminal Displays System 23 Information",
+    "description": "Validates that the map terminal displays squad indicators [1] and [0] relative to System 23.",
+    "testObjective": "Ensure map terminal provides basic navigation information for current destination.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in the ship room",
+        "Map terminal (right terminal) is accessible"
+    ],
+    "testData": {
+        "systemReference": "System 23",
+        "squadIndicators": [
+            "[1]",
+            "[0]"
+        ]
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with the map terminal (right terminal)",
+            "expected": "Map terminal opens"
+        },
+        {
+            "step": 2,
+            "action": "Observe the map display",
+            "expected": "Display shows two squads: [1] and [0]"
+        },
+        {
+            "step": 3,
+            "action": "Check for system reference information",
+            "expected": "Map indicates it is relative to System 23 (current destination)"
+        },
+        {
+            "step": 4,
+            "action": "Look for additional map details",
+            "expected": "Limited information is available beyond system reference and squad indicators"
+        }
+    ],
+    "postconditions": [
+        "Map terminal displays basic navigation data",
+        "Squad indicators are visible"
+    ],
+    "tags": [
+        "intro",
+        "map-terminal",
+        "navigation",
+        "system-23",
+        "functional",
+        "medium-priority"
+    ]
+}

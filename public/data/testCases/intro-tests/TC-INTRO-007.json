@@ -1,0 +1,65 @@
+{
+    "id": "TC-INTRO-007",
+    "name": "Verify Power Activation Sequence",
+    "description": "Validates that the hanging power button activates power to the terminals with proper animation and visual feedback.",
+    "testObjective": "Ensure power activation mechanic functions correctly and provides clear visual and audio feedback.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has entered the ship via ladder",
+        "Ship room is dark",
+        "Door button is disabled",
+        "Terminals are powered off"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate the hanging button in front of the terminals",
+            "expected": "Hanging button is visible and appears interactable"
+        },
+        {
+            "step": 2,
+            "action": "Click the hanging power button",
+            "expected": "Button begins raising animation with sound effect"
+        },
+        {
+            "step": 3,
+            "action": "Observe the button animation",
+            "expected": "Button raises slowly and smoothly"
+        },
+        {
+            "step": 4,
+            "action": "Observe the terminal activation",
+            "expected": "Terminal lights turn on"
+        },
+        {
+            "step": 5,
+            "action": "Wait for terminal boot sequence",
+            "expected": "Loading bar appears on the terminal and completes"
+        },
+        {
+            "step": 6,
+            "action": "Check terminal interactability",
+            "expected": "Two terminals become interactable after power activation"
+        }
+    ],
+    "postconditions": [
+        "Power is activated",
+        "Terminals are operational",
+        "Player can interact with middle terminal"
+    ],
+    "tags": [
+        "intro",
+        "power",
+        "activation",
+        "terminals",
+        "functional",
+        "critical-priority"
+    ]
+}

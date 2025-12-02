@@ -1,0 +1,67 @@
+{
+    "id": "TC-1-005",
+    "name": "Verify Planet Scanning Mechanic - Cerebellum",
+    "description": "Validates that the planet scanning mechanic works correctly, including hold-to-scan functionality and successful discovery.",
+    "testObjective": "Ensure planet scanning interaction and progress mechanics function as designed.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 1 cockpit",
+        "Player is viewing camera system",
+        "Player has located a scannable planet (not Ladagocia)"
+    ],
+    "testData": {
+        "planetName": "Cerebellum"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate a planet that displays [SCAN: E] prompt when hovering",
+            "expected": "Planet shows hover prompt: '[SCAN: E]'"
+        },
+        {
+            "step": 2,
+            "action": "Hold down [E] key",
+            "expected": "Scan animation begins playing and progresses"
+        },
+        {
+            "step": 3,
+            "action": "Release [E] key before scan completes",
+            "expected": "Scan animation stops immediately"
+        },
+        {
+            "step": 4,
+            "action": "Hold down [E] key again until scan animation completes",
+            "expected": "Scan animation completes successfully"
+        },
+        {
+            "step": 5,
+            "action": "Observe the completion message",
+            "expected": "System displays: 'Planet discovered: Cerebellum'"
+        },
+        {
+            "step": 6,
+            "action": "Check Filesystem terminal for new files",
+            "expected": "New file 'Cerebellum.kp4' has been added to the Filesystem"
+        }
+    ],
+    "postconditions": [
+        "Cerebellum planet is successfully scanned",
+        "Cerebellum.kp4 file is generated",
+        "Player can proceed with Cerebellum minigame"
+    ],
+    "tags": [
+        "region-1",
+        "camera",
+        "scanning",
+        "cerebellum",
+        "interaction",
+        "functional",
+        "critical-priority"
+    ]
+}

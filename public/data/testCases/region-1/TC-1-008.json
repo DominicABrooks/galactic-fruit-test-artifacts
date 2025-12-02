@@ -1,0 +1,59 @@
+{
+    "id": "TC-1-008",
+    "name": "Verify Map Progression and Checkpoint System",
+    "description": "Validates that completing Cerebellum report updates the map with a checkmark for mission [1] and camera focus returns properly.",
+    "testObjective": "Ensure map progression system updates correctly and provides visual feedback for completed objectives.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed Cerebellum report",
+        "All report data has been submitted"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Submit the completed Cerebellum report",
+            "expected": "Report submission is accepted"
+        },
+        {
+            "step": 2,
+            "action": "Observe the camera view transition",
+            "expected": "Camera automatically moves to show the map display"
+        },
+        {
+            "step": 3,
+            "action": "Observe the map indicator for mission [1]",
+            "expected": "Map indicator [1] changes to a checkmark (✓) symbol"
+        },
+        {
+            "step": 4,
+            "action": "Wait for automatic focus return",
+            "expected": "Camera focus automatically returns from map to normal camera view"
+        },
+        {
+            "step": 5,
+            "action": "Observe the camera position upon return",
+            "expected": "Camera is immediately hovering/centered on Ladagocia planet"
+        }
+    ],
+    "postconditions": [
+        "Map shows mission [1] as complete with checkmark",
+        "Camera returns to normal view centered on Ladagocia",
+        "Player can now interact with Ladagocia"
+    ],
+    "tags": [
+        "region-1",
+        "map",
+        "progression",
+        "checkpoint",
+        "camera",
+        "functional",
+        "high-priority"
+    ]
+}

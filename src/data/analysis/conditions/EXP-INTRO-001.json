@@ -2,10 +2,11 @@
     {
         "id": "TC-COND-001",
         "category": "Introduction / Interaction",
-        "condition": "Verify intro video plays correctly and loops as expected",
+        "condition": "Verify intro video plays correctly and does not loop",
         "priority": "Medium",
         "linkedTestCases": [
-            "TC-INTRO-001"
+            "TC-INTRO-001",
+            "TC-INTRO-002"
         ],
         "exploratoryNoteId": "EXP-INTRO-001"
     },
@@ -16,7 +17,18 @@
         "priority": "High",
         "linkedTestCases": [
             "TC-INTERACT-001",
-            "TC-INTERACT-002"
+            "TC-INTERACT-002",
+            "TC-INTRO-003"
+        ],
+        "exploratoryNoteId": "EXP-INTRO-001"
+    },
+    {
+        "id": "TC-COND-002A",
+        "category": "Ship Transition",
+        "condition": "Verify player orientation after ladder transition to ship is appropriate",
+        "priority": "Low",
+        "linkedTestCases": [
+            "TC-INTRO-004"
         ],
         "exploratoryNoteId": "EXP-INTRO-001"
     },
@@ -26,17 +38,19 @@
         "condition": "Verify disabled buttons provide proper audio feedback when pressed",
         "priority": "Medium",
         "linkedTestCases": [
-            "TC-AUDIO-001"
+            "TC-AUDIO-001",
+            "TC-INTRO-005"
         ],
         "exploratoryNoteId": "EXP-INTRO-001"
     },
     {
         "id": "TC-COND-004",
-        "category": "Suit Interaction",
-        "condition": "Verify pressing 'G' on the suit does not trigger errors or unexpected mode changes",
+        "category": "Defect - G Key",
+        "condition": "Verify pressing 'G' does not trigger NullReferenceException or unexpected mode changes",
         "priority": "High",
         "linkedTestCases": [
-            "TC-DEF-001"
+            "TC-DEF-001",
+            "TC-INTRO-006"
         ],
         "exploratoryNoteId": "EXP-INTRO-001"
     }

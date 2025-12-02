@@ -1,0 +1,48 @@
+{
+    "id": "TC-INTRO-004",
+    "name": "Verify Player Orientation After Ladder Transition to Ship",
+    "description": "Validates that the player orientation after climbing the ladder positions them appropriately in the ship room.",
+    "testObjective": "Ensure player is facing the correct direction after ship transition for optimal UX.",
+    "priority": "Low",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has obtained the suit",
+        "Player is climbing the ladder"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Climb the ladder after obtaining the suit",
+            "expected": "Player transitions from intro area to ship room"
+        },
+        {
+            "step": 2,
+            "action": "Observe the player's orientation upon arrival in ship",
+            "expected": "Player is facing the door (or appropriate direction for next interaction)"
+        },
+        {
+            "step": 3,
+            "action": "Note the location of the interaction button",
+            "expected": "Interaction button should be visible or easily accessible (not behind player)"
+        }
+    ],
+    "postconditions": [
+        "Player successfully transitions to ship",
+        "Player orientation allows for intuitive progression"
+    ],
+    "tags": [
+        "intro",
+        "ladder",
+        "transition",
+        "orientation",
+        "ux",
+        "functional",
+        "low-priority"
+    ]
+}

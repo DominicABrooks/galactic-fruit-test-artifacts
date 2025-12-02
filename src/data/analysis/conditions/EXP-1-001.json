@@ -1,0 +1,102 @@
+[
+    {
+        "id": "TC-COND-016",
+        "category": "Lighting System",
+        "condition": "Verify hallway lights activate incrementally from opposite side on region 1 entry",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-1-001"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-017",
+        "category": "Training Video",
+        "condition": "Verify SAFETY.a file appears and plays power restoration training video",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-1-002"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-018",
+        "category": "Camera UI",
+        "condition": "Verify camera displays 0/1 scannable object counter in region 1",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-1-003"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-019",
+        "category": "Progression Gate",
+        "condition": "Verify Ladagocia planet blocks interaction until Cerebellum report is completed",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-1-004"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-020",
+        "category": "Planet Scanning",
+        "condition": "Verify planet scanning mechanic works with hold-to-scan functionality for Cerebellum discovery",
+        "priority": "Critical",
+        "linkedTestCases": [
+            "TC-1-005"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-021",
+        "category": "Minigame",
+        "condition": "Verify Cerebellum minigame timing challenge completes successfully",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-1-006"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-022",
+        "category": "Report System",
+        "condition": "Verify report generation system creates interactive Cerebellum report interface",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-1-007"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-023",
+        "category": "Map Progression",
+        "condition": "Verify map updates with checkpoint marker after Cerebellum report completion",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-1-008"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-024",
+        "category": "Course Setting",
+        "condition": "Verify course can be set to Ladagocia after report completion with correct duration display",
+        "priority": "Critical",
+        "linkedTestCases": [
+            "TC-1-009"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    },
+    {
+        "id": "TC-COND-025",
+        "category": "Region Transition",
+        "condition": "Verify hibernation successfully transitions player from Region 1 to Region 2",
+        "priority": "Critical",
+        "linkedTestCases": [
+            "TC-1-010"
+        ],
+        "exploratoryNoteId": "EXP-1-001"
+    }
+]

@@ -1,0 +1,57 @@
+{
+    "id": "TC-INTRO-008",
+    "name": "Verify Terminal Opening and Closing Controls",
+    "description": "Validates that terminals can be opened with [E] or [LMB] and closed with [RMB].",
+    "testObjective": "Ensure terminal interaction controls work correctly for opening and closing.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Power has been activated",
+        "Terminals are operational"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Approach the middle terminal until interaction prompt appears",
+            "expected": "Interaction prompt indicates [E] or [LMB] to interact"
+        },
+        {
+            "step": 2,
+            "action": "Press [E] to open the terminal",
+            "expected": "Terminal interface opens and displays sections"
+        },
+        {
+            "step": 3,
+            "action": "Click [RMB] while terminal is open",
+            "expected": "Terminal closes and returns to normal view"
+        },
+        {
+            "step": 4,
+            "action": "Click [LMB] on the terminal to open it",
+            "expected": "Terminal interface opens"
+        },
+        {
+            "step": 5,
+            "action": "Click [RMB] to close",
+            "expected": "Terminal closes successfully"
+        }
+    ],
+    "postconditions": [
+        "Terminal can be opened and closed reliably",
+        "Both [E] and [LMB] work for opening"
+    ],
+    "tags": [
+        "intro",
+        "terminal",
+        "controls",
+        "interaction",
+        "functional",
+        "high-priority"
+    ]
+}

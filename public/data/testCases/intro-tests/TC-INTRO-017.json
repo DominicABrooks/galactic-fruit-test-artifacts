@@ -1,0 +1,62 @@
+{
+    "id": "TC-INTRO-017",
+    "name": "Verify Camera Boundary Limits with Visual and Audio Feedback",
+    "description": "Validates that camera movement stops at boundaries with red line indicator and sound effect.",
+    "testObjective": "Ensure camera boundaries are enforced with clear visual and audio feedback.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Camera terminal is open",
+        "Player can move camera using WASD"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Hold [W] to move camera upward until boundary is reached",
+            "expected": "Camera stops moving when boundary limit is reached"
+        },
+        {
+            "step": 2,
+            "action": "Observe visual feedback at boundary",
+            "expected": "Red line appears as visual indicator of boundary"
+        },
+        {
+            "step": 3,
+            "action": "Listen for audio feedback",
+            "expected": "Sound effect plays to signal boundary has been reached"
+        },
+        {
+            "step": 4,
+            "action": "Test boundary in other directions ([S], [A], [D])",
+            "expected": "Each direction has boundary with same red line and sound effect"
+        },
+        {
+            "step": 5,
+            "action": "Continue holding movement key at boundary",
+            "expected": "Camera remains at boundary, does not move beyond limit"
+        },
+        {
+            "step": 6,
+            "action": "Move away from boundary",
+            "expected": "Red line disappears, normal camera movement resumes"
+        }
+    ],
+    "postconditions": [
+        "Camera boundaries are enforced",
+        "Visual and audio feedback work correctly"
+    ],
+    "tags": [
+        "intro",
+        "camera",
+        "boundaries",
+        "feedback",
+        "functional",
+        "medium-priority"
+    ]
+}

@@ -1,0 +1,44 @@
+{
+    "id": "TC-0B-005",
+    "name": "Verify Camera System Shows No Scannable Objects in 0b",
+    "description": "Validates that the camera system in region 0b displays 0/0 and no scannable objects are detected.",
+    "testObjective": "Confirm camera system correctly indicates no scannable objects in region 0b.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 0b cockpit"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with the camera system in the cockpit",
+            "expected": "Camera interface opens"
+        },
+        {
+            "step": 2,
+            "action": "Observe the display in the top right corner",
+            "expected": "Display shows '0/0' indicating no scannable objects available"
+        },
+        {
+            "step": 3,
+            "action": "Pan camera view around to search for planets or objects",
+            "expected": "No planets or scannable objects are detected in the view"
+        }
+    ],
+    "postconditions": [
+        "Camera system confirms no scannable content in region 0b"
+    ],
+    "tags": [
+        "region-0b",
+        "camera",
+        "scanning",
+        "functional",
+        "medium-priority"
+    ]
+}

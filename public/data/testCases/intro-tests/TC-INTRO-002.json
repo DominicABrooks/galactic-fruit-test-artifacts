@@ -1,0 +1,53 @@
+{
+    "id": "TC-INTRO-002",
+    "name": "Verify Projector Video Does Not Loop",
+    "description": "Validates that the introduction video plays once and remains on the final frame without looping.",
+    "testObjective": "Ensure video playback behavior is correct and displays proper end message.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game is launched",
+        "Intro video is playing on projector"
+    ],
+    "testData": {
+        "finalMessage": "Galactic Fruit thanks you for your sacrifice."
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Observe the intro video playing on the projector wall",
+            "expected": "Video plays smoothly through the projector"
+        },
+        {
+            "step": 2,
+            "action": "Wait for the video to complete",
+            "expected": "Video completes and displays final frame with message: 'Galactic Fruit thanks you for your sacrifice.'"
+        },
+        {
+            "step": 3,
+            "action": "Continue waiting to observe looping behavior",
+            "expected": "Video does NOT loop and remains on final frame"
+        },
+        {
+            "step": 4,
+            "action": "Attempt to interact with the projector",
+            "expected": "No interaction occurs (projector is not interactable)"
+        }
+    ],
+    "postconditions": [
+        "Video remains on final frame",
+        "Player can proceed with game"
+    ],
+    "tags": [
+        "intro",
+        "video",
+        "projector",
+        "functional",
+        "medium-priority"
+    ]
+}

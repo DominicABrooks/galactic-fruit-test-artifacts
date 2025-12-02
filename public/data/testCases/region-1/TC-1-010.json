@@ -1,0 +1,63 @@
+{
+    "id": "TC-1-010",
+    "name": "Verify Region 1 to Region 2 Transition via Hibernation",
+    "description": "Validates that after setting course, player can return to hibernation and successfully transition to Region 2.",
+    "testObjective": "Ensure hibernation system correctly transitions player from Region 1 to Region 2.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has set course to Ladagocia",
+        "Ship screens have gone black (transit state)",
+        "Player is in Region 1"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate from cockpit back through the hallway",
+            "expected": "Player can navigate normally through hallway"
+        },
+        {
+            "step": 2,
+            "action": "Check all rooms along the hallway route",
+            "expected": "No changes detected in any hallway rooms"
+        },
+        {
+            "step": 3,
+            "action": "Navigate to the hibernation room at end of hallway",
+            "expected": "Hibernation room is accessible"
+        },
+        {
+            "step": 4,
+            "action": "Interact with the Cryochamber using [E] or [LMB]",
+            "expected": "Hibernation sequence initiates, screen displays '...'"
+        },
+        {
+            "step": 5,
+            "action": "Wait for hibernation sequence to complete",
+            "expected": "Player awakens after hibernation period"
+        },
+        {
+            "step": 6,
+            "action": "Check developer tools or region indicators",
+            "expected": "System confirms player is now in Region 2"
+        }
+    ],
+    "postconditions": [
+        "Player has successfully transitioned to Region 2",
+        "Region 1 exploration is complete"
+    ],
+    "tags": [
+        "region-1",
+        "hibernation",
+        "region-transition",
+        "cryochamber",
+        "functional",
+        "critical-priority"
+    ]
+}

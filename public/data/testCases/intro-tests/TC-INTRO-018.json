@@ -1,0 +1,65 @@
+{
+    "id": "TC-INTRO-018",
+    "name": "Verify Planet Interaction and Course Setting",
+    "description": "Validates that player can interact with planet, see course setting prompt, and confirm course selection.",
+    "testObjective": "Ensure planet interaction and course setting mechanic functions correctly.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Camera terminal is open",
+        "Planet is visible in camera view"
+    ],
+    "testData": {
+        "expectedDuration": "22 Weeks"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate camera to hover over the visible planet",
+            "expected": "Planet becomes highlighted or shows interaction state"
+        },
+        {
+            "step": 2,
+            "action": "Click [E] or [LMB] to interact with planet",
+            "expected": "Prompt appears: '[X] SET COURSE [C]'"
+        },
+        {
+            "step": 3,
+            "action": "Press [X] to test cancel",
+            "expected": "Course setting prompt cancels/closes"
+        },
+        {
+            "step": 4,
+            "action": "Interact with planet again using [E]",
+            "expected": "Prompt reappears: '[X] SET COURSE [C]'"
+        },
+        {
+            "step": 5,
+            "action": "Press [C] or click [LMB] to confirm course",
+            "expected": "Display shows 'Expected Duration: 22 Weeks'"
+        },
+        {
+            "step": 6,
+            "action": "Observe camera terminal behavior",
+            "expected": "Camera terminal automatically turns off after course confirmation"
+        }
+    ],
+    "postconditions": [
+        "Course has been set successfully",
+        "Camera terminal closes automatically",
+        "Player can proceed to next sequence"
+    ],
+    "tags": [
+        "intro",
+        "camera",
+        "planet",
+        "course-setting",
+        "functional",
+        "critical-priority"
+    ]
+}

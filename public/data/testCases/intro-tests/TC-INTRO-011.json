@@ -1,0 +1,66 @@
+{
+    "id": "TC-INTRO-011",
+    "name": "Verify Next Steps Video Playback",
+    "description": "Validates that Next Steps.kp4 file plays a tutorial video and generates Operations Manual file upon completion.",
+    "testObjective": "Ensure tutorial video progression functions correctly and triggers next tutorial step.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Authentication minigame has been completed",
+        "Next Steps.kp4 file exists in Temp directory",
+        "Filesystem terminal is open"
+    ],
+    "testData": {
+        "nextFile": "Operations Manual.b"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate Next Steps.kp4 file in Temp directory",
+            "expected": "File is visible and selectable"
+        },
+        {
+            "step": 2,
+            "action": "Click [E] on Next Steps.kp4 file",
+            "expected": "File modal opens with Run option"
+        },
+        {
+            "step": 3,
+            "action": "Click [E] on Run button",
+            "expected": "Tutorial video begins playing"
+        },
+        {
+            "step": 4,
+            "action": "Watch the video through completion",
+            "expected": "Video plays smoothly without errors"
+        },
+        {
+            "step": 5,
+            "action": "Wait for video to finish",
+            "expected": "Video completes and closes"
+        },
+        {
+            "step": 6,
+            "action": "Check Temp directory for new files",
+            "expected": "New file 'Operations Manual.b' has been added to Temp"
+        }
+    ],
+    "postconditions": [
+        "Next Steps video viewed",
+        "Operations Manual.b file generated",
+        "Tutorial progression continues"
+    ],
+    "tags": [
+        "intro",
+        "tutorial",
+        "video",
+        "next-steps",
+        "functional",
+        "high-priority"
+    ]
+}

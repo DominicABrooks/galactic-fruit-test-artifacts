@@ -1,0 +1,62 @@
+{
+    "id": "TC-INTRO-015",
+    "name": "Verify Camera Terminal UI Elements and Initial Display",
+    "description": "Validates that camera terminal displays correct UI elements including 0/0 counter, crosshair, and set course prompt.",
+    "testObjective": "Ensure camera terminal UI is properly initialized with all required elements.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Camera terminal is unlocked",
+        "Player can interact with camera terminal (left terminal)"
+    ],
+    "testData": {
+        "uiElements": [
+            "0/0 text overlay (top left)",
+            "[Set Course: E] text overlay (bottom center)",
+            "Crosshair overlay (center)"
+        ]
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with the camera terminal (left terminal)",
+            "expected": "Camera interface opens"
+        },
+        {
+            "step": 2,
+            "action": "Observe UI elements in top left corner",
+            "expected": "Text overlay displays '0/0'"
+        },
+        {
+            "step": 3,
+            "action": "Observe UI elements in bottom center",
+            "expected": "Text overlay displays '[Set Course: E]'"
+        },
+        {
+            "step": 4,
+            "action": "Observe center of screen",
+            "expected": "Crosshair overlay is visible in center"
+        },
+        {
+            "step": 5,
+            "action": "Look for visible planets",
+            "expected": "Planet is visible to the right of the crosshair"
+        }
+    ],
+    "postconditions": [
+        "All UI elements are displayed correctly",
+        "Camera view shows space and planet"
+    ],
+    "tags": [
+        "intro",
+        "camera-terminal",
+        "ui",
+        "functional",
+        "high-priority"
+    ]
+}

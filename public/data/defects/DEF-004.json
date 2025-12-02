@@ -1,0 +1,26 @@
+{
+    "id": "DEF-004",
+    "summary": "Paper Asset Obscures Neuros Terminal",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build 20951743",
+    "reporter": "Dominic Brooks",
+    "date": "2025-12-02",
+    "description": "Interacting with the paper returns it to the wall, but its placement overlaps and blocks access to the Neuros terminal, preventing interaction with the terminal's screen area.",
+    "steps": [
+        "1. Launch the game through Steam.",
+        "2. Progress into the 0b region via the hibernation transition sequence.",
+        "3. Enter the cockpit area containing the Neuros terminal.",
+        "4. Observe that the paper asset is positioned on the floor instead of the wall.",
+        "5. Click the paper to reposition it back onto the wall.",
+        "6. Attempt to interact with the Neuros terminal."
+    ],
+    "expected": "The paper should should not overlap or block any interactable terminals or UI elements.",
+    "actual": "The paper appears on the floor after region transition. When placed back on the wall, it overlaps the Neuros terminal, preventing interaction with the terminal’s interface.",
+    "attachments": [
+        {
+            "name": "paper_obscuring_terminal.png",
+            "description": "Screenshot showing the paper asset covering the Neuros terminal interaction area."
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "id": "TC-INTRO-005",
+    "name": "Verify Door Button Audio Feedback Consistency",
+    "description": "Validates that the locked door button provides consistent audio feedback when attempting invalid interactions.",
+    "testObjective": "Ensure audio feedback is consistent across all non-interactable objects including the door button.",
+    "priority": "Medium",
+    "type": "Defect Verification",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in the ship room",
+        "Door is locked (power not activated)",
+        "Player has not yet activated power button"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Press [E] on non-interactable objects in the room",
+            "expected": "Disabled sound effect plays for invalid interactions"
+        },
+        {
+            "step": 2,
+            "action": "Press [E] specifically on the locked door button",
+            "expected": "Disabled sound effect plays (same as other non-interactable objects)"
+        },
+        {
+            "step": 3,
+            "action": "Click the door button",
+            "expected": "No visual or audio effect (button is disabled)"
+        }
+    ],
+    "postconditions": [
+        "Audio feedback is consistent across all non-interactable objects"
+    ],
+    "tags": [
+        "intro",
+        "door-button",
+        "audio",
+        "consistency",
+        "defect",
+        "medium-priority"
+    ]
+}

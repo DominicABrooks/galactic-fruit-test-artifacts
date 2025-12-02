@@ -1,0 +1,65 @@
+{
+    "id": "TC-1-007",
+    "name": "Verify Report Generation System - Cerebellum Report",
+    "description": "Validates that report.kp4 plays video and opens interactive report interface for planet data entry.",
+    "testObjective": "Ensure report generation workflow functions correctly from video to interactive form.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "4 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed Cerebellum minigame",
+        "report.kp4 file exists in Filesystem",
+        "Player has accessed Filesystem terminal"
+    ],
+    "testData": {
+        "exampleButtonOutput": "Clicking 'aaa' adds three words like 'Detemeter > GFHQ'"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Run the report.kp4 file from Filesystem",
+            "expected": "Video begins playing"
+        },
+        {
+            "step": 2,
+            "action": "Wait for video to complete",
+            "expected": "Video finishes and Cerebellum report interface opens"
+        },
+        {
+            "step": 3,
+            "action": "Observe the report interface layout",
+            "expected": "Interface displays multiple button options for data entry"
+        },
+        {
+            "step": 4,
+            "action": "Click one of the buttons (e.g., 'aaa')",
+            "expected": "Clicking button adds corresponding words to the report (e.g., 'Detemeter > GFHQ')"
+        },
+        {
+            "step": 5,
+            "action": "Click additional buttons to add more data",
+            "expected": "Each button click adds its associated words/data to the report"
+        },
+        {
+            "step": 6,
+            "action": "Complete filling out all required report fields",
+            "expected": "Report is fully populated with planetary data"
+        }
+    ],
+    "postconditions": [
+        "Cerebellum report is complete",
+        "Report data has been submitted"
+    ],
+    "tags": [
+        "region-1",
+        "report",
+        "cerebellum",
+        "interactive",
+        "functional",
+        "high-priority"
+    ]
+}

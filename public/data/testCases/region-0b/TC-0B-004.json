@@ -1,0 +1,66 @@
+{
+    "id": "TC-0B-004",
+    "name": "Verify Evaluation.kp4 File Appears and Minigame Functions",
+    "description": "Validates that Evaluation.kp4 file appears in the Filesystem Temp directory and the reaction time minigame works correctly.",
+    "testObjective": "Ensure Evaluation.kp4 file is generated and the minigame executes properly.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 0b cockpit",
+        "Player has accessed Filesystem terminal",
+        "Power status is 5"
+    ],
+    "testData": {
+        "fileName": "Evaluation.kp4",
+        "fileLocation": "Temp",
+        "minigameSequence": [
+            "Green face",
+            "Blackness",
+            "Red face"
+        ]
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with Filesystem terminal in the cockpit",
+            "expected": "Filesystem terminal opens and displays Power: 5"
+        },
+        {
+            "step": 2,
+            "action": "Navigate to the 'Temp' directory",
+            "expected": "Temp directory contains new file 'Evaluation.kp4'"
+        },
+        {
+            "step": 3,
+            "action": "Run the Evaluation.kp4 file",
+            "expected": "Minigame initiates with instructions: 'Click the button when a red face appears'"
+        },
+        {
+            "step": 4,
+            "action": "Observe the sequence: green face, blackness, then red face",
+            "expected": "Sequence displays correctly in order"
+        },
+        {
+            "step": 5,
+            "action": "Press [E] when the red face appears",
+            "expected": "Minigame registers successful completion"
+        }
+    ],
+    "postconditions": [
+        "Minigame completes successfully",
+        "Player has completed Evaluation.kp4 assessment"
+    ],
+    "tags": [
+        "region-0b",
+        "filesystem",
+        "minigame",
+        "evaluation",
+        "functional",
+        "high-priority"
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "id": "TC-INTRO-009",
+    "name": "Verify Filesystem Terminal UI Structure",
+    "description": "Validates that the filesystem terminal displays the correct three-section layout with Power, Temp, and Disk sections.",
+    "testObjective": "Ensure filesystem UI is properly structured and displays correct information.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Power has been activated",
+        "Middle terminal is accessible"
+    ],
+    "testData": {
+        "powerLevel": "5"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the middle terminal using [E] or [LMB]",
+            "expected": "Terminal interface opens"
+        },
+        {
+            "step": 2,
+            "action": "Observe Section 1 (Header)",
+            "expected": "Header displays label showing 'Power: 5'"
+        },
+        {
+            "step": 3,
+            "action": "Observe Section 2 (Left - Temp)",
+            "expected": "Left section shows 'Temp' directory with temporary files"
+        },
+        {
+            "step": 4,
+            "action": "Check for Authentication.kp4 file in Temp",
+            "expected": "Authentication.kp4 file is present and highlighted"
+        },
+        {
+            "step": 5,
+            "action": "Observe Section 3 (Right - Disk)",
+            "expected": "Right section displays dark green background for Disk area"
+        }
+    ],
+    "postconditions": [
+        "Terminal UI displays all three sections correctly",
+        "Power level is visible",
+        "Initial files are present"
+    ],
+    "tags": [
+        "intro",
+        "filesystem",
+        "terminal",
+        "ui",
+        "functional",
+        "high-priority"
+    ]
+}

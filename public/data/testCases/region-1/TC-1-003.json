@@ -1,0 +1,41 @@
+{
+    "id": "TC-1-003",
+    "name": "Verify Camera Shows 0/1 Scannable Object Counter",
+    "description": "Validates that the camera system in region 1 correctly displays 0/1 indicating one scannable object available.",
+    "testObjective": "Ensure camera UI correctly indicates scannable object availability in region 1.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 1 cockpit",
+        "Player has not yet scanned any planets"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with the camera system",
+            "expected": "Camera interface opens"
+        },
+        {
+            "step": 2,
+            "action": "Observe the overlay display in the top right corner",
+            "expected": "Display shows '0/1' indicating 0 scanned out of 1 available scannable object"
+        }
+    ],
+    "postconditions": [
+        "Camera correctly indicates scannable object is available"
+    ],
+    "tags": [
+        "region-1",
+        "camera",
+        "ui",
+        "scanning",
+        "functional",
+        "high-priority"
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "id": "TC-1-009",
+    "name": "Verify Course Setting to Ladagocia After Report Completion",
+    "description": "Validates that Ladagocia becomes interactable after Cerebellum report completion and course can be set successfully.",
+    "testObjective": "Ensure progression gate is removed and course setting mechanic functions correctly.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed Cerebellum report",
+        "Map shows mission [1] as complete",
+        "Camera is focused on Ladagocia"
+    ],
+    "testData": {
+        "expectedDuration": "17 weeks"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with Ladagocia planet using [E] or [LMB]",
+            "expected": "System displays new prompt: '[X] SET COURSE [C]' (no longer blocking)"
+        },
+        {
+            "step": 2,
+            "action": "Press [X] key",
+            "expected": "Course setting prompt closes/cancels without setting course"
+        },
+        {
+            "step": 3,
+            "action": "Interact with Ladagocia again using [E]",
+            "expected": "Course setting prompt reappears: '[X] SET COURSE [C]'"
+        },
+        {
+            "step": 4,
+            "action": "Press [LMB] to confirm course setting",
+            "expected": "System displays message: 'Expected duration: 17 weeks'"
+        },
+        {
+            "step": 5,
+            "action": "Observe the screen transition",
+            "expected": "All screens fade to black, ship enters transit state"
+        }
+    ],
+    "postconditions": [
+        "Course to Ladagocia is set",
+        "Ship has entered transit mode",
+        "Player must return to hibernation"
+    ],
+    "tags": [
+        "region-1",
+        "course-setting",
+        "ladagocia",
+        "progression",
+        "functional",
+        "critical-priority"
+    ]
+}

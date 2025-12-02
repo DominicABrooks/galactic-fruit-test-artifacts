@@ -1,0 +1,52 @@
+{
+    "id": "TC-INTRO-013",
+    "name": "Verify Camera Terminal Activation After Manual Completion",
+    "description": "Validates that a third terminal (camera) becomes available after completing the Operations Manual.",
+    "testObjective": "Ensure tutorial progression correctly unlocks camera terminal after manual is read.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed reading Operations Manual",
+        "Player has closed the manual"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Close the Operations Manual after reading",
+            "expected": "Manual closes and returns to ship view"
+        },
+        {
+            "step": 2,
+            "action": "Look to the left side of the terminal array",
+            "expected": "Third terminal (camera) has been added on the left"
+        },
+        {
+            "step": 3,
+            "action": "Approach the new left terminal",
+            "expected": "Terminal is interactable (shows interaction prompt)"
+        },
+        {
+            "step": 4,
+            "action": "Verify the right terminal (map) is still available",
+            "expected": "Map terminal remains accessible"
+        }
+    ],
+    "postconditions": [
+        "Camera terminal is unlocked and accessible",
+        "Three terminals are now available (filesystem, camera, map)"
+    ],
+    "tags": [
+        "intro",
+        "camera-terminal",
+        "progression",
+        "unlock",
+        "functional",
+        "high-priority"
+    ]
+}

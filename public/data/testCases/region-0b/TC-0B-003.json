@@ -1,0 +1,51 @@
+{
+    "id": "TC-0B-003",
+    "name": "Verify Paper Placement Does Not Block Neuros Terminal",
+    "description": "Validates that the paper object placement does not obscure the Neuros terminal, preventing interaction.",
+    "testObjective": "Confirm paper placement bug has been fixed and does not block terminal access.",
+    "priority": "Medium",
+    "type": "Defect Verification",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 0b cockpit",
+        "Paper is on the floor (fallen from wall)"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate the paper on the floor in the cockpit",
+            "expected": "Paper is visible on the floor"
+        },
+        {
+            "step": 2,
+            "action": "Click on the paper to pick it up",
+            "expected": "Paper is repositioned back to its original wall location"
+        },
+        {
+            "step": 3,
+            "action": "Observe the Neuros terminal position relative to the paper",
+            "expected": "Paper does NOT obscure or cover the Neuros terminal"
+        },
+        {
+            "step": 4,
+            "action": "Attempt to interact with the Neuros terminal",
+            "expected": "Neuros terminal remains fully accessible and interactable despite paper placement"
+        }
+    ],
+    "postconditions": [
+        "Neuros terminal is not blocked by paper",
+        "Player can access Neuros terminal normally"
+    ],
+    "tags": [
+        "region-0b",
+        "defect",
+        "paper-placement",
+        "neuros",
+        "medium-priority"
+    ]
+}
