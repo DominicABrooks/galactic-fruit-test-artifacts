@@ -1,0 +1,102 @@
+[
+    {
+        "id": "TC-COND-026",
+        "category": "Lighting System",
+        "condition": "Verify hallway lights flicker when player walks near intersection in region 2",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-2-001"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-027",
+        "category": "Secret Discovery",
+        "condition": "Verify secret white object can be discovered and scanned in camera view",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-2-002"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-028",
+        "category": "Secret File System",
+        "condition": "Verify LAD.r file appears after scanning secret and displays raspberry stamp",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-2-003"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-029",
+        "category": "Planet Scanning",
+        "condition": "Verify Ladagocia planet can be scanned and counter updates to 1/1",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-2-004"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-030",
+        "category": "Minigame",
+        "condition": "Verify Ladagociass.access minigame functions with circular timing mechanic",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-2-005"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-031",
+        "category": "Report System",
+        "condition": "Verify Report 02.kp4 generates correctly after minigame completion",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-2-006"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-032",
+        "category": "Map Progression",
+        "condition": "Verify map marker [2] updates to checked status after report completion",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-2-007"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-033",
+        "category": "Course Setting",
+        "condition": "Verify course can be set to Mesodion with 14-week duration display",
+        "priority": "Critical",
+        "linkedTestCases": [
+            "TC-2-008"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-034",
+        "category": "Door Interaction",
+        "condition": "Verify side doors can be opened by clicking door mesh directly",
+        "priority": "Low",
+        "linkedTestCases": [
+            "TC-2-009"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-035",
+        "category": "Rendering",
+        "condition": "Verify camera light culling behavior in electrical room corner",
+        "priority": "Low",
+        "linkedTestCases": [
+            "TC-2-010"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
+    }
+]

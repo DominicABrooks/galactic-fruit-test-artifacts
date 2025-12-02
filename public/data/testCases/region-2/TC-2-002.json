@@ -1,0 +1,52 @@
+{
+    "id": "TC-2-002",
+    "name": "Verify Secret Discovery in Camera View",
+    "description": "Validates that a secret white object can be discovered and scanned using the camera system.",
+    "testObjective": "Ensure secret discovery mechanic functions correctly in region 2.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 2",
+        "Player has access to the camera system"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to the cockpit and interact with the camera system",
+            "expected": "Camera view opens showing 0/1 in top right corner"
+        },
+        {
+            "step": 2,
+            "action": "Search the camera view for a small white object",
+            "expected": "Small white object is visible in the camera view"
+        },
+        {
+            "step": 3,
+            "action": "Hold [E] on the white object",
+            "expected": "Scan animation plays and completes"
+        },
+        {
+            "step": 4,
+            "action": "Observe system message",
+            "expected": "System displays message: 'You discovered a secret'"
+        }
+    ],
+    "postconditions": [
+        "Secret is discovered",
+        "Counter remains at 0/1 (secrets don't count toward main scan progress)"
+    ],
+    "tags": [
+        "region-2",
+        "secret",
+        "camera",
+        "scanning",
+        "functional",
+        "medium-priority"
+    ]
+}

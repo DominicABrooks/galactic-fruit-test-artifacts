@@ -1,0 +1,50 @@
+{
+    "id": "TC-2-006",
+    "name": "Verify Report 02.kp4 Generation and Interaction",
+    "description": "Validates that Report 02.kp4 generates correctly and can be interacted with after minigame completion.",
+    "testObjective": "Ensure report generation system creates functional report interface for Ladagocia.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Ladagociass.access minigame has been completed successfully"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Check Filesystem for Report 02.kp4 file",
+            "expected": "Report 02.kp4 file is present in filesystem"
+        },
+        {
+            "step": 2,
+            "action": "Run Report 02.kp4 file",
+            "expected": "Interactive report interface opens"
+        },
+        {
+            "step": 3,
+            "action": "Interact with report elements",
+            "expected": "Report displays information about Ladagocia scan results"
+        },
+        {
+            "step": 4,
+            "action": "Close the report",
+            "expected": "Report closes successfully and returns to filesystem"
+        }
+    ],
+    "postconditions": [
+        "Report remains accessible for future viewing",
+        "Map system is updated with completion marker"
+    ],
+    "tags": [
+        "region-2",
+        "report",
+        "filesystem",
+        "functional",
+        "high-priority"
+    ]
+}

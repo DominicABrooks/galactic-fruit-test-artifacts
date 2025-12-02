@@ -1,0 +1,57 @@
+{
+    "id": "TC-2-008",
+    "name": "Verify Course Setting to Mesodion with Duration Display",
+    "description": "Validates that course can be set to Mesodion after Report 02.kp4 completion with correct 14-week duration.",
+    "testObjective": "Ensure course setting system functions and displays accurate travel duration.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Report 02.kp4 has been completed",
+        "Map marker [2] is checked"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to the map terminal",
+            "expected": "Map opens successfully"
+        },
+        {
+            "step": 2,
+            "action": "Click on Mesodion destination",
+            "expected": "Mesodion is selectable"
+        },
+        {
+            "step": 3,
+            "action": "Press [C] to set course to Mesodion",
+            "expected": "[C] prompt appears and course setting initiates"
+        },
+        {
+            "step": 4,
+            "action": "Observe the duration display",
+            "expected": "System displays '14 weeks' as travel duration"
+        },
+        {
+            "step": 5,
+            "action": "Confirm course setting",
+            "expected": "Course is successfully set to Mesodion"
+        }
+    ],
+    "postconditions": [
+        "Course is set to Mesodion",
+        "Player can proceed to hibernation for region transition"
+    ],
+    "tags": [
+        "region-2",
+        "course-setting",
+        "map",
+        "progression",
+        "functional",
+        "critical"
+    ]
+}

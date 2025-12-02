@@ -1,0 +1,51 @@
+{
+    "id": "TC-2-010",
+    "name": "Verify Camera Light Rendering in Electrical Room Corner",
+    "description": "Validates that camera light remains visible or culls appropriately in electrical room corner.",
+    "testObjective": "Ensure rendering system handles camera light visibility correctly.",
+    "priority": "Low",
+    "type": "Visual",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 2",
+        "Electrical room is accessible"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to the electrical room",
+            "expected": "Electrical room door opens"
+        },
+        {
+            "step": 2,
+            "action": "Walk up to observe the camera",
+            "expected": "Camera is visible with light around it"
+        },
+        {
+            "step": 3,
+            "action": "Walk to the far-most right corner of the room",
+            "expected": "Player reaches corner position"
+        },
+        {
+            "step": 4,
+            "action": "Observe the light around the camera from this position",
+            "expected": "Camera light remains visible or culls gracefully without visual artifacts"
+        }
+    ],
+    "postconditions": [
+        "Visual rendering is acceptable from all room positions"
+    ],
+    "tags": [
+        "region-2",
+        "rendering",
+        "lighting",
+        "camera",
+        "visual",
+        "low-priority"
+    ]
+}

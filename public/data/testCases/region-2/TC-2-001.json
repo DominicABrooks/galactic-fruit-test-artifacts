@@ -1,0 +1,42 @@
+{
+    "id": "TC-2-001",
+    "name": "Verify Hallway Light Flickering on Region 2 Entry",
+    "description": "Validates that the hallway lights flicker when the player walks near the intersection in region 2.",
+    "testObjective": "Ensure the hallway lighting effects provide environmental feedback in region 2.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed region 1",
+        "Player has awakened in region 2"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the hallway door and enter the hallway",
+            "expected": "Door opens successfully"
+        },
+        {
+            "step": 2,
+            "action": "Walk toward the intersection of the hallway",
+            "expected": "Light flickering effect is observed when approaching the intersection"
+        }
+    ],
+    "postconditions": [
+        "Lighting effects complete",
+        "Hallway is navigable"
+    ],
+    "tags": [
+        "region-2",
+        "lighting",
+        "hallway",
+        "visual",
+        "functional",
+        "medium-priority"
+    ]
+}

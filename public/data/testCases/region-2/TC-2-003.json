@@ -1,0 +1,51 @@
+{
+    "id": "TC-2-003",
+    "name": "Verify LAD.r File and Raspberry Stamp Display",
+    "description": "Validates that the LAD.r file appears after scanning the secret and displays a raspberry stamp image.",
+    "testObjective": "Ensure secret file system rewards function correctly.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Secret has been scanned in camera view"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to the Filesystem terminal",
+            "expected": "Filesystem terminal opens"
+        },
+        {
+            "step": 2,
+            "action": "Check for LAD.r file in the file list",
+            "expected": "LAD.r file is present in the filesystem"
+        },
+        {
+            "step": 3,
+            "action": "Run the LAD.r file",
+            "expected": "Raspberry stamp image is displayed"
+        },
+        {
+            "step": 4,
+            "action": "Click the [x] close button",
+            "expected": "Window closes and returns to filesystem view"
+        }
+    ],
+    "postconditions": [
+        "LAD.r file remains available in filesystem",
+        "Player can re-access the raspberry stamp"
+    ],
+    "tags": [
+        "region-2",
+        "secret",
+        "filesystem",
+        "reward",
+        "functional",
+        "medium-priority"
+    ]
+}

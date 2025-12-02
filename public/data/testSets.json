@@ -26,6 +26,11 @@
             "description": "Tests for Region 1"
         },
         {
+            "id": "region-2",
+            "name": "Region 2 Tests",
+            "description": "Tests for Region 2"
+        },
+        {
             "id": "confirmation-tests",
             "name": "Confirmation Suite",
             "description": "Defect verification and regression tests"

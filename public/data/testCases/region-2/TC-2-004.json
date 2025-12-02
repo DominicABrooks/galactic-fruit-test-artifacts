@@ -1,0 +1,52 @@
+{
+    "id": "TC-2-004",
+    "name": "Verify Ladagocia Planet Scanning in Region 2",
+    "description": "Validates that the Ladagocia planet can be scanned and the counter updates to 1/1.",
+    "testObjective": "Ensure planet scanning mechanic functions correctly for main objectives in region 2.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 2",
+        "Camera system accessible"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the camera system",
+            "expected": "Camera view displays with scan counter"
+        },
+        {
+            "step": 2,
+            "action": "Locate Ladagocia planet in camera view",
+            "expected": "Ladagocia planet is visible and interactive"
+        },
+        {
+            "step": 3,
+            "action": "Hold [E] to scan Ladagocia",
+            "expected": "Scan animation plays and completes successfully"
+        },
+        {
+            "step": 4,
+            "action": "Observe the scan counter",
+            "expected": "Counter updates from 0/1 to 1/1"
+        }
+    ],
+    "postconditions": [
+        "All scannable objects in region 2 are scanned",
+        "Ladagociass.access file is added to filesystem"
+    ],
+    "tags": [
+        "region-2",
+        "planet",
+        "scanning",
+        "camera",
+        "functional",
+        "high-priority"
+    ]
+}

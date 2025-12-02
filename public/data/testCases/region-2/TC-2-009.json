@@ -1,0 +1,44 @@
+{
+    "id": "TC-2-009",
+    "name": "Verify Side Door Opening by Door Mesh Click",
+    "description": "Validates that side doors can be opened by clicking directly on the door mesh instead of the button.",
+    "testObjective": "Ensure door interaction accepts both button and mesh clicks.",
+    "priority": "Low",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in region 2 hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to a side door in the hallway",
+            "expected": "Side door is visible and closed"
+        },
+        {
+            "step": 2,
+            "action": "Click [LMB] directly on the door mesh (not the button)",
+            "expected": "Door opens successfully"
+        },
+        {
+            "step": 3,
+            "action": "Try clicking the door mesh again",
+            "expected": "Door interaction responds (may be defect if door closes)"
+        }
+    ],
+    "postconditions": [
+        "Door state changes based on interaction"
+    ],
+    "tags": [
+        "region-2",
+        "door",
+        "interaction",
+        "functional",
+        "low-priority"
+    ]
+}

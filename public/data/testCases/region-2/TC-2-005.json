@@ -1,0 +1,56 @@
+{
+    "id": "TC-2-005",
+    "name": "Verify Ladagociass.access Minigame Completion",
+    "description": "Validates that the Ladagociass.access timing minigame functions correctly with circular track mechanic.",
+    "testObjective": "Ensure minigame mechanics work as expected for region 2 progression.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "4 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Ladagocia planet has been scanned",
+        "Ladagociass.access file is available in filesystem"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to Filesystem terminal",
+            "expected": "Filesystem opens successfully"
+        },
+        {
+            "step": 2,
+            "action": "Run the Ladagociass.access file",
+            "expected": "Circular timing minigame interface loads"
+        },
+        {
+            "step": 3,
+            "action": "Observe the slider moving around the circular track",
+            "expected": "Slider moves smoothly around the track with visible red target zones"
+        },
+        {
+            "step": 4,
+            "action": "Click [LMB] when slider reaches a red section",
+            "expected": "Successful hit is registered"
+        },
+        {
+            "step": 5,
+            "action": "Complete all required hits",
+            "expected": "Minigame completes successfully"
+        }
+    ],
+    "postconditions": [
+        "Report 02.kp4 file is generated in filesystem",
+        "Player can proceed to report generation"
+    ],
+    "tags": [
+        "region-2",
+        "minigame",
+        "timing",
+        "functional",
+        "high-priority"
+    ]
+}

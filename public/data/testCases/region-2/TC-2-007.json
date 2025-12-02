@@ -1,0 +1,45 @@
+{
+    "id": "TC-2-007",
+    "name": "Verify Map Marker [2] Update After Report Completion",
+    "description": "Validates that map marker [2] updates to checked status after Report 02.kp4 completion.",
+    "testObjective": "Ensure map progression tracking reflects completed planet scans.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Report 02.kp4 has been generated and viewed"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Navigate to the map terminal",
+            "expected": "Map terminal opens"
+        },
+        {
+            "step": 2,
+            "action": "Locate marker [2] on the map",
+            "expected": "Marker [2] is visible"
+        },
+        {
+            "step": 3,
+            "action": "Observe the marker status",
+            "expected": "Marker [2] displays checked/completed status"
+        }
+    ],
+    "postconditions": [
+        "Map progression is accurately tracked",
+        "Player can identify completed objectives"
+    ],
+    "tags": [
+        "region-2",
+        "map",
+        "progression",
+        "functional",
+        "high-priority"
+    ]
+}
