@@ -1,0 +1,26 @@
+{
+    "id": "DEF-011",
+    "summary": "UI Settings Appear Saved But Are Not Applied Without Pressing Save",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "When adjusting settings (e.g., sliders), exiting the Settings menu without pressing “Save” causes values to appear persistent on re-opening, even though the new settings are not actually applied. This creates misleading visual state and inconsistent behavior.",
+    "steps": [
+        "1. Open the Settings menu.",
+        "2. Adjust any slider (e.g., audio).",
+        "3. Exit the menu without pressing “Save.”",
+        "4. Re-open the Settings menu.",
+        "5. Observe the slider values appear unchanged.",
+        "6. Test whether the settings were actually applied."
+    ],
+    "expected": "Settings should either: A) Revert to last saved state upon exiting the menu B) Auto-apply the new settings if visual persistence is intended.",
+    "actual": "Settings appear saved but are not applied to gameplay.",
+    "attachments": [
+        {
+            "name": "ui_settings_persistence_video",
+            "description": "https://drive.google.com/file/d/1WjrKSpgpAGPcR2NIJPylC04tFn2y2gWM/view?usp=sharing"
+        }
+    ]
+}

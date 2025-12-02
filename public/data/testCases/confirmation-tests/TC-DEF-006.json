@@ -1,0 +1,42 @@
+{
+    "id": "TC-DEF-006",
+    "name": "Verify Fix for DEF-006: Persistent Pixel Artifact",
+    "description": "Verifies that the pixel artifact behind the player is removed.",
+    "testObjective": "Confirm that the visual artifact is no longer present.",
+    "priority": "Medium",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game through the Steam client.",
+            "expected": "Game launches."
+        },
+        {
+            "step": 2,
+            "action": "Move around the intro room using [W][A][S][D].",
+            "expected": "Player moves."
+        },
+        {
+            "step": 3,
+            "action": "Observe the area behind the player.",
+            "expected": "No unintended visual overlays or artifacts should appear behind the player."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-006"
+    ]
+}

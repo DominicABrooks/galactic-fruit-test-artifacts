@@ -1,0 +1,25 @@
+{
+    "id": "DEF-010",
+    "summary": "Audio Sliders Do Not Fully Mute Game Audio",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "When all audio sliders in the Settings menu are set to 0, some game audio elements—including interaction sounds—continue to play. This indicates the mute logic is not correctly applied across all audio channels.",
+    "steps": [
+        "1. Open the Settings menu.",
+        "2. Set all audio sliders to 0 (Master, Music, SFX).",
+        "3. Return to gameplay.",
+        "4. Interact with objects or move through the environment.",
+        "5. Listen for residual sound effects."
+    ],
+    "expected": "All audio—including interactions—should be fully muted when sliders are set to zero.",
+    "actual": "Audio continues to play despite all volume sliders being minimized.",
+    "attachments": [
+        {
+            "name": "audio_mute_issue_video",
+            "description": "https://drive.google.com/file/d/1ajuC_n1aeuuG2bHZx6YmA6sPsEByptMY/view?usp=sharing"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "id": "DEF-014",
+    "summary": "Side Doors Open When Clicking Door Mesh Instead of Button",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build 20951743",
+    "reporter": "Dominic Brooks",
+    "date": "2025-12-02",
+    "description": "The side doors in the hallway can be opened by clicking directly on the door mesh. This is inconsistent with the main door and general interaction logic which typically requires using the interaction button.",
+    "steps": [
+        "1. Enter Region 2.",
+        "2. Go to the hallway.",
+        "3. Approach one of the side doors.",
+        "4. Aim at the door mesh itself (not the button).",
+        "5. Press [LMB]."
+    ],
+    "expected": "The door should only open when interacting with the designated button.",
+    "actual": "The door opens when clicking the door mesh.",
+    "attachments": []
+}

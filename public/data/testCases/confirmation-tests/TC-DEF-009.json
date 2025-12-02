@@ -1,0 +1,42 @@
+{
+    "id": "TC-DEF-009",
+    "name": "Verify Fix for DEF-009: Door Clipping Collision",
+    "description": "Verifies that the player is pushed aside when a door closes, preventing clipping.",
+    "testObjective": "Confirm that proper collision logic is applied to closing doors.",
+    "priority": "Medium",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Ship area reached"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Stand directly in front of a door while positioned between the door and its interaction button.",
+            "expected": "Positioned correctly."
+        },
+        {
+            "step": 2,
+            "action": "Press [E] to activate the door.",
+            "expected": "Door begins to close."
+        },
+        {
+            "step": 3,
+            "action": "Observe the player's position relative to the door.",
+            "expected": "The door should push the player aside using collision logic, preventing clipping."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-009"
+    ]
+}

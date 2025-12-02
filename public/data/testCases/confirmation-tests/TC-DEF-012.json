@@ -1,0 +1,47 @@
+{
+    "id": "TC-DEF-012",
+    "name": "Verify Fix for DEF-012: Language Translation",
+    "description": "Verifies that language selection results in correct translations.",
+    "testObjective": "Confirm that all UI text displays correctly in selected languages.",
+    "priority": "Low",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open Settings -> Language.",
+            "expected": "Language settings open."
+        },
+        {
+            "step": 2,
+            "action": "Select any non-default language.",
+            "expected": "Language selected."
+        },
+        {
+            "step": 3,
+            "action": "Navigate through UI menus.",
+            "expected": "UI updates to new language."
+        },
+        {
+            "step": 4,
+            "action": "Observe text for inconsistencies or missing translations.",
+            "expected": "All UI text should display correctly in the selected language."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-012"
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "id": "TC-DEF-004",
+    "name": "Verify Fix for DEF-004: Paper Obscuring Neuros Terminal",
+    "description": "Verifies that the paper asset does not obscure the Neuros terminal.",
+    "testObjective": "Confirm that the defect is fixed and the terminal is accessible.",
+    "priority": "Low",
+    "type": "Regression",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Region 0b reached"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game through Steam.",
+            "expected": "Game launches successfully."
+        },
+        {
+            "step": 2,
+            "action": "Progress into the 0b region via the hibernation transition sequence.",
+            "expected": "Region 0b reached."
+        },
+        {
+            "step": 3,
+            "action": "Enter the cockpit area containing the Neuros terminal.",
+            "expected": "Cockpit entered."
+        },
+        {
+            "step": 4,
+            "action": "Observe that the paper asset is positioned on the floor instead of the wall.",
+            "expected": "Paper observed."
+        },
+        {
+            "step": 5,
+            "action": "Click the paper to reposition it back onto the wall.",
+            "expected": "Paper moves to wall."
+        },
+        {
+            "step": 6,
+            "action": "Attempt to interact with the Neuros terminal.",
+            "expected": "The paper should not overlap or block any interactable terminals or UI elements."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-004"
+    ]
+}

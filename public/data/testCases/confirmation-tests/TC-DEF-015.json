@@ -1,0 +1,52 @@
+{
+    "id": "TC-DEF-015",
+    "name": "Verify Fix for DEF-015: Electrical Room Light Culling",
+    "description": "Verifies that the camera light is not culled in the electrical room corner.",
+    "testObjective": "Confirm that the light remains visible from all angles.",
+    "priority": "Low",
+    "type": "Regression",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Region 2 reached"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter Region 2.",
+            "expected": "Region 2 entered."
+        },
+        {
+            "step": 2,
+            "action": "Open the door to the electrical room.",
+            "expected": "Room entered."
+        },
+        {
+            "step": 3,
+            "action": "Walk up to the camera to observe the light.",
+            "expected": "Light observed."
+        },
+        {
+            "step": 4,
+            "action": "Walk to the far-most right corner of the room.",
+            "expected": "Player moves to corner."
+        },
+        {
+            "step": 5,
+            "action": "Observe the light around the camera.",
+            "expected": "The light around the camera should remain visible."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-015"
+    ]
+}

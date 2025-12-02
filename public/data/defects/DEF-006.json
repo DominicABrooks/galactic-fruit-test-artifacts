@@ -1,0 +1,23 @@
+{
+    "id": "DEF-006",
+    "summary": "Persistent Pixel Artifact Follows Player Character in Lobby",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "Upon loading into the intro room, a large pixelated square artifact appears behind the player character. The artifact persists during movement, scene transitions, and interaction within the lobby. The effect appears in every session.",
+    "steps": [
+        "1. Launch the game through the Steam client.",
+        "2. Move around the intro room using [W][A][S][D].",
+        "3. Observe a pixel square artifact consistently positioned behind the player."
+    ],
+    "expected": "No unintended visual overlays or artifacts should appear behind the player. Scene rendering should remain clean and consistent.",
+    "actual": "A persistent pixelated square appears behind the player and follows them across multiple rooms and transitions.",
+    "attachments": [
+        {
+            "name": "pixel_artifact_video",
+            "description": "https://drive.google.com/file/d/1oQHCXs0tGYxfOfM7otABPm7_ya8t7PIH/view?usp=sharing"
+        }
+    ]
+}

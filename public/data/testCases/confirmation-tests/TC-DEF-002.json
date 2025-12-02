@@ -1,0 +1,53 @@
+{
+    "id": "TC-DEF-002",
+    "name": "Verify Fix for DEF-002: Disabled Button Audio Feedback",
+    "description": "Verifies that interacting with a disabled button provides audio feedback.",
+    "testObjective": "Confirm that the defect is fixed and the 'brrp' sound plays on invalid interaction.",
+    "priority": "Medium",
+    "type": "Regression",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched",
+        "Suit obtained"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game through Steam Client.",
+            "expected": "Game launches successfully."
+        },
+        {
+            "step": 2,
+            "action": "Approach and interact with the suit using [E].",
+            "expected": "Suit obtained."
+        },
+        {
+            "step": 3,
+            "action": "Climb the ladder using [E].",
+            "expected": "Player climbs ladder."
+        },
+        {
+            "step": 4,
+            "action": "Press [E] in mid-air pointing at nothing.",
+            "expected": "Observe 'brrp' audio feedback."
+        },
+        {
+            "step": 5,
+            "action": "Walk up to the disabled button next to the door and press [E].",
+            "expected": "Observe that 'brrp' audio feedback occurs."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-002"
+    ]
+}

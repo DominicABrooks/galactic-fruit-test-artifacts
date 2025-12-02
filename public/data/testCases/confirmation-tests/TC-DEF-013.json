@@ -1,0 +1,52 @@
+{
+    "id": "TC-DEF-013",
+    "name": "Verify Fix for DEF-013: Progression Bypass",
+    "description": "Verifies that the game cannot be completed without visiting any planets.",
+    "testObjective": "Confirm that core progression requires planet exploration.",
+    "priority": "High",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "15 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game.",
+            "expected": "Game launches."
+        },
+        {
+            "step": 2,
+            "action": "Enter the ship area.",
+            "expected": "Ship area entered."
+        },
+        {
+            "step": 3,
+            "action": "Ignore planetary exploration and do not set course to any planets.",
+            "expected": "Exploration skipped."
+        },
+        {
+            "step": 4,
+            "action": "Perform only the safety examination flow.",
+            "expected": "Safety check performed."
+        },
+        {
+            "step": 5,
+            "action": "Attempt to trigger the end sequence or progression completion.",
+            "expected": "Core progression should require at least one planet exploration and associated report to be completed."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-013"
+    ]
+}

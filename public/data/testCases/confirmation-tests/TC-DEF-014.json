@@ -1,0 +1,47 @@
+{
+    "id": "TC-DEF-014",
+    "name": "Verify Fix for DEF-014: Side Door Interaction",
+    "description": "Verifies that side doors only open when interacting with the button.",
+    "testObjective": "Confirm that clicking the door mesh does not open the door.",
+    "priority": "Low",
+    "type": "Regression",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Region 2 reached"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter Region 2.",
+            "expected": "Region 2 entered."
+        },
+        {
+            "step": 2,
+            "action": "Go to the hallway.",
+            "expected": "Hallway reached."
+        },
+        {
+            "step": 3,
+            "action": "Approach one of the side doors.",
+            "expected": "Door approached."
+        },
+        {
+            "step": 4,
+            "action": "Aim at the door mesh itself (not the button) and press [LMB].",
+            "expected": "The door should NOT open when clicking the door mesh."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-014"
+    ]
+}

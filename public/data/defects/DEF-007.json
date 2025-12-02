@@ -1,0 +1,20 @@
+{
+    "id": "DEF-007",
+    "summary": "Missing Control Prompts for Movement and Interaction",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "When the player enters the game, no control prompts are displayed for movement, interaction, exiting UI screens, or general gameplay actions. The player must infer controls such as movement (WASD), interaction ([E]), and UI exit (Right Mouse Button) through trial and error. For first-time players, this significantly impacts onboarding and general usability of core systems.",
+    "steps": [
+        "1. Launch the game through Steam.",
+        "2. Attempt to move the player.",
+        "3. Attempt to interact with objects such as the suit, ladder, or control panel.",
+        "4. Attempt to exit interaction screens.",
+        "5. Note the absence of any instructional prompts or contextual hints."
+    ],
+    "expected": "The game should provide control hints or onboarding prompts (e.g., \"Press [E] to interact,\" \"Press [RMB] to exit\").",
+    "actual": "No prompts are displayed, requiring players to guess the control scheme.",
+    "attachments": []
+}

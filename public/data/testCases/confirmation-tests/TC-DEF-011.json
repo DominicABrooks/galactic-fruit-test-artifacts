@@ -1,0 +1,52 @@
+{
+    "id": "TC-DEF-011",
+    "name": "Verify Fix for DEF-011: UI Settings Persistence",
+    "description": "Verifies that UI settings are correctly applied or reverted when exiting without saving.",
+    "testObjective": "Confirm that settings behavior is consistent and misleading persistence is resolved.",
+    "priority": "Low",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the Settings menu.",
+            "expected": "Settings menu opens."
+        },
+        {
+            "step": 2,
+            "action": "Adjust any slider (e.g., audio).",
+            "expected": "Slider adjusted."
+        },
+        {
+            "step": 3,
+            "action": "Exit the menu without pressing 'Save'.",
+            "expected": "Menu closes."
+        },
+        {
+            "step": 4,
+            "action": "Re-open the Settings menu.",
+            "expected": "Menu opens."
+        },
+        {
+            "step": 5,
+            "action": "Observe the slider values.",
+            "expected": "Settings should either revert to last saved state or have been auto-applied."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-011"
+    ]
+}

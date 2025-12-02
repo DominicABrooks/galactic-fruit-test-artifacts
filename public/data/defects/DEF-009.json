@@ -1,0 +1,24 @@
+{
+    "id": "DEF-009",
+    "summary": "Player Clips Through Door When Closing While Standing in Doorway",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "If the player stands between a door and its interact button, closing the door causes the player character to clip through the closing door mesh. The camera temporarily positions inside the geometry, revealing interior surfaces. Proper collision handling does not appear to be applied during this interaction.",
+    "steps": [
+        "1. Stand directly in front of a door while positioned between the door and its interaction button.",
+        "2. Press [E] to activate the door.",
+        "3. Observe the door closing through the player character.",
+        "4. Note the temporary internal camera view inside the door’s mesh."
+    ],
+    "expected": "The door should push the player aside using collision logic.",
+    "actual": "The door closes through the player, allowing full clipping and camera penetration.",
+    "attachments": [
+        {
+            "name": "door_clipping_video",
+            "description": "https://drive.google.com/file/d/1XKtmRtExZXW_vMa4hA_KwqeUzpZKm4sT/view?usp=sharing"
+        }
+    ]
+}

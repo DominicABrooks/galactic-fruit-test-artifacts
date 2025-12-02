@@ -1,0 +1,63 @@
+{
+    "id": "TC-DEF-003",
+    "name": "Verify Fix for DEF-003: Door Closing Animation",
+    "description": "Verifies that the door closing animation is not cancelled by rapid interaction.",
+    "testObjective": "Confirm that the defect is fixed and the animation plays to completion.",
+    "priority": "Low",
+    "type": "Regression",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched",
+        "Power restored"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch game through Steam.",
+            "expected": "Game launches successfully."
+        },
+        {
+            "step": 2,
+            "action": "Obtain suit and climb ladder to ship.",
+            "expected": "Player enters ship."
+        },
+        {
+            "step": 3,
+            "action": "Interact with ship power button to restore power.",
+            "expected": "Power restored."
+        },
+        {
+            "step": 4,
+            "action": "Turn around and open the hallway door using [E].",
+            "expected": "Door opens."
+        },
+        {
+            "step": 5,
+            "action": "Wait for the opening animation to complete.",
+            "expected": "Animation completes."
+        },
+        {
+            "step": 6,
+            "action": "Press [E] to close the door.",
+            "expected": "Door begins to close."
+        },
+        {
+            "step": 7,
+            "action": "Immediately press [E] multiple times rapidly while the door is closing.",
+            "expected": "The door closing animation plays to completion regardless of additional inputs."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-003"
+    ]
+}

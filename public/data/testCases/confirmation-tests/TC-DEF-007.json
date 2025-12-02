@@ -1,0 +1,47 @@
+{
+    "id": "TC-DEF-007",
+    "name": "Verify Fix for DEF-007: Missing Control Prompts",
+    "description": "Verifies that control prompts are displayed for movement and interaction.",
+    "testObjective": "Confirm that onboarding prompts are present.",
+    "priority": "Low",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game through Steam.",
+            "expected": "Game launches."
+        },
+        {
+            "step": 2,
+            "action": "Attempt to move the player.",
+            "expected": "Control prompts for movement are displayed."
+        },
+        {
+            "step": 3,
+            "action": "Attempt to interact with objects such as the suit, ladder, or control panel.",
+            "expected": "Interaction prompts (e.g., 'Press [E]') are displayed."
+        },
+        {
+            "step": 4,
+            "action": "Attempt to exit interaction screens.",
+            "expected": "Exit prompts (e.g., 'Press [RMB]') are displayed."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-007"
+    ]
+}

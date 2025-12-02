@@ -1,0 +1,52 @@
+{
+    "id": "TC-DEF-010",
+    "name": "Verify Fix for DEF-010: Audio Muting",
+    "description": "Verifies that setting audio sliders to 0 fully mutes all game audio.",
+    "testObjective": "Confirm that mute logic applies to all audio channels.",
+    "priority": "Medium",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the Settings menu.",
+            "expected": "Settings menu opens."
+        },
+        {
+            "step": 2,
+            "action": "Set all audio sliders to 0 (Master, Music, SFX).",
+            "expected": "Sliders set to 0."
+        },
+        {
+            "step": 3,
+            "action": "Return to gameplay.",
+            "expected": "Gameplay resumes."
+        },
+        {
+            "step": 4,
+            "action": "Interact with objects or move through the environment.",
+            "expected": "Actions performed."
+        },
+        {
+            "step": 5,
+            "action": "Listen for residual sound effects.",
+            "expected": "All audio—including interactions—should be fully muted."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-010"
+    ]
+}

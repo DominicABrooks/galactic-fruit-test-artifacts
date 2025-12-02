@@ -14,6 +14,21 @@
             "id": "intro-tests",
             "name": "Intro Tests",
             "description": "Intro validation tests"
+        },
+        {
+            "id": "region-0b",
+            "name": "Region 0B Tests",
+            "description": "Tests for Region 0B"
+        },
+        {
+            "id": "region-1",
+            "name": "Region 1 Tests",
+            "description": "Tests for Region 1"
+        },
+        {
+            "id": "confirmation-tests",
+            "name": "Confirmation Suite",
+            "description": "Defect verification and regression tests"
         }
     ]
 }

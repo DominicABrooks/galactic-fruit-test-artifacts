@@ -1,0 +1,48 @@
+{
+    "id": "TC-DEF-001",
+    "name": "Verify Fix for DEF-001: NullReferenceException on Suit Interaction",
+    "description": "Verifies that pressing [G] while interacting with the suit does not trigger a NullReferenceException.",
+    "testObjective": "Confirm that the defect is fixed and the player remains in normal view without errors.",
+    "priority": "High",
+    "type": "Regression",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game launched",
+        "Intro video completed"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game through Steam Client.",
+            "expected": "Game launches successfully."
+        },
+        {
+            "step": 2,
+            "action": "Wait for intro video to finish.",
+            "expected": "Intro video finishes."
+        },
+        {
+            "step": 3,
+            "action": "Approach and interact with the suit embedded in the wall.",
+            "expected": "Player interacts with the suit."
+        },
+        {
+            "step": 4,
+            "action": "Press the 'G' key while interacting with the suit.",
+            "expected": "Pressing 'G' does nothing; no errors occur and the player remains in normal view."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-001"
+    ]
+}

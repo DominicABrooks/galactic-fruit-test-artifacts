@@ -1,0 +1,25 @@
+{
+    "id": "DEF-008",
+    "summary": "Secondary Doors Cannot Be Closed After Opening",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "Non-primary doors open normally when interacting with the button using [E] or mouse click. However, once opened, these doors cannot be closed again when pressing the button. Only the main door properly supports both open and close states. This suggests a missing animation or incomplete interaction logic for secondary doors.",
+    "steps": [
+        "1. Enter the ship area.",
+        "2. Approach any non-main door.",
+        "3. Press [E] to open the door.",
+        "4. Attempt to close the same door using [E] again.",
+        "5. Observe that the door remains open."
+    ],
+    "expected": "All interactable doors should support toggling between open and closed states, unless intentionally restricted.",
+    "actual": "Secondary doors only open; they never close after activation.",
+    "attachments": [
+        {
+            "name": "secondary_door_issue_video",
+            "description": "https://drive.google.com/file/d/1W05bO1I0GGi3Eb2saU_hbyo7nCrH095E/view?usp=sharing"
+        }
+    ]
+}

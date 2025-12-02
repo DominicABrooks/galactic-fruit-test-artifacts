@@ -1,0 +1,47 @@
+{
+    "id": "TC-DEF-008",
+    "name": "Verify Fix for DEF-008: Secondary Door Closing",
+    "description": "Verifies that secondary doors can be closed after opening.",
+    "testObjective": "Confirm that all doors support open and close interactions.",
+    "priority": "Medium",
+    "type": "Regression",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Ship area reached"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter the ship area.",
+            "expected": "Ship area entered."
+        },
+        {
+            "step": 2,
+            "action": "Approach any non-main door.",
+            "expected": "Door approached."
+        },
+        {
+            "step": 3,
+            "action": "Press [E] to open the door.",
+            "expected": "Door opens."
+        },
+        {
+            "step": 4,
+            "action": "Attempt to close the same door using [E] again.",
+            "expected": "Door closes."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-008"
+    ]
+}

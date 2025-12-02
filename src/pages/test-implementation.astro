@@ -1,16 +1,396 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+
+const BASE = import.meta.env.BASE_URL || "/";
+const BASE_SLASH = BASE.endsWith("/") ? BASE : BASE + "/";
+
+// Fetch test sets
+const testSetsGlob = import.meta.glob('/public/data/testSets.json', { eager: true });
+const testSetsData: any = Object.values(testSetsGlob)[0] || { sets: [] };
+const testSets = testSetsData.default?.sets || testSetsData.sets || [];
 ---
 
 <MainLayout title="Test Implementation" currentPath="/test-implementation">
-    <div class="space-y-8 text-eoe-muted max-w-5xl mx-auto">
+    <div class="space-y-8 text-eoe-muted max-w-7xl mx-auto pb-20">
         <!-- Header -->
         <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
             <h1 class="text-3xl font-bold text-white mb-2">
                 Test Implementation
             </h1>
             <p class="text-lg text-eoe-muted">
-                Test suite organization WIP
+                Comprehensive test suite organization and execution guides
             </p>
         </div>
+
+        <!-- Test Environment Setup Documentation -->
+        <div class="bg-eoe-panel border border-white/5 rounded-xl p-8">
+            <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6 text-eoe-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                Test Environment Setup Documentation
+            </h2>
+            <div class="space-y-4">
+                <p class="text-white">Follow these steps to set up your test environment:</p>
+                <ol class="space-y-3 ml-6 list-decimal text-white">
+                    <li>Download and install <strong class="text-eoe-accent">Steam</strong></li>
+                    <li>Contact <a href="mailto:domab2020@gmail.com" class="text-eoe-accent hover:underline">domab2020@gmail.com</a> to request a product key</li>
+                    <li>In Steam, click <strong>"+ Add a Game"</strong> in the Library</li>
+                    <li>Select <strong>"Activate a product on Steam"</strong></li>
+                    <li>Enter the product code provided</li>
+                    <li>Right-click the product in your library</li>
+                    <li>Click <strong>"Properties"</strong></li>
+                    <li>Navigate to the <strong>"Betas"</strong> tab</li>
+                    <li>Select <strong>"playtest - potentially unstable"</strong> from the 'Beta Participation' dropdown</li>
+                    <li>Download and install the game</li>
+                </ol>
+                <div class="mt-4 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                    <p class="text-blue-400 text-sm">
+                        <strong>Need Help?</strong> Contact me if you have any issues with the setup process.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+            <div class="flex flex-wrap gap-3">
+                <button id="filter-all" class="px-6 py-2.5 bg-eoe-accent text-white rounded-lg font-medium hover:bg-eoe-accent/80 transition-colors">
+                    All Test Sets
+                </button>
+                <button id="filter-smoke" class="px-6 py-2.5 bg-white/5 text-white rounded-lg font-medium hover:bg-white/10 transition-colors border border-white/10">
+                    Smoke Tests
+                </button>
+                <button id="filter-regression" class="px-6 py-2.5 bg-white/5 text-white rounded-lg font-medium hover:bg-white/10 transition-colors border border-white/10">
+                    Regression Suite
+                </button>
+            </div>
+            <p id="filter-description" class="text-eoe-muted text-sm mt-4">
+                Showing all test sets organized by category
+            </p>
+        </div>
+
+        <!-- Test Sets Display -->
+        <div id="test-sets-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {testSets.map((set: any) => (
+                <div class="test-set-card bg-eoe-panel border border-white/5 rounded-xl p-6 hover:border-white/10 transition-all cursor-pointer" data-set-id={set.id}>
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-1">{set.name}</h3>
+                            <p class="text-sm text-eoe-muted">{set.description}</p>
+                        </div>
+                        <span class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded">
+                            {set.id}
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-4 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-eoe-accent"></span>
+                            <span class="text-eoe-muted">Test Count:</span>
+                            <span class="test-count text-white font-medium">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Test Cases Detail View -->
+        <div id="test-cases-detail" class="hidden space-y-6">
+            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <div class="flex items-center gap-4 mb-4">
+                    <button id="back-to-sets" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                    </button>
+                    <div>
+                        <h2 id="detail-set-name" class="text-2xl font-bold text-white"></h2>
+                        <p id="detail-set-description" class="text-eoe-muted mt-1"></p>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="text-center px-4 py-2 bg-black/20 rounded-lg border border-white/5">
+                        <div class="text-xs text-eoe-muted uppercase tracking-wider">Total</div>
+                        <div id="detail-total" class="text-lg font-bold text-white">0</div>
+                    </div>
+                    <div class="text-center px-4 py-2 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
+                        <div class="text-xs text-yellow-400 uppercase tracking-wider">High Priority</div>
+                        <div id="detail-high" class="text-lg font-bold text-yellow-400">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-white/5 text-xs uppercase text-white sticky top-0">
+                        <tr>
+                            <th class="px-6 py-4 w-40 whitespace-nowrap">ID</th>
+                            <th class="px-6 py-4 whitespace-nowrap">Test Case Name</th>
+                            <th class="px-6 py-4 w-32 whitespace-nowrap">Priority</th>
+                            <th class="px-6 py-4 w-32 whitespace-nowrap">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="test-cases-tbody" class="divide-y divide-white/5">
+                        <!-- Test cases will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden text-center py-12">
+            <div class="inline-block w-8 h-8 border-4 border-eoe-accent border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-eoe-muted mt-4">Loading test cases...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-12 bg-eoe-panel border border-white/5 rounded-xl">
+            <svg class="w-16 h-16 mx-auto text-eoe-muted opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <h3 class="text-lg font-medium text-white mb-2">No Tests Found</h3>
+            <p class="text-sm text-eoe-muted">No test cases match the current filter.</p>
+        </div>
+    </div>
 </MainLayout>
+
+<script define:vars={{ BASE_SLASH }}>
+    const base = BASE_SLASH;
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        const filterAll = document.getElementById("filter-all");
+        const filterSmoke = document.getElementById("filter-smoke");
+        const filterRegression = document.getElementById("filter-regression");
+        const filterDescription = document.getElementById("filter-description");
+        const testSetsContainer = document.getElementById("test-sets-container");
+        const emptyState = document.getElementById("empty-state");
+
+        let allTestCases = {};
+        let currentFilter = 'all';
+
+        // Load test sets metadata
+        let testSets = [];
+        try {
+            const response = await fetch(`${base}data/testSets.json`);
+            const data = await response.json();
+            testSets = data.sets || [];
+        } catch (e) {
+            console.error("Failed to load test sets", e);
+        }
+
+        // Load all test cases from all sets
+        async function loadAllTestCases() {
+            const cases = {};
+            
+            for (const set of testSets) {
+                try {
+                    const manifestUrl = `${base}data/testCases/${set.id}/manifest.json`;
+                    const manifestRes = await fetch(manifestUrl);
+
+                    if (!manifestRes.ok) {
+                        console.warn(`No manifest found for ${set.id}`);
+                        continue;
+                    }
+
+                    const files = await manifestRes.json();
+                    cases[set.id] = [];
+
+                    for (const file of files) {
+                        try {
+                            const res = await fetch(`${base}data/testCases/${set.id}/${file}`);
+                            if (!res.ok) continue;
+
+                            const json = await res.json();
+                            cases[set.id].push(json);
+                        } catch (_) {
+                            /* skip invalid file */
+                        }
+                    }
+                } catch (err) {
+                    console.error(`Failed loading test set ${set.id}`, err);
+                }
+            }
+            
+            return cases;
+        }
+
+        // Initial load
+        allTestCases = await loadAllTestCases();
+        updateDisplay();
+
+        // Filter button handlers
+        filterAll?.addEventListener('click', () => {
+            currentFilter = 'all';
+            updateFilterButtons();
+            updateDisplay();
+        });
+
+        filterSmoke?.addEventListener('click', () => {
+            currentFilter = 'smoke';
+            updateFilterButtons();
+            updateDisplay();
+        });
+
+        filterRegression?.addEventListener('click', () => {
+            currentFilter = 'regression';
+            updateFilterButtons();
+            updateDisplay();
+        });
+
+        function updateFilterButtons() {
+            const buttons = [filterAll, filterSmoke, filterRegression];
+            const activeBtn = currentFilter === 'all' ? filterAll : 
+                             currentFilter === 'smoke' ? filterSmoke : filterRegression;
+
+            buttons.forEach(btn => {
+                if (btn === activeBtn) {
+                    btn?.classList.add('bg-eoe-accent');
+                    btn?.classList.remove('bg-white/5', 'border-white/10');
+                } else {
+                    btn?.classList.remove('bg-eoe-accent');
+                    btn?.classList.add('bg-white/5', 'border-white/10');
+                }
+            });
+
+            // Update description
+            if (filterDescription) {
+                if (currentFilter === 'all') {
+                    filterDescription.textContent = 'Showing all test sets organized by category';
+                } else if (currentFilter === 'smoke') {
+                    filterDescription.textContent = 'Showing test cases for smoke testing';
+                } else {
+                    filterDescription.textContent = 'Showing test sets for regression testing';
+                }
+            }
+        }
+
+        function updateDisplay() {
+            const cards = document.querySelectorAll('.test-set-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const setId = card.getAttribute('data-set-id');
+                const testCases = allTestCases[setId] || [];
+                
+                let filteredCases = testCases;
+                if (currentFilter === 'smoke') {
+                    filteredCases = testCases.filter(tc => tc.priority === 'High');
+                }
+
+                const totalCount = currentFilter === 'regression' ? testCases.length : filteredCases.length;
+                const highPriorityCount = testCases.filter(tc => tc.priority === 'High').length;
+
+                // Update counts
+                const countEl = card.querySelector('.test-count');
+
+                if (countEl) {
+                    countEl.textContent = totalCount.toString();
+                }
+
+                // Show/hide card based on filter
+                if (currentFilter === 'all') {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else if (currentFilter === 'smoke' && highPriorityCount > 0) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else if (currentFilter === 'regression') {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else if (currentFilter === 'smoke' && highPriorityCount === 0) {
+                    card.classList.add('hidden');
+                }
+
+                // Add click handler
+                card.onclick = () => showTestCaseDetails(setId);
+            });
+
+            // Show/hide empty state
+            if (visibleCount === 0) {
+                emptyState?.classList.remove('hidden');
+                testSetsContainer?.classList.add('hidden');
+            } else {
+                emptyState?.classList.add('hidden');
+                testSetsContainer?.classList.remove('hidden');
+            }
+        }
+
+        function showTestCaseDetails(setId) {
+            const set = testSets.find(s => s.id === setId);
+            if (!set) return;
+
+            const testCases = allTestCases[setId] || [];
+            const highPriorityCount = testCases.filter(tc => tc.priority === 'High').length;
+
+            // Update header
+            const detailSetName = document.getElementById('detail-set-name');
+            const detailSetDescription = document.getElementById('detail-set-description');
+            const detailTotal = document.getElementById('detail-total');
+            const detailHigh = document.getElementById('detail-high');
+
+            if (detailSetName) detailSetName.textContent = set.name;
+            if (detailSetDescription) detailSetDescription.textContent = set.description;
+            if (detailTotal) detailTotal.textContent = testCases.length.toString();
+            if (detailHigh) detailHigh.textContent = highPriorityCount.toString();
+
+            // Populate table
+            const tbody = document.getElementById('test-cases-tbody');
+            if (tbody) {
+                tbody.innerHTML = testCases.map(tc => {
+                    const priorityColors = {
+                        'High': 'bg-red-500/10 text-red-400 border-red-500/20',
+                        'Medium': 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+                        'Low': 'bg-green-500/10 text-green-400 border-green-500/20'
+                    };
+
+                    return `
+                        <tr class="hover:bg-white/5 transition-colors cursor-pointer" onclick="window.location.href='${base}test-case/${setId}/${tc.id}'">
+                            <td class="px-6 py-4 font-mono text-eoe-muted">${tc.id}</td>
+                            <td class="px-6 py-4 font-medium text-white">${tc.name}</td>
+                            <td class="px-6 py-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${priorityColors[tc.priority] || priorityColors['Medium']}">
+                                    ${tc.priority}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-eoe-muted">${tc.type}</td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Show detail view, hide test sets
+            const filterButtons = document.querySelector('#filter-all')?.parentElement?.parentElement;
+            if (filterButtons) filterButtons.classList.add('hidden');
+            testSetsContainer?.classList.add('hidden');
+            emptyState?.classList.add('hidden');
+            document.getElementById('test-cases-detail')?.classList.remove('hidden');
+        }
+
+        function hideTestCaseDetails() {
+            const filterButtons = document.querySelector('#filter-all')?.parentElement?.parentElement;
+            if (filterButtons) filterButtons.classList.remove('hidden');
+            testSetsContainer?.classList.remove('hidden');
+            document.getElementById('test-cases-detail')?.classList.add('hidden');
+            updateDisplay();
+        }
+
+        // Back button handler
+        document.getElementById('back-to-sets')?.addEventListener('click', hideTestCaseDetails);
+    });
+</script>
+
+<style>
+    .animate-spin {
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>

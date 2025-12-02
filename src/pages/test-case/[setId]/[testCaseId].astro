@@ -57,19 +57,19 @@ const BASE = import.meta.env.BASE_URL || "/";
                     </svg>
                     <h2 class="text-xl font-bold text-white mb-2">Test Case Not Found</h2>
                     <p class="text-red-400">{errorMessage}</p>
-                    <a href={BASE} class="inline-block mt-4 px-6 py-2 bg-eoe-accent hover:bg-blue-600 text-white font-medium rounded-lg transition-colors">
-                        Return to Home
-                    </a>
+                    <button onclick="window.history.back()" class="inline-block mt-4 px-6 py-2 bg-eoe-accent hover:bg-blue-600 text-white font-medium rounded-lg transition-colors cursor-pointer">
+                        Go Back
+                    </button>
                 </div>
             </div>
         ) : testCaseDef && (
             <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden flex flex-col h-full">
                 <div class="p-6 border-b border-white/5 flex items-center gap-4 bg-white/[0.02]">
-                    <a href={BASE} class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white">
+                    <button onclick="window.history.back()" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white cursor-pointer">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
-                    </a>
+                    </button>
                     <div>
                         <h2 class="text-xl font-bold text-white">{testCaseDef.name}</h2>
                         <div class="flex items-center gap-3 mt-1">

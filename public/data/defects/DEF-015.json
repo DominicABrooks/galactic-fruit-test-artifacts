@@ -1,0 +1,20 @@
+{
+    "id": "DEF-015",
+    "summary": "Camera Light Culling in Electrical Room Corner",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build 20951743",
+    "reporter": "Dominic Brooks",
+    "date": "2025-12-02",
+    "description": "In the electrical room, the light source around the camera is culled (disappears) when the player stands in the far-right corner of the room.",
+    "steps": [
+        "1. Enter Region 2.",
+        "2. Open the door to the electrical room.",
+        "3. Walk up to the camera to observe the light.",
+        "4. Walk to the far-most right corner of the room.",
+        "5. Observe the light around the camera."
+    ],
+    "expected": "The light around the camera should remain visible from all angles within the room.",
+    "actual": "The light is culled and disappears when standing in the far-right corner.",
+    "attachments": []
+}

@@ -1,0 +1,73 @@
+{
+    "id": "TC-DEF-005",
+    "name": "Verify Fix for DEF-005: Set Course with [C]",
+    "description": "Verifies that pressing [C] initiates the course setting action.",
+    "testObjective": "Confirm that the defect is fixed and course setting works as expected.",
+    "priority": "Medium",
+    "type": "Regression",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-02",
+    "lastModified": "2025-12-02",
+    "estimatedExecutionTime": "10 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Region 1 reached",
+        "Report completed"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game through Steam.",
+            "expected": "Game launches successfully."
+        },
+        {
+            "step": 2,
+            "action": "Complete exploration in Region 0b and transition to Region 1.",
+            "expected": "Region 1 reached."
+        },
+        {
+            "step": 3,
+            "action": "Access the Filesystem terminal and run SAFETY.a.",
+            "expected": "SAFETY.a runs."
+        },
+        {
+            "step": 4,
+            "action": "Use the camera system to locate and scan the scannable planet.",
+            "expected": "Planet scanned."
+        },
+        {
+            "step": 5,
+            "action": "Complete the Cerebellum.kp4 timing minigame.",
+            "expected": "Minigame completed."
+        },
+        {
+            "step": 6,
+            "action": "Run report.kp4 and finalize the Cerebellum report.",
+            "expected": "Report finalized."
+        },
+        {
+            "step": 7,
+            "action": "Observe the map update and automatic refocus onto Ladagocia.",
+            "expected": "Map updates."
+        },
+        {
+            "step": 8,
+            "action": "Interact with Ladagocia to display the prompt '[X] SET COURSE [C]'.",
+            "expected": "Prompt displayed."
+        },
+        {
+            "step": 9,
+            "action": "Press [C] to attempt to set course.",
+            "expected": "Pressing [C] should initiate the course-setting action."
+        }
+    ],
+    "postconditions": [
+        "Defect is not reproducible"
+    ],
+    "tags": [
+        "defect",
+        "regression",
+        "DEF-005"
+    ]
+}

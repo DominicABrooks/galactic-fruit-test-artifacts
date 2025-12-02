@@ -1,0 +1,28 @@
+{
+    "id": "DEF-012",
+    "summary": "Language Selection Produces Missing or Incorrect Translations",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "Selecting alternate languages in the Settings menu results in missing text, partially translated text, wrong translation context or literal placeholders such as “NO TRANSLATI ON FOUND FOR UI BUTTONS.” Language options appear incomplete or improperly mapped.",
+    "steps": [
+        "1. Open Settings → Language.",
+        "2. Select any non-default language.",
+        "3. Navigate through UI menus.",
+        "4. Observe text inconsistencies or missing translations."
+    ],
+    "expected": "All UI text should display correctly in the selected language.",
+    "actual": "Missing translation strings and placeholder text appear across the UI.",
+    "attachments": [
+        {
+            "name": "translation_issue_1",
+            "description": "https://drive.google.com/file/d/15CSHbohF4dlJCUzl0ti0305G2o-TTx13/view?usp=sharing"
+        },
+        {
+            "name": "translation_issue_2",
+            "description": "https://drive.google.com/file/d/1_FTceyT2H0Z7GB3CDjEnUWdoj4ziKlWr/view?usp=sharing"
+        }
+    ]
+}

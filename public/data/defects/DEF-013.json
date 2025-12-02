@@ -1,0 +1,26 @@
+{
+    "id": "DEF-013",
+    "summary": "Game Can Be Completed Without Visiting Any Planets",
+    "severity": "High",
+    "status": "Open",
+    "environment": "Steam Client Build 2025-12-01",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-01",
+    "description": "The player can complete the game’s core objective loop by performing only the safety check examination sequence and skipping all planetary exploration elements. This bypasses major gameplay systems and appears to break the intended progression structure.",
+    "steps": [
+        "1. Launch the game.",
+        "2. Enter the ship area.",
+        "3. Ignore planetary exploration and do not set course to any planets.",
+        "4. Perform only the safety examination flow.",
+        "5. Trigger the end sequence or progression completion.",
+        "6. Observe that the game allows completion without exploring or reporting planets."
+    ],
+    "expected": "Core progression should require at least one planet exploration and associated report to be completed.",
+    "actual": "The game can be finished entirely through the safety-check sequence alone, bypassing exploration mechanics.",
+    "attachments": [
+        {
+            "name": "progression_bypass_video",
+            "description": "https://drive.google.com/file/d/1vtmNLVe67LOq0v0-142fxx48PJtHJ_Qp/view?usp=sharing"
+        }
+    ]
+}
