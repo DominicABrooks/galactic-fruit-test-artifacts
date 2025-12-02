@@ -114,10 +114,6 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
                         <div class="text-xs text-eoe-muted uppercase tracking-wider">Total</div>
                         <div id="detail-total" class="text-lg font-bold text-white">0</div>
                     </div>
-                    <div class="text-center px-4 py-2 bg-yellow-500/10 rounded-lg border border-yellow-500/20">
-                        <div class="text-xs text-yellow-400 uppercase tracking-wider">High Priority</div>
-                        <div id="detail-high" class="text-lg font-bold text-yellow-400">0</div>
-                    </div>
                 </div>
             </div>
 
@@ -316,12 +312,20 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
             }
         }
 
+
         function showTestCaseDetails(setId) {
             const set = testSets.find(s => s.id === setId);
             if (!set) return;
 
-            const testCases = allTestCases[setId] || [];
-            const highPriorityCount = testCases.filter(tc => tc.priority === 'High').length;
+            const allCases = allTestCases[setId] || [];
+            
+            // Filter test cases based on current filter
+            let testCases = allCases;
+            if (currentFilter === 'smoke') {
+                testCases = allCases.filter(tc => tc.priority === 'High');
+            }
+            
+            const highPriorityCount = allCases.filter(tc => tc.priority === 'High').length;
 
             // Update header
             const detailSetName = document.getElementById('detail-set-name');
@@ -330,7 +334,13 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
             const detailHigh = document.getElementById('detail-high');
 
             if (detailSetName) detailSetName.textContent = set.name;
-            if (detailSetDescription) detailSetDescription.textContent = set.description;
+            if (detailSetDescription) {
+                let description = set.description;
+                if (currentFilter === 'smoke') {
+                    description += ' (Showing High Priority only)';
+                }
+                detailSetDescription.textContent = description;
+            }
             if (detailTotal) detailTotal.textContent = testCases.length.toString();
             if (detailHigh) detailHigh.textContent = highPriorityCount.toString();
 
