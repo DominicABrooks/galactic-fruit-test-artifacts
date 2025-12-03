@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout.astro";
 
 // Load Test Conditions from split JSON files
 const conditionFiles = await import.meta.glob('../data/analysis/conditions/*.json', { eager: true });
-let testConditions = [];
+let testConditions: any[] = [];
 Object.values(conditionFiles).forEach((mod: any) => {
     const conditions = mod.default || mod;
     if (Array.isArray(conditions)) {
@@ -15,10 +15,10 @@ Object.values(conditionFiles).forEach((mod: any) => {
 testConditions.sort((a, b) => a.id.localeCompare(b.id));
 
 // Flatten to a list of { condition, testCaseId } for the table
-const tableData = [];
+const tableData: any[] = [];
 testConditions.forEach(c => {
     if (c.linkedTestCases && c.linkedTestCases.length > 0) {
-        c.linkedTestCases.forEach(tcId => {
+        c.linkedTestCases.forEach((tcId: string) => {
             tableData.push({
                 condition: c.condition,
                 testCaseId: tcId
@@ -26,6 +26,59 @@ testConditions.forEach(c => {
         });
     }
 });
+
+// Load exploratory notes to extract derived features
+const exploratoryFiles = await import.meta.glob('../content/exploratory/*.md', { eager: true });
+const allDerivedFeatures = new Set<string>();
+const featureCoverage = new Map<string, Set<string>>();
+
+Object.values(exploratoryFiles).forEach((mod: any) => {
+    const frontmatter = mod.frontmatter || {};
+    const derivedFeatures = frontmatter.derivedFeatures || [];
+    
+    derivedFeatures.forEach((feature: string) => {
+        allDerivedFeatures.add(feature);
+        if (!featureCoverage.has(feature)) {
+            featureCoverage.set(feature, new Set());
+        }
+    });
+});
+
+// Map features to test cases by checking conditions
+testConditions.forEach(c => {
+    // Try to match condition text to features
+    const conditionText = c.condition.toLowerCase();
+    
+    featureCoverage.forEach((testCases, feature: string) => {
+        const featureLower = feature.toLowerCase();
+        if (conditionText.includes(featureLower) || featureLower.includes(conditionText.split(' ')[0])) {
+            if (c.linkedTestCases && c.linkedTestCases.length > 0) {
+                c.linkedTestCases.forEach((tcId: string) => testCases.add(tcId));
+            }
+        }
+    });
+});
+
+// Calculate coverage stats
+const coverageData: any[] = [];
+featureCoverage.forEach((testCases, feature: string) => {
+    const testCaseCount = testCases.size;
+    const hasCoverage = testCaseCount > 0;
+    coverageData.push({
+        feature,
+        testCaseCount,
+        hasCoverage,
+        testCaseIds: Array.from(testCases)
+    });
+});
+
+// Sort by feature name
+coverageData.sort((a, b) => a.feature.localeCompare(b.feature));
+
+// Calculate overall coverage percentage
+const totalFeatures = allDerivedFeatures.size;
+const coveredFeatures = coverageData.filter(f => f.hasCoverage).length;
+const coveragePercentage = totalFeatures > 0 ? Math.round((coveredFeatures / totalFeatures) * 100) : 0;
 ---
 
 <MainLayout title="Test Design" currentPath="/test-design">
@@ -68,61 +121,210 @@ testConditions.forEach(c => {
             </div>
         </section>
 
-        <!-- 2. Test Case Design (EP/BVA) -->
+        <!-- 2. Test Environment Requirements -->
         <section>
             <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                 <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">2</span>
-                Test Case Design (EP/BVA)
+                Test Environment Requirements
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <p class="text-sm text-eoe-muted mb-6">What's needed to run the tests</p>
+            
+            <div class="space-y-6">
+                <!-- System Requirements -->
                 <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                    <h3 class="text-white font-medium mb-4">
-                        Equivalence Partitioning (Email Field)
+                    <h3 class="text-white font-medium mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-eoe-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        System Requirements
                     </h3>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>Valid Email</span>
-                            <span class="font-mono text-green-400">user@domain.com</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>Missing @</span>
-                            <span class="font-mono text-red-400">userdomain.com</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>Missing Domain</span>
-                            <span class="font-mono text-red-400">user@</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span>Empty String</span>
-                            <span class="font-mono text-red-400">""</span>
-                        </li>
-                    </ul>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Minimum -->
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-semibold text-purple-300 uppercase tracking-wide">Minimum</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">OS:</span>
+                                    <span class="text-white">Windows 7</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Processor:</span>
+                                    <span class="text-white">Any modern CPU</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Graphics:</span>
+                                    <span class="text-white">Any modern GPU</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Storage:</span>
+                                    <span class="text-white">200 MB available space</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Architecture:</span>
+                                    <span class="text-white">64-bit processor and OS required</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Recommended -->
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-semibold text-green-300 uppercase tracking-wide">Recommended</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">OS:</span>
+                                    <span class="text-white">Windows 10</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Processor:</span>
+                                    <span class="text-white">Any modern CPU</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Graphics:</span>
+                                    <span class="text-white">Any modern GPU</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Storage:</span>
+                                    <span class="text-white">200 MB available space</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-eoe-muted font-medium min-w-[100px]">Architecture:</span>
+                                    <span class="text-white">64-bit processor and OS required</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
-                    <h3 class="text-white font-medium mb-4">
-                        Boundary Value Analysis (Password Length)
-                    </h3>
-                    <p class="text-xs text-eoe-muted mb-4">
-                        Requirement: Password must be 8-20 characters.
-                    </p>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>7 chars (Invalid)</span>
-                            <span class="font-mono text-red-400">Pass123</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>8 chars (Valid)</span>
-                            <span class="font-mono text-green-400">Pass1234</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>20 chars (Valid)</span>
-                            <span class="font-mono text-green-400">P@ssword123456789012</span>
-                        </li>
-                        <li class="flex justify-between">
-                            <span>21 chars (Invalid)</span>
-                            <span class="font-mono text-red-400">P@ssword1234567890123</span>
-                        </li>
-                    </ul>
+                
+                <!-- Additional Requirements -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-eoe-panel border border-white/5 rounded-xl p-5">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                            </svg>
+                            <h4 class="text-white font-medium">Internet Connection</h4>
+                        </div>
+                        <p class="text-sm text-eoe-muted">Required for online gameplay and multiplayer features</p>
+                    </div>
+                    
+                    <div class="bg-eoe-panel border border-white/5 rounded-xl p-5">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            <h4 class="text-white font-medium">Steam Client</h4>
+                        </div>
+                        <p class="text-sm text-eoe-muted">Steam account and client installation required</p>
+                    </div>
+                    
+                    <div class="bg-eoe-panel border border-white/5 rounded-xl p-5">
+                        <div class="flex items-center gap-3 mb-2">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <h4 class="text-white font-medium">Test Data</h4>
+                        </div>
+                        <p class="text-sm text-eoe-muted">Access to test case documentation and defect tracking system</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Coverage Items -->
+        <section>
+            <h2 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                <span class="bg-eoe-accent/10 text-eoe-accent w-8 h-8 rounded flex items-center justify-center text-sm">3</span>
+                Coverage Items
+            </h2>
+            <p class="text-sm text-eoe-muted mb-6">Coverage analysis of derived features from exploratory testing</p>
+            
+            <!-- Coverage Summary -->
+            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6 mb-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-white font-semibold text-lg mb-1">Overall Feature Coverage</h3>
+                        <p class="text-sm text-eoe-muted">
+                            {coveredFeatures} of {totalFeatures} features have associated test cases
+                        </p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-4xl font-bold text-white mb-1">{coveragePercentage}%</div>
+                        <div class="text-xs text-eoe-muted uppercase tracking-wide">Coverage</div>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="mt-4 h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-red-500 to-green-500 transition-all duration-500" style={`width: ${coveragePercentage}%`}></div>
+                </div>
+            </div>
+            
+            <!-- Feature Coverage Table -->
+            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-white/5 text-xs uppercase text-white">
+                            <tr>
+                                <th class="px-6 py-4">Feature</th>
+                                <th class="px-6 py-4 text-center">Test Cases</th>
+                                <th class="px-6 py-4 text-center">Coverage</th>
+                                <th class="px-6 py-4">Linked Test Case IDs</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5">
+                            {coverageData.map(item => (
+                                <tr class="hover:bg-white/[0.02]">
+                                    <td class="px-6 py-4 font-medium text-white">
+                                        {item.feature}
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-purple-500/10 text-purple-300 font-mono text-xs">
+                                            {item.testCaseCount}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        {item.hasCoverage ? (
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-medium">
+                                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                                </svg>
+                                                Covered
+                                            </span>
+                                        ) : (
+                                            <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-medium">
+                                                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                                Not Covered
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {item.testCaseIds.length > 0 ? (
+                                            <div class="flex flex-wrap gap-2">
+                                                {item.testCaseIds.slice(0, 3).map((tcId: string) => (
+                                                    <a 
+                                                        href={`/galactic-fruit-test-artifacts/test-case/${tcId.split('-')[1].toLowerCase()}-tests/${tcId}`}
+                                                        class="font-mono text-xs text-purple-300 hover:underline bg-white/5 px-2 py-1 rounded"
+                                                    >
+                                                        {tcId}
+                                                    </a>
+                                                ))}
+                                                {item.testCaseIds.length > 3 && (
+                                                    <span class="text-xs text-eoe-muted italic">
+                                                        +{item.testCaseIds.length - 3} more
+                                                    </span>
+                                                )}
+                                            </div>
+                                        ) : (
+                                            <span class="text-xs text-eoe-muted italic">No test cases linked</span>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

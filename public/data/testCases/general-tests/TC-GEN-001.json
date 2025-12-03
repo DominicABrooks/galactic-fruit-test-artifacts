@@ -1,0 +1,60 @@
+{
+    "id": "TC-GEN-001",
+    "name": "Verify Control Onboarding",
+    "description": "Validates that movement and interaction controls (WASD + E) work correctly without explicit onboarding tutorial.",
+    "testObjective": "Ensure basic player controls function properly and can be inferred naturally by the player.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game is launched",
+        "Player is in the lobby room"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Press W key",
+            "expected": "Player moves forward"
+        },
+        {
+            "step": 2,
+            "action": "Press A key",
+            "expected": "Player moves left"
+        },
+        {
+            "step": 3,
+            "action": "Press S key",
+            "expected": "Player moves backward"
+        },
+        {
+            "step": 4,
+            "action": "Press D key",
+            "expected": "Player moves right"
+        },
+        {
+            "step": 5,
+            "action": "Move mouse left and right",
+            "expected": "Camera view rotates horizontally"
+        },
+        {
+            "step": 6,
+            "action": "Approach the shiny suit and press E",
+            "expected": "Suit interaction occurs and suit visually disappears"
+        }
+    ],
+    "postconditions": [
+        "Player can successfully navigate the environment",
+        "Basic interaction works as expected"
+    ],
+    "tags": [
+        "controls",
+        "onboarding",
+        "functional",
+        "high-priority"
+    ]
+}

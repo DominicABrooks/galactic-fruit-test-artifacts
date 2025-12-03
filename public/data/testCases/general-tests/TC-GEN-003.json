@@ -1,0 +1,55 @@
+{
+    "id": "TC-GEN-003",
+    "name": "Verify Visual Rendering",
+    "description": "Validates that game visuals render correctly without graphical artifacts.",
+    "testObjective": "Ensure visual rendering is consistent and free from persistent graphical bugs.",
+    "priority": "Medium",
+    "type": "Visual",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game is launched",
+        "Graphics settings are at default"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the game and observe the initial scene",
+            "expected": "Scene renders clearly without visual artifacts"
+        },
+        {
+            "step": 2,
+            "action": "Turn camera 360 degrees slowly",
+            "expected": "No persistent visual artifacts, floating pixels, or rendering bugs are observed"
+        },
+        {
+            "step": 3,
+            "action": "Walk through different areas of the ship",
+            "expected": "All areas render correctly without graphical glitches"
+        },
+        {
+            "step": 4,
+            "action": "Check for any persistent pixel squares or visual artifacts following the player",
+            "expected": "No pixel squares or artifacts should follow the player's movement"
+        },
+        {
+            "step": 5,
+            "action": "Interact with various objects and observe rendering",
+            "expected": "Objects remain visually stable during and after interaction"
+        }
+    ],
+    "postconditions": [
+        "No visual artifacts are present",
+        "Game renders consistently across all areas"
+    ],
+    "tags": [
+        "visual",
+        "rendering",
+        "graphics",
+        "medium-priority"
+    ]
+}

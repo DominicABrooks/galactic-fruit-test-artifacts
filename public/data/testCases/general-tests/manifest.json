@@ -1,0 +1,20 @@
+{
+    "setId": "general-tests",
+    "name": "General Feature Tests",
+    "description": "Test cases covering general game features including controls, UI, environment interaction, and system functionality",
+    "testCases": [
+        "TC-GEN-001",
+        "TC-GEN-002",
+        "TC-GEN-003",
+        "TC-GEN-004",
+        "TC-GEN-005",
+        "TC-GEN-006",
+        "TC-GEN-007",
+        "TC-GEN-008",
+        "TC-GEN-009",
+        "TC-GEN-010",
+        "TC-GEN-011",
+        "TC-GEN-012",
+        "TC-GEN-013"
+    ]
+}

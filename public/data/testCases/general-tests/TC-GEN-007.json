@@ -1,0 +1,50 @@
+{
+    "id": "TC-GEN-007",
+    "name": "Verify Progression Logic",
+    "description": "Validates that game progression logic correctly enforces required steps and prevents sequence breaking.",
+    "testObjective": "Ensure progression gates work properly and players cannot skip mandatory content.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "10 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "New game session started",
+        "Player has access to ship systems"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Attempt to access camera scan without viewing required training videos",
+            "expected": "System blocks access with appropriate message"
+        },
+        {
+            "step": 2,
+            "action": "Try to set course to a planet without completing its report",
+            "expected": "System displays message: 'REPORT ON PLANET BEFORE CONTINUING'"
+        },
+        {
+            "step": 3,
+            "action": "Complete all prerequisite steps for a planet",
+            "expected": "Progression gates unlock in the correct sequence"
+        },
+        {
+            "step": 4,
+            "action": "Verify that attempting to skip mandatory content fails",
+            "expected": "All progression gates enforce their requirements"
+        }
+    ],
+    "postconditions": [
+        "Progression logic correctly enforces all requirements",
+        "Players cannot sequence break or skip mandatory content"
+    ],
+    "tags": [
+        "progression",
+        "logic",
+        "functional",
+        "high-priority"
+    ]
+}

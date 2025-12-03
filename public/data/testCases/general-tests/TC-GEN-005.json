@@ -1,0 +1,55 @@
+{
+    "id": "TC-GEN-005",
+    "name": "Verify Ship Control System",
+    "description": "Validates that the ship control panel power button and screen interactions work correctly.",
+    "testObjective": "Ensure ship control system components function properly and provide appropriate feedback.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in the ship cockpit",
+        "Ship power is initially off"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate the red power button on the ship control panel",
+            "expected": "Power button is visible and shows interactable outline when approached"
+        },
+        {
+            "step": 2,
+            "action": "Press E on the power button",
+            "expected": "Power activates, systems come online, audio/visual feedback occurs"
+        },
+        {
+            "step": 3,
+            "action": "Interact with the left screen on the control panel",
+            "expected": "Screen view opens showing interface with numbers (e.g., 0, 7)"
+        },
+        {
+            "step": 4,
+            "action": "Press right mouse button while in screen view",
+            "expected": "Screen view closes and returns to normal gameplay view"
+        },
+        {
+            "step": 5,
+            "action": "Interact with other screens on the control panel",
+            "expected": "Each screen opens its respective interface correctly"
+        }
+    ],
+    "postconditions": [
+        "Ship power is activated",
+        "All screen interfaces are accessible and can be exited"
+    ],
+    "tags": [
+        "ship-control",
+        "interaction",
+        "functional",
+        "high-priority"
+    ]
+}

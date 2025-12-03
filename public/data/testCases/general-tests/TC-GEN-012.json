@@ -1,0 +1,55 @@
+{
+    "id": "TC-GEN-012",
+    "name": "Verify Language Localization",
+    "description": "Validates that language selection settings work correctly and translate UI text appropriately.",
+    "testObjective": "Ensure language localization system functions properly and displays correct translations.",
+    "priority": "Low",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "6 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game supports multiple languages",
+        "Settings menu is accessible"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open settings and navigate to language options",
+            "expected": "List of available languages is displayed"
+        },
+        {
+            "step": 2,
+            "action": "Select a different language from the current one",
+            "expected": "Language selection is acknowledged"
+        },
+        {
+            "step": 3,
+            "action": "Save settings and close menu",
+            "expected": "Settings are saved"
+        },
+        {
+            "step": 4,
+            "action": "Check UI text throughout the game",
+            "expected": "All UI text is translated to the selected language consistently"
+        },
+        {
+            "step": 5,
+            "action": "Verify in-game messages, menus, and terminals",
+            "expected": "Translation is complete and consistent across all interfaces"
+        }
+    ],
+    "postconditions": [
+        "Language changes are applied throughout the game",
+        "All translations are accurate and consistent"
+    ],
+    "tags": [
+        "localization",
+        "language",
+        "ui",
+        "low-priority"
+    ]
+}

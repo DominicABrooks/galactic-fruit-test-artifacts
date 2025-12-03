@@ -1,0 +1,55 @@
+{
+    "id": "TC-GEN-002",
+    "name": "Verify Environmental Interaction",
+    "description": "Validates that environmental objects can be interacted with properly using E key or left mouse button.",
+    "testObjective": "Ensure environmental interaction system works consistently across different object types.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has completed intro sequence",
+        "Player is in ship with various interactable objects"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Approach an interactable object (e.g., terminal, button)",
+            "expected": "Object shows green rectangular outline indicating it's interactable"
+        },
+        {
+            "step": 2,
+            "action": "Press E key on the interactable object",
+            "expected": "Interaction occurs (terminal opens, button activates, etc.)"
+        },
+        {
+            "step": 3,
+            "action": "Approach a different interactable object",
+            "expected": "Object shows green rectangular outline"
+        },
+        {
+            "step": 4,
+            "action": "Click left mouse button on the object",
+            "expected": "Interaction occurs successfully"
+        },
+        {
+            "step": 5,
+            "action": "Try interacting with a non-interactable object",
+            "expected": "No interaction occurs, no green outline appears"
+        }
+    ],
+    "postconditions": [
+        "Both E key and left mouse button work for interactions",
+        "Interactable objects are clearly indicated"
+    ],
+    "tags": [
+        "interaction",
+        "environmental",
+        "functional",
+        "high-priority"
+    ]
+}

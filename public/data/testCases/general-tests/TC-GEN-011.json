@@ -1,0 +1,55 @@
+{
+    "id": "TC-GEN-011",
+    "name": "Verify UI Settings Persistence",
+    "description": "Validates that UI settings are properly saved and persist across game sessions.",
+    "testObjective": "Ensure settings persistence works correctly and settings are only applied when saved.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "8 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game is running with default settings",
+        "Settings menu is accessible"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open settings menu and change a setting (e.g., audio volume)",
+            "expected": "Setting visually changes in the UI"
+        },
+        {
+            "step": 2,
+            "action": "Close settings without clicking Save",
+            "expected": "Setting reverts to previous value or shows unsaved state"
+        },
+        {
+            "step": 3,
+            "action": "Reopen settings and change a setting again",
+            "expected": "Setting changes in UI"
+        },
+        {
+            "step": 4,
+            "action": "Click Save button",
+            "expected": "Settings are applied and saved"
+        },
+        {
+            "step": 5,
+            "action": "Close and restart the game",
+            "expected": "Previously saved settings persist after game restart"
+        }
+    ],
+    "postconditions": [
+        "Settings only apply when Save is clicked",
+        "Saved settings persist across sessions"
+    ],
+    "tags": [
+        "ui",
+        "settings",
+        "persistence",
+        "medium-priority"
+    ]
+}

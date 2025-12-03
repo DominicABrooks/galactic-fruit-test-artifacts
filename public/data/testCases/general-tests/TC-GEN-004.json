@@ -1,0 +1,50 @@
+{
+    "id": "TC-GEN-004",
+    "name": "Verify Ladder Transition",
+    "description": "Validates that ladder interaction correctly transitions the player to the ship area.",
+    "testObjective": "Ensure ladder transition mechanism works smoothly and loads the correct destination.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player has obtained the suit",
+        "Player is in the lobby room"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Approach the ladder embedded in the wall",
+            "expected": "Ladder shows green rectangular outline indicating it's interactable"
+        },
+        {
+            "step": 2,
+            "action": "Press E to interact with the ladder",
+            "expected": "Screen transitions and player is loaded into the ship area"
+        },
+        {
+            "step": 3,
+            "action": "Observe player position after transition",
+            "expected": "Player is positioned in the ship facing the correct direction"
+        },
+        {
+            "step": 4,
+            "action": "Verify no loading errors or visual glitches occurred",
+            "expected": "Transition is smooth without errors"
+        }
+    ],
+    "postconditions": [
+        "Player successfully transitioned to ship area",
+        "No errors or visual bugs during transition"
+    ],
+    "tags": [
+        "transition",
+        "ladder",
+        "functional",
+        "high-priority"
+    ]
+}

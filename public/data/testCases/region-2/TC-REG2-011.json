@@ -1,0 +1,55 @@
+{
+    "id": "TC-REG2-011",
+    "name": "Verify Secret Discovery",
+    "description": "Validates that secret objects can be discovered using the camera system and provide appropriate feedback.",
+    "testObjective": "Ensure secret discovery mechanic works correctly and adds secret files to the filesystem.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "4 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Region 2",
+        "Camera system is accessible"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open camera view in the cockpit",
+            "expected": "Camera interface opens with counter showing scannable objects"
+        },
+        {
+            "step": 2,
+            "action": "Search camera view for small white object (secret)",
+            "expected": "Small white object is visible in camera view"
+        },
+        {
+            "step": 3,
+            "action": "Hold E to interact with the secret object",
+            "expected": "System displays message: 'You discovered a secret'"
+        },
+        {
+            "step": 4,
+            "action": "Check the Filesystem terminal",
+            "expected": "New file LAD.r is added to the filesystem"
+        },
+        {
+            "step": 5,
+            "action": "Run LAD.r file",
+            "expected": "Raspberry stamp image is displayed with close button"
+        }
+    ],
+    "postconditions": [
+        "Secret is discovered and logged",
+        "Secret file is accessible in filesystem"
+    ],
+    "tags": [
+        "secret",
+        "discovery",
+        "camera",
+        "medium-priority"
+    ]
+}

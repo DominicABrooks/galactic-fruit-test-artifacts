@@ -1,0 +1,60 @@
+{
+    "id": "TC-GEN-008",
+    "name": "Verify Door System",
+    "description": "Validates that all doors open and close correctly using their interaction buttons.",
+    "testObjective": "Ensure door mechanics work consistently across all door types in the ship.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "6 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in ship hallway area",
+        "Multiple doors are available for testing"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with the main door button using E",
+            "expected": "Main door opens smoothly"
+        },
+        {
+            "step": 2,
+            "action": "Interact with the same button again",
+            "expected": "Main door closes smoothly"
+        },
+        {
+            "step": 3,
+            "action": "Test opening and closing the main door multiple times",
+            "expected": "Door consistently opens and closes without issues"
+        },
+        {
+            "step": 4,
+            "action": "Interact with a secondary hallway door button",
+            "expected": "Door opens correctly"
+        },
+        {
+            "step": 5,
+            "action": "Attempt to close the secondary door using its button",
+            "expected": "Door closes properly (verify if this is supported)"
+        },
+        {
+            "step": 6,
+            "action": "Try clicking directly on door mesh instead of button",
+            "expected": "Verify if door opens (some doors have this behavior)"
+        }
+    ],
+    "postconditions": [
+        "All doors function correctly",
+        "Door interaction is consistent across door types"
+    ],
+    "tags": [
+        "doors",
+        "interaction",
+        "functional",
+        "medium-priority"
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "id": "TC-REG2-012",
+    "name": "Verify Hallway Lighting Effects",
+    "description": "Validates that hallway lighting flicker event triggers correctly when player passes through intersection.",
+    "testObjective": "Ensure lighting effects create appropriate atmosphere in hallway areas.",
+    "priority": "Low",
+    "type": "Visual",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Region 2 hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Walk from hibernation area into hallway",
+            "expected": "Hallway is initially lit"
+        },
+        {
+            "step": 2,
+            "action": "Walk near the intersection of the hallway",
+            "expected": "Lights flicker momentarily as visual effect"
+        },
+        {
+            "step": 3,
+            "action": "Continue walking through hallway",
+            "expected": "Lights stabilize after flicker event"
+        },
+        {
+            "step": 4,
+            "action": "Return to intersection area",
+            "expected": "Verify if flicker repeats or was one-time event"
+        }
+    ],
+    "postconditions": [
+        "Lighting effect executed correctly",
+        "No permanent lighting issues after effect"
+    ],
+    "tags": [
+        "lighting",
+        "effects",
+        "hallway",
+        "low-priority"
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "id": "TC-GEN-006",
+    "name": "Verify Screen Interaction",
+    "description": "Validates that screen interactions work correctly including entering and exiting screen view mode.",
+    "testObjective": "Ensure screen interaction system provides consistent behavior across all interactive screens.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "4 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Ship power is activated",
+        "Player is in cockpit area"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with any ship screen using E or LMB",
+            "expected": "Player enters screen view mode, interface displays correctly"
+        },
+        {
+            "step": 2,
+            "action": "Attempt to move using WASD while in screen view",
+            "expected": "Player movement is disabled while in screen view"
+        },
+        {
+            "step": 3,
+            "action": "Press right mouse button",
+            "expected": "Screen view closes and player returns to normal view"
+        },
+        {
+            "step": 4,
+            "action": "Re-interact with the same screen",
+            "expected": "Screen view opens again without issues"
+        }
+    ],
+    "postconditions": [
+        "Player can consistently enter and exit screen view",
+        "No controls are broken after exiting screen view"
+    ],
+    "tags": [
+        "screen",
+        "interaction",
+        "functional",
+        "medium-priority"
+    ]
+}

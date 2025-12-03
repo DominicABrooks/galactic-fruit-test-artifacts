@@ -1,0 +1,50 @@
+{
+    "id": "TC-GEN-013",
+    "name": "Verify Hallway Lighting Sequence",
+    "description": "Validates that hallway lighting activates in the correct sequence when entering the area.",
+    "testObjective": "Ensure lighting system creates proper visual effects during hallway entry.",
+    "priority": "Low",
+    "type": "Visual",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Region 1 or later",
+        "Player is approaching hallway from hibernation area"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the door to the hallway",
+            "expected": "Door opens without issues"
+        },
+        {
+            "step": 2,
+            "action": "Observe the lighting in the hallway",
+            "expected": "Lights activate from the far end, creating a sequential visual effect"
+        },
+        {
+            "step": 3,
+            "action": "Verify lights turn on incrementally, not all at once",
+            "expected": "Lighting sequence proceeds smoothly from far to near"
+        },
+        {
+            "step": 4,
+            "action": "Walk through the hallway",
+            "expected": "All lights remain on after sequence completes"
+        }
+    ],
+    "postconditions": [
+        "Lighting sequence completes successfully",
+        "No visual glitches during sequence"
+    ],
+    "tags": [
+        "lighting",
+        "visual",
+        "hallway",
+        "low-priority"
+    ]
+}

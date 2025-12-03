@@ -1,0 +1,56 @@
+{
+    "id": "TC-GEN-010",
+    "name": "Verify Audio Settings",
+    "description": "Validates that audio settings controls work correctly and can mute game sounds.",
+    "testObjective": "Ensure audio settings properly control game volume including full mute functionality.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Game is running",
+        "Audio is functioning normally",
+        "Settings menu is accessible"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open settings menu and navigate to audio settings",
+            "expected": "Audio settings panel displays with volume sliders"
+        },
+        {
+            "step": 2,
+            "action": "Adjust master volume slider to 50%",
+            "expected": "Audio volume decreases to approximately half"
+        },
+        {
+            "step": 3,
+            "action": "Move all audio sliders to 0% (mute)",
+            "expected": "All game sounds should be completely muted"
+        },
+        {
+            "step": 4,
+            "action": "Interact with various objects while audio is muted",
+            "expected": "No sound effects should play, including interaction sounds"
+        },
+        {
+            "step": 5,
+            "action": "Restore audio sliders to normal levels",
+            "expected": "Audio returns to normal operation"
+        }
+    ],
+    "postconditions": [
+        "Audio settings work correctly",
+        "Mute functionality silences all audio completely"
+    ],
+    "tags": [
+        "audio",
+        "settings",
+        "functional",
+        "medium-priority"
+    ]
+}

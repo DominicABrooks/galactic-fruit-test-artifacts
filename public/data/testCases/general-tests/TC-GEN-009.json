@@ -1,0 +1,55 @@
+{
+    "id": "TC-GEN-009",
+    "name": "Verify Collision Handling",
+    "description": "Validates that collision detection works correctly between player, doors, and environment.",
+    "testObjective": "Ensure player cannot clip through solid objects and collision behaves as expected.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-03",
+    "lastModified": "2025-12-03",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in ship area",
+        "Doors and walls are present"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Walk into a wall",
+            "expected": "Player is stopped by wall collision, cannot pass through"
+        },
+        {
+            "step": 2,
+            "action": "Stand between a door and its button, then close the door",
+            "expected": "Player should be pushed aside, not clipped through the door"
+        },
+        {
+            "step": 3,
+            "action": "Try to walk through a closed door",
+            "expected": "Player cannot pass through, solid collision prevents movement"
+        },
+        {
+            "step": 4,
+            "action": "Verify camera doesn't clip into door mesh when standing close",
+            "expected": "Camera should maintain proper distance from surfaces"
+        },
+        {
+            "step": 5,
+            "action": "Test collision with various objects (tables, panels, etc.)",
+            "expected": "All solid objects have proper collision detection"
+        }
+    ],
+    "postconditions": [
+        "No clipping through surfaces occurs",
+        "Collision detection is consistent and reliable"
+    ],
+    "tags": [
+        "collision",
+        "physics",
+        "functional",
+        "high-priority"
+    ]
+}
