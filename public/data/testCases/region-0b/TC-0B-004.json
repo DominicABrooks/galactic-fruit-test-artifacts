@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "3 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Evaluation.kp4 Minigame",
     "preconditions": [
         "Player is in region 0b cockpit",
         "Player has accessed Filesystem terminal",

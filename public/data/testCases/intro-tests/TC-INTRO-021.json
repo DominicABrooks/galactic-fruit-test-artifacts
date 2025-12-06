@@ -1,0 +1,33 @@
+{
+    "id": "TC-INTRO-021",
+    "name": "Verify Side Room Door Animation",
+    "description": "Validates that side room doors use the correct sliding animation.",
+    "testObjective": "Ensure side doors behave differently from main door.",
+    "priority": "Medium",
+    "type": "Visual",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Room Interaction",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Intro Ship Hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with a side room door",
+            "expected": "Door slides from right to left"
+        }
+    ],
+    "postconditions": [
+        "Test complete"
+    ],
+    "tags": [
+        "intro",
+        "hallway",
+        "visual"
+    ]
+}

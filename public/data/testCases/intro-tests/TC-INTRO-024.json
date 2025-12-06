@@ -1,0 +1,38 @@
+{
+    "id": "TC-INTRO-024",
+    "name": "Verify Locked Rooms",
+    "description": "Validates that Administration and Lounge rooms are locked.",
+    "testObjective": "Ensure locked rooms cannot be entered.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Room Interaction",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Intro Ship Hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Try to enter Administration room",
+            "expected": "Door does not open"
+        },
+        {
+            "step": 2,
+            "action": "Try to enter Lounge room",
+            "expected": "Door does not open"
+        }
+    ],
+    "postconditions": [
+        "Test complete"
+    ],
+    "tags": [
+        "intro",
+        "hallway",
+        "functional"
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "id": "TC-3-002",
+    "name": "Verify Camera Repair Workflow",
+    "description": "Validates the intended sequence for camera repair on Region 3, ensuring it is gated behind the diagnostic report.",
+    "testObjective": "Ensure mission progression logic is enforced.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "10 minutes",
+    "environment": "Steam Client Build (Dec 05)",
+    "derivedFeature": "Camera Repair System",
+    "preconditions": [
+        "Player has arrived on Region 3",
+        "Diagnostic report has NOT been viewed"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Attempt to repair a malfunctioning camera before viewing report",
+            "expected": "Interaction is disabled or player is prompted to check diagnostics first"
+        },
+        {
+            "step": 2,
+            "action": "Go to main control panel and view diagnostic report",
+            "expected": "Report plays and mission objective updates"
+        },
+        {
+            "step": 3,
+            "action": "Return to camera and attempt repair",
+            "expected": "Repair interaction is now available and functions correctly"
+        }
+    ],
+    "postconditions": [
+        "Cameras are repaired",
+        "Mission progression continues"
+    ],
+    "tags": [
+        "mission-flow",
+        "camera-repair",
+        "planet-3"
+    ]
+}

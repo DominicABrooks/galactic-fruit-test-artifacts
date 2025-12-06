@@ -1,0 +1,44 @@
+{
+    "id": "TC-3-003",
+    "name": "Verify File System Archiving",
+    "description": "Checks the behavior of the file system upon arrival at Region 3 regarding the archiving or deletion of previous planet data.",
+    "testObjective": "Clarify and verify intended file system behavior.",
+    "priority": "Low",
+    "type": "Functional",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build (Dec 05)",
+    "derivedFeature": "File System Archiving",
+    "preconditions": [
+        "Player has completed Planet 1 and 2",
+        "Player has just arrived at Region 3"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the Filesystem UI",
+            "expected": "Filesystem UI opens"
+        },
+        {
+            "step": 2,
+            "action": "Check for Planet 1 and Planet 2 reports/archives",
+            "expected": "Previous data is either archived in a specific folder or removed (depending on intended design - currently checks for removal based on observation)"
+        },
+        {
+            "step": 3,
+            "action": "Verify Region 3 initial files are present",
+            "expected": "Region 3 specific files are available"
+        }
+    ],
+    "postconditions": [
+        "File system state is consistent with current design"
+    ],
+    "tags": [
+        "filesystem",
+        "planet-3",
+        "data-persistence"
+    ]
+}

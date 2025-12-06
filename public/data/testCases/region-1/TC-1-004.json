@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "2 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Prerequisite Blocking",
     "preconditions": [
         "Player is in region 1 cockpit",
         "Player is viewing camera system",

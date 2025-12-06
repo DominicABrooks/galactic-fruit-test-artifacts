@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "10 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Course Setting",
     "preconditions": [
         "Region 1 reached",
         "Report completed"

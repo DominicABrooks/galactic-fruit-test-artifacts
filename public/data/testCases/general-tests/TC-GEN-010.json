@@ -10,6 +10,7 @@
     "lastModified": "2025-12-03",
     "estimatedExecutionTime": "5 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Audio Settings",
     "preconditions": [
         "Game is running",
         "Audio is functioning normally",

@@ -1,0 +1,45 @@
+{
+    "id": "TC-3-001",
+    "name": "Verify Minigame Completion",
+    "description": "Validates that the timing minigame on Region 3 can be completed successfully and exits without errors.",
+    "testObjective": "Ensure minigame functionality and clean exit state.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build (Dec 05)",
+    "derivedFeature": "Minigame Completion",
+    "preconditions": [
+        "Player is on Region 3",
+        "Minigame file is accessible"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch the timing minigame file",
+            "expected": "Minigame interface loads correctly"
+        },
+        {
+            "step": 2,
+            "action": "Complete the timing sequence successfully",
+            "expected": "Success state is achieved"
+        },
+        {
+            "step": 3,
+            "action": "Wait for minigame to close",
+            "expected": "Minigame closes without NullReferenceException"
+        }
+    ],
+    "postconditions": [
+        "Player returns to previous context",
+        "No error messages on screen"
+    ],
+    "tags": [
+        "minigame",
+        "planet-3",
+        "stability"
+    ]
+}

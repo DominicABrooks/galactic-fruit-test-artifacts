@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "3 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Map System",
     "preconditions": [
         "Player has completed Cerebellum report",
         "All report data has been submitted"

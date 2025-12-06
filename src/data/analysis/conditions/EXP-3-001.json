@@ -1,0 +1,42 @@
+[
+    {
+        "id": "TC-COND-036",
+        "category": "Minigame",
+        "condition": "Verify timing minigame on Region 3 completes successfully without NullReferenceException",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-3-001"
+        ],
+        "exploratoryNoteId": "EXP-3-001"
+    },
+    {
+        "id": "TC-COND-037",
+        "category": "Mission Flow",
+        "condition": "Verify camera repair interaction is locked until diagnostic report is viewed",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-3-002"
+        ],
+        "exploratoryNoteId": "EXP-3-001"
+    },
+    {
+        "id": "TC-COND-038",
+        "category": "File System",
+        "condition": "Verify previous planet archives are removed or archived upon arrival at Region 3",
+        "priority": "Low",
+        "linkedTestCases": [
+            "TC-3-003"
+        ],
+        "exploratoryNoteId": "EXP-3-001"
+    },
+    {
+        "id": "TC-COND-039",
+        "category": "End Game",
+        "condition": "Verify game handles end-of-content travel transition without NullReferenceException",
+        "priority": "Medium",
+        "linkedTestCases": [
+            "TC-3-004"
+        ],
+        "exploratoryNoteId": "EXP-3-001"
+    }
+]

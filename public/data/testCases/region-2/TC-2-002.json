@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "3 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Secret Discovery",
     "preconditions": [
         "Player is in region 2",
         "Player has access to the camera system"

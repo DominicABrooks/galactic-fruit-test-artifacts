@@ -1,0 +1,32 @@
+{
+    "id": "TC-0B-006",
+    "name": "Verify Region Transition to 0b",
+    "description": "Validates that the player transitions correctly from Intro to Region 0b.",
+    "testObjective": "Ensure correct region loading.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Region Transition",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Intro Complete"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Complete Intro Hibernation",
+            "expected": "Transition to 0b"
+        }
+    ],
+    "postconditions": [
+        "In Region 0b"
+    ],
+    "tags": [
+        "region-0b",
+        "transition"
+    ]
+}

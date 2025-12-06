@@ -31,6 +31,11 @@
             "description": "Tests for Region 2"
         },
         {
+            "id": "planet-3",
+            "name": "Region 3 Tests",
+            "description": "Tests for Region 3"
+        },
+        {
             "id": "confirmation-tests",
             "name": "Confirmation Suite",
             "description": "Defect verification and regression tests"

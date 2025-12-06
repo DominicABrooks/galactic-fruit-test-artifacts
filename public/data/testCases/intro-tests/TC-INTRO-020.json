@@ -1,0 +1,38 @@
+{
+    "id": "TC-INTRO-020",
+    "name": "Verify Door Animation Skipping Defect",
+    "description": "Validates that rapid interaction with the door button does not skip the animation (Defect check).",
+    "testObjective": "Verify defect fix or reproduce issue.",
+    "priority": "Medium",
+    "type": "Defect Verification",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Hallway Doors",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Intro Ship Hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with door button",
+            "expected": "Animation starts"
+        },
+        {
+            "step": 2,
+            "action": "Rapidly press interaction button again",
+            "expected": "Animation should continue smoothly, not skip"
+        }
+    ],
+    "postconditions": [
+        "Test complete"
+    ],
+    "tags": [
+        "intro",
+        "hallway",
+        "defect"
+    ]
+}

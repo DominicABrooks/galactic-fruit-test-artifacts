@@ -1,0 +1,32 @@
+{
+    "id": "TC-0B-007",
+    "name": "Verify Hibernation Transition to Region 1",
+    "description": "Validates that the player transitions correctly from Region 0b to Region 1.",
+    "testObjective": "Ensure correct region loading.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Hibernation",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Region 0b Complete"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter Hibernation in 0b",
+            "expected": "Transition to Region 1"
+        }
+    ],
+    "postconditions": [
+        "In Region 1"
+    ],
+    "tags": [
+        "region-0b",
+        "hibernation"
+    ]
+}

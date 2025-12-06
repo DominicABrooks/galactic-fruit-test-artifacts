@@ -1,0 +1,18 @@
+{
+    "id": "DEF-016",
+    "summary": "NullReferenceException triggered after completing timing minigames",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build (Dec 05)",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-05",
+    "description": "A NullReferenceException appears on screen immediately after successfully completing a timing minigame. This occurs consistently across multiple planets.",
+    "steps": [
+        "1. Launch the game and progress to any timing minigame (e.g., Region 3).",
+        "2. Successfully complete the minigame.",
+        "3. Observe the screen immediately after the minigame closes."
+    ],
+    "expected": "Minigame closes cleanly, and gameplay returns to the previous context or advances to the next state without errors.",
+    "actual": "A NullReferenceException: 'Object reference not set to an instance of an object' appears on screen.",
+    "attachments": []
+}

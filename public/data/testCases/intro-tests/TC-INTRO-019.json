@@ -1,0 +1,38 @@
+{
+    "id": "TC-INTRO-019",
+    "name": "Verify Main Door Interaction",
+    "description": "Validates that the main hallway door opens and closes correctly with animation.",
+    "testObjective": "Ensure main door functions as expected.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Hallway Doors",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Intro Ship Hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Interact with main door button",
+            "expected": "Door opens with animation"
+        },
+        {
+            "step": 2,
+            "action": "Interact with button again",
+            "expected": "Door closes with animation"
+        }
+    ],
+    "postconditions": [
+        "Test complete"
+    ],
+    "tags": [
+        "intro",
+        "hallway",
+        "functional"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "id": "DEF-018",
+    "summary": "NullReferenceException when attempting to travel after completing all available planets",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build (Dec 05)",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-05",
+    "description": "After completing Region 3 and the final cryo sequence, the game attempts to auto-travel to a non-existent next destination, triggering a NullReferenceException.",
+    "steps": [
+        "1. Complete all objectives on Region 3.",
+        "2. Enter the cryochamber/minigame sequence.",
+        "3. Wait for the automatic travel logic to engage."
+    ],
+    "expected": "Game should handle the end of content gracefully (e.g., return to menu, show 'To Be Continued' message).",
+    "actual": "NullReferenceException: 'Object reference not set to an instance of an object' 'No destination region for portal target' appears.",
+    "attachments": []
+}

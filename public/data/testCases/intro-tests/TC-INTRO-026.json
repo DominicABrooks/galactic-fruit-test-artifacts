@@ -1,0 +1,38 @@
+{
+    "id": "TC-INTRO-026",
+    "name": "Verify Region Transition to 0b",
+    "description": "Validates that the game transitions to Region 0b after hibernation.",
+    "testObjective": "Ensure correct region loading.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Region Transition",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Intro Ship Hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Complete hibernation sequence",
+            "expected": "Player wakes up"
+        },
+        {
+            "step": 2,
+            "action": "Check current region",
+            "expected": "Region is 0b"
+        }
+    ],
+    "postconditions": [
+        "Test complete"
+    ],
+    "tags": [
+        "intro",
+        "transition",
+        "functional"
+    ]
+}

@@ -10,6 +10,7 @@
     "lastModified": "2025-12-03",
     "estimatedExecutionTime": "6 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Door System",
     "preconditions": [
         "Player is in ship hallway area",
         "Multiple doors are available for testing"

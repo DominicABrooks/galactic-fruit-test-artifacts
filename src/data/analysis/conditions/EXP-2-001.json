@@ -98,5 +98,15 @@
             "TC-2-010"
         ],
         "exploratoryNoteId": "EXP-2-001"
+    },
+    {
+        "id": "TC-COND-026A",
+        "category": "Region Transition",
+        "condition": "Verify transition to Region 2",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-2-011"
+        ],
+        "exploratoryNoteId": "EXP-2-001"
     }
 ]

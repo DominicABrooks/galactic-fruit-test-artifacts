@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "2 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Paper Interaction",
     "preconditions": [
         "Player is in region 0b cockpit",
         "Paper is on the floor (fallen from wall)"

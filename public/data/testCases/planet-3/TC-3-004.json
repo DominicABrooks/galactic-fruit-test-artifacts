@@ -1,0 +1,44 @@
+{
+    "id": "TC-3-004",
+    "name": "Verify End-Game Portal Transition",
+    "description": "Validates the game's behavior when attempting to travel after completing all available content on Region 3.",
+    "testObjective": "Ensure graceful handling of end-of-content state.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build (Dec 05)",
+    "derivedFeature": "End-Game Portal",
+    "preconditions": [
+        "All Region 3 objectives complete",
+        "Final cryo sequence initiated"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Complete final minigame/sequence",
+            "expected": "Sequence completes"
+        },
+        {
+            "step": 2,
+            "action": "Allow auto-travel logic to engage",
+            "expected": "Game handles 'no destination' gracefully (e.g., credits, message, or return to menu)"
+        },
+        {
+            "step": 3,
+            "action": "Observe screen for errors",
+            "expected": "No NullReferenceException displayed"
+        }
+    ],
+    "postconditions": [
+        "Game is in a stable state"
+    ],
+    "tags": [
+        "end-game",
+        "portal",
+        "stability"
+    ]
+}

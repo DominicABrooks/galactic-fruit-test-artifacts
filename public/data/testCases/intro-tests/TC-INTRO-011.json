@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "3 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Video Playback",
     "preconditions": [
         "Authentication minigame has been completed",
         "Next Steps.kp4 file exists in Temp directory",

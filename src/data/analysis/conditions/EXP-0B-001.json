@@ -48,5 +48,25 @@
             "TC-0B-005"
         ],
         "exploratoryNoteId": "EXP-0B-001"
+    },
+    {
+        "id": "TC-COND-011A",
+        "category": "Region Transition",
+        "condition": "Verify transition to Region 0b",
+        "priority": "High",
+        "linkedTestCases": [
+            "TC-0B-006"
+        ],
+        "exploratoryNoteId": "EXP-0B-001"
+    },
+    {
+        "id": "TC-COND-015A",
+        "category": "Hibernation",
+        "condition": "Verify hibernation transition to Region 1",
+        "priority": "Critical",
+        "linkedTestCases": [
+            "TC-0B-007"
+        ],
+        "exploratoryNoteId": "EXP-0B-001"
     }
 ]

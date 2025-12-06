@@ -1,0 +1,32 @@
+{
+    "id": "TC-2-011",
+    "name": "Verify Region Transition to Region 2",
+    "description": "Validates that the player transitions correctly from Region 1 to Region 2.",
+    "testObjective": "Ensure correct region loading.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Region Transition",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Region 1 Complete"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Complete Region 1 Hibernation",
+            "expected": "Transition to Region 2"
+        }
+    ],
+    "postconditions": [
+        "In Region 2"
+    ],
+    "tags": [
+        "region-2",
+        "transition"
+    ]
+}

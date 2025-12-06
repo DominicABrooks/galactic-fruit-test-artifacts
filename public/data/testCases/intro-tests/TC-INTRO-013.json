@@ -10,6 +10,7 @@
     "lastModified": "2025-12-02",
     "estimatedExecutionTime": "2 minutes",
     "environment": "Steam Client Build 20951743",
+    "derivedFeature": "Tutorial Progression",
     "preconditions": [
         "Player has completed reading Operations Manual",
         "Player has closed the manual"

@@ -1,0 +1,24 @@
+{
+    "id": "DEF-017",
+    "summary": "Camera repair sequence can be bypassed on Region 3",
+    "severity": "Medium",
+    "status": "Open",
+    "environment": "Steam Client Build (Dec 05)",
+    "reporter": "Christopher Rojas",
+    "date": "2025-12-05",
+    "description": "Players can repair the malfunctioning cameras on Region 3 immediately upon arrival, before receiving the diagnostic report or instructions to do so. This breaks the intended narrative flow.",
+    "steps": [
+        "1. Arrive at Region 3.",
+        "2. Do NOT interact with the main control panel or view the diagnostic report.",
+        "3. Locate the malfunctioning cameras.",
+        "4. Attempt to repair a camera."
+    ],
+    "expected": "Camera repair interactions should be locked or unresponsive until the diagnostic report has been viewed.",
+    "actual": "Player can repair cameras immediately, bypassing the mission instructions.",
+    "attachments": [
+        {
+            "name": "video_link",
+            "description": "https://drive.google.com/file/d/193QFJAhrAhIsLXh7pJjb7ved8jcG3q_h/view?usp=sharing"
+        }
+    ]
+}

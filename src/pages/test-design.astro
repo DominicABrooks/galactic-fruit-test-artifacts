@@ -1,5 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import fs from 'node:fs';
+import path from 'node:path';
 
 // Load Test Conditions from split JSON files
 const conditionFiles = await import.meta.glob('../data/analysis/conditions/*.json', { eager: true });
@@ -44,19 +46,53 @@ Object.values(exploratoryFiles).forEach((mod: any) => {
     });
 });
 
-// Map features to test cases by checking conditions
-testConditions.forEach(c => {
-    // Try to match condition text to features
-    const conditionText = c.condition.toLowerCase();
-    
-    featureCoverage.forEach((testCases, feature: string) => {
-        const featureLower = feature.toLowerCase();
-        if (conditionText.includes(featureLower) || featureLower.includes(conditionText.split(' ')[0])) {
-            if (c.linkedTestCases && c.linkedTestCases.length > 0) {
-                c.linkedTestCases.forEach((tcId: string) => testCases.add(tcId));
+// Load Test Cases to map derived features directly
+// Using node:fs because import.meta.glob might exclude public folder or behave inconsistently
+
+const testCasesDir = path.join(process.cwd(), 'public', 'data', 'testCases');
+const allTestCases: any[] = [];
+
+function scanTestCases(dir: string) {
+    if (!fs.existsSync(dir)) return;
+    const files = fs.readdirSync(dir);
+    for (const file of files) {
+        const fullPath = path.join(dir, file);
+        if (fs.statSync(fullPath).isDirectory()) {
+            scanTestCases(fullPath);
+        } else if (file.endsWith('.json') && file !== 'manifest.json') {
+            try {
+                const content = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+                allTestCases.push(content);
+            } catch (e) {
+                console.error(`Error reading test case ${file}:`, e);
             }
         }
-    });
+    }
+}
+
+scanTestCases(testCasesDir);
+console.log(`[TestDesign] Loaded ${allTestCases.length} test cases via fs`);
+
+allTestCases.forEach((tc: any) => {
+    if (tc.id && tc.derivedFeature) {
+        let matchedFeature = tc.derivedFeature;
+        
+        if (!featureCoverage.has(matchedFeature)) {
+            // Try case-insensitive lookup
+            for (const key of featureCoverage.keys()) {
+                if (key.toLowerCase() === matchedFeature.toLowerCase()) {
+                    matchedFeature = key;
+                    break;
+                }
+            }
+        }
+
+        if (featureCoverage.has(matchedFeature)) {
+            featureCoverage.get(matchedFeature)?.add(tc.id);
+        } else {
+            console.log(`[TestDesign] Unmatched feature: "${tc.derivedFeature}" in TC ${tc.id}`);
+        }
+    }
 });
 
 // Calculate coverage stats
@@ -205,7 +241,7 @@ const coveragePercentage = totalFeatures > 0 ? Math.round((coveredFeatures / tot
                             </svg>
                             <h4 class="text-white font-medium">Internet Connection</h4>
                         </div>
-                        <p class="text-sm text-eoe-muted">Required for online gameplay and multiplayer features</p>
+                        <p class="text-sm text-eoe-muted">Required for downloading the game</p>
                     </div>
                     
                     <div class="bg-eoe-panel border border-white/5 rounded-xl p-5">
@@ -256,7 +292,7 @@ const coveragePercentage = totalFeatures > 0 ? Math.round((coveredFeatures / tot
                 
                 <!-- Progress Bar -->
                 <div class="mt-4 h-2 bg-white/10 rounded-full overflow-hidden">
-                    <div class="h-full bg-gradient-to-r from-red-500 to-green-500 transition-all duration-500" style={`width: ${coveragePercentage}%`}></div>
+                    <div class="h-full bg-green-500 transition-all duration-500" style={`width: ${coveragePercentage}%`}></div>
                 </div>
             </div>
             

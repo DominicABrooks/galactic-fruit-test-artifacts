@@ -1,0 +1,38 @@
+{
+    "id": "TC-INTRO-025",
+    "name": "Verify Cryochamber Interaction",
+    "description": "Validates that interacting with the cryochamber triggers the hibernation sequence.",
+    "testObjective": "Ensure hibernation sequence starts.",
+    "priority": "Critical",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "derivedFeature": "Hibernation System",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Steam Client Build 20951743",
+    "preconditions": [
+        "Player is in Intro Ship Hallway"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Enter Hibernation room",
+            "expected": "Room accessible"
+        },
+        {
+            "step": 2,
+            "action": "Interact with Cryochamber",
+            "expected": "Screen fades to black, sequence starts"
+        }
+    ],
+    "postconditions": [
+        "Test complete"
+    ],
+    "tags": [
+        "intro",
+        "hibernation",
+        "functional"
+    ]
+}

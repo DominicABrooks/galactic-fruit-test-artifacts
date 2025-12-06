@@ -1,0 +1,45 @@
+{
+    "id": "TC-CONF-017",
+    "name": "Confirm Fix for Camera Repair Bypass",
+    "description": "Confirmation test to verify that camera repair is correctly gated behind the diagnostic report.",
+    "testObjective": "Verify fix for DEF-017.",
+    "priority": "Medium",
+    "type": "Confirmation",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "10 minutes",
+    "environment": "Steam Client Build (Fix Candidate)",
+    "derivedFeature": "Camera Repair System",
+    "preconditions": [
+        "Build with fix for DEF-017 installed",
+        "Player arrived at Region 3",
+        "Diagnostic report NOT viewed"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Attempt to repair a camera",
+            "expected": "Interaction is blocked/disabled"
+        },
+        {
+            "step": 2,
+            "action": "View diagnostic report",
+            "expected": "Mission updates"
+        },
+        {
+            "step": 3,
+            "action": "Attempt to repair a camera again",
+            "expected": "Interaction is enabled"
+        }
+    ],
+    "postconditions": [
+        "Proper mission flow enforced"
+    ],
+    "tags": [
+        "confirmation",
+        "defect-fix",
+        "mission-flow"
+    ]
+}

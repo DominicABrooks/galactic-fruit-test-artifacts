@@ -1,0 +1,39 @@
+{
+    "id": "TC-CONF-016",
+    "name": "Confirm Fix for Minigame NRE",
+    "description": "Confirmation test to verify that the NullReferenceException no longer occurs after minigame completion.",
+    "testObjective": "Verify fix for DEF-016.",
+    "priority": "High",
+    "type": "Confirmation",
+    "author": "Christopher Rojas",
+    "createdDate": "2025-12-06",
+    "lastModified": "2025-12-06",
+    "estimatedExecutionTime": "5 minutes",
+    "environment": "Steam Client Build (Fix Candidate)",
+    "derivedFeature": "Minigame Completion",
+    "preconditions": [
+        "Build with fix for DEF-016 installed",
+        "Player is on Region 3"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Launch and complete a timing minigame",
+            "expected": "Minigame completes successfully"
+        },
+        {
+            "step": 2,
+            "action": "Observe screen immediately after closure",
+            "expected": "No NullReferenceException appears"
+        }
+    ],
+    "postconditions": [
+        "Gameplay continues normally"
+    ],
+    "tags": [
+        "confirmation",
+        "defect-fix",
+        "minigame"
+    ]
+}
