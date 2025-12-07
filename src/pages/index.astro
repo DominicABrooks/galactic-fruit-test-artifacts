@@ -35,17 +35,17 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
     <div class="space-y-12">
         <!-- Hero Section -->
         <div
-            class="relative overflow-hidden rounded-2xl bg-Galactic Fruit-panel border border-white/5 p-8 md:p-12"
+            class="relative overflow-hidden rounded-2xl bg-galactic-fruit-panel border border-white/5 p-8 md:p-12"
         >
             <div class="relative z-10 max-w-2xl">
                 <h1
                     class="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight"
                 >
-                    How we tested <span class="text-Galactic Fruit-accent"
+                    How we tested <span class="text-galactic-fruit-accent"
                         >Galactic Fruit</span
                     >
                 </h1>
-                <p class="text-lg text-Galactic Fruit-muted mb-8 leading-relaxed">
+                <p class="text-lg text-galactic-fruit-muted mb-8 leading-relaxed">
                     This is an archive of the quality assurance artifacts, test
                     plans, and execution results for the singleplayer horror
                     game
@@ -53,7 +53,7 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
                         href="https://store.steampowered.com/app/3049470/Echoes_of_Exile/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="text-Galactic Fruit-accent hover:underline"
+                        class="text-galactic-fruit-accent hover:underline"
                         >Galactic Fruit</a
                     >. Explore the strategies, plans, and results of our QA
                     process.
@@ -61,7 +61,7 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
                 <div class="flex gap-4">
                     <a
                         href={import.meta.env.BASE_URL + "/test-planning"}
-                        class="px-6 py-3 bg-Galactic Fruit-accent hover:bg-blue-600 text-white font-medium rounded-lg transition-colors"
+                        class="px-6 py-3 bg-galactic-fruit-accent hover:bg-blue-600 text-white font-medium rounded-lg transition-colors"
                     >
                         View Test Plan
                     </a>
@@ -76,7 +76,7 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
 
             <!-- Decorative background element -->
             <!-- <div
-                class="absolute top-0 right-0 w-1/2 h-full bg-Galactic Fruit-accent/5 pointer-events-none"
+                class="absolute top-0 right-0 w-1/2 h-full bg-galactic-fruit-accent/5 pointer-events-none"
             >
             </div> -->
         </div>
@@ -96,14 +96,14 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
                 
                 <!-- Dropdown -->
                 <div class="absolute left-0 right-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20">
-                    <div class="bg-Galactic Fruit-panel border border-blue-500/20 rounded-xl p-4 shadow-xl backdrop-blur-sm">
+                    <div class="bg-galactic-fruit-panel border border-blue-500/20 rounded-xl p-4 shadow-xl backdrop-blur-sm">
                         <div class="text-xs font-bold text-blue-300 uppercase tracking-wider mb-3">Sample Test Cases</div>
                         <div class="space-y-2">
                             {sampleTestCases.map((tc) => (
                                 tc.id !== undefined && (
                                     <a href={import.meta.env.BASE_URL + `/test-case/${tc.setId}/${tc.id}`} class="block p-2 rounded-lg hover:bg-white/5 transition-colors">
                                         <div class="text-xs font-mono text-blue-400">{tc.id}</div>
-                                        <div class="text-xs text-Galactic Fruit-muted truncate">{tc.name}</div>
+                                        <div class="text-xs text-galactic-fruit-muted truncate">{tc.name}</div>
                                     </a>
                                 )
                             ))}
@@ -125,13 +125,13 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
                 
                 <!-- Dropdown -->
                 <div class="absolute left-0 right-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20">
-                    <div class="bg-Galactic Fruit-panel border border-purple-500/20 rounded-xl p-4 shadow-xl backdrop-blur-sm">
+                    <div class="bg-galactic-fruit-panel border border-purple-500/20 rounded-xl p-4 shadow-xl backdrop-blur-sm">
                         <div class="text-xs font-bold text-purple-300 uppercase tracking-wider mb-3">Sample Exploratory Notes</div>
                         <div class="space-y-2">
                             {sampleExploratory.map((note) => (
                                 <a href={import.meta.env.BASE_URL + `/exploratory/${note.frontmatter.id}`} class="block p-2 rounded-lg hover:bg-white/5 transition-colors">
                                     <div class="text-xs font-mono text-purple-400">{note.frontmatter.id}</div>
-                                    <div class="text-xs text-Galactic Fruit-muted truncate">{note.frontmatter.title}</div>
+                                    <div class="text-xs text-galactic-fruit-muted truncate">{note.frontmatter.title}</div>
                                 </a>
                             ))}
                         </div>
@@ -152,13 +152,13 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
                 
                 <!-- Dropdown -->
                 <div class="absolute left-0 right-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-20">
-                    <div class="bg-Galactic Fruit-panel border border-red-500/20 rounded-xl p-4 shadow-xl backdrop-blur-sm">
+                    <div class="bg-galactic-fruit-panel border border-red-500/20 rounded-xl p-4 shadow-xl backdrop-blur-sm">
                         <div class="text-xs font-bold text-red-300 uppercase tracking-wider mb-3">Sample Defects</div>
                         <div class="space-y-2">
                             {sampleDefects.map((defect) => (
                                 <a href={import.meta.env.BASE_URL + `/defects/${defect.id}`} class="block p-2 rounded-lg hover:bg-white/5 transition-colors">
                                     <div class="text-xs font-mono text-red-400">{defect.id}</div>
-                                    <div class="text-xs text-Galactic Fruit-muted truncate">{defect.summary}</div>
+                                    <div class="text-xs text-galactic-fruit-muted truncate">{defect.summary}</div>
                                 </a>
                             ))}
                         </div>
@@ -173,14 +173,14 @@ const sampleExploratory = exploratoryNotes.slice(0, 5);
         >
             <div class="flex-1">
                 <h3 class="text-2xl font-bold text-white mb-4">Why We Test</h3>
-                <p class="text-Galactic Fruit-muted mb-4">
+                <p class="text-galactic-fruit-muted mb-4">
                     Galactic Fruit is a passion project that has been in work
                     since 2024. Meet the testing team that helped ship this
                     game.
                 </p>
                 <a
                     href={import.meta.env.BASE_URL + "/about"}
-                    class="text-Galactic Fruit-accent hover:text-white transition-colors font-medium inline-flex items-center gap-2"
+                    class="text-galactic-fruit-accent hover:text-white transition-colors font-medium inline-flex items-center gap-2"
                 >
                     Learn more about us
                     <svg

@@ -4,21 +4,24 @@
 
 @layer base {
   body {
-    @apply bg-Galactic Fruit-dark text-Galactic Fruit-text antialiased;
+    @apply bg-galactic-fruit-dark text-galactic-fruit-text antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
-  
+
   /* Custom Scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
+
   ::-webkit-scrollbar-track {
-    @apply bg-Galactic Fruit-dark;
+    @apply bg-galactic-fruit-dark;
   }
+
   ::-webkit-scrollbar-thumb {
-    @apply bg-Galactic Fruit-panel rounded-full border border-Galactic Fruit-dark;
+    @apply bg-galactic-fruit-panel rounded-full border border-galactic-fruit-dark;
   }
+
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-Galactic Fruit-muted;
+    @apply bg-galactic-fruit-muted;
   }
 }

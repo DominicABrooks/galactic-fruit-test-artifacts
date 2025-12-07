@@ -1,0 +1,36 @@
+{
+    "id": "TC-NEUROS-005",
+    "name": "Verify Neuros Lore: Ladagocia",
+    "description": "Validates that the 'Ladagocia' command returns the correct lore text.",
+    "testObjective": "Ensure typing 'Ladagocia' returns the expected narrative text about the planet.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-07",
+    "lastModified": "2025-12-07",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Build 3049470",
+    "derivedFeature": "Neuros Lore Entries",
+    "preconditions": [
+        "Neuros terminal is open",
+        "CLI is active"
+    ],
+    "testData": {
+        "command": "Ladagocia"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Type 'Ladagocia' and press Enter.",
+            "expected": "Prints text: 'Ladagocia: Planet. When the Fabricans first set foot on another world, it was this lush forest planet. Their they found a fruit the locals called Pimta.' (Note typo 'Their')."
+        }
+    ],
+    "postconditions": [
+        "Lore entry displayed correctly"
+    ],
+    "tags": [
+        "neuros",
+        "lore",
+        "ladagocia"
+    ]
+}

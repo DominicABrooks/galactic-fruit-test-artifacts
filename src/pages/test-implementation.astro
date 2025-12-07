@@ -11,21 +11,21 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
 ---
 
 <MainLayout title="Test Implementation" currentPath="/test-implementation">
-    <div class="space-y-8 text-Galactic Fruit-muted max-w-7xl mx-auto pb-20">
+    <div class="space-y-8 text-galactic-fruit-muted max-w-7xl mx-auto pb-20">
         <!-- Header -->
-        <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-8">
+        <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl p-8">
             <h1 class="text-3xl font-bold text-white mb-2">
                 Test Implementation
             </h1>
-            <p class="text-lg text-Galactic Fruit-muted">
+            <p class="text-lg text-galactic-fruit-muted">
                 Comprehensive test suite organization and execution guides
             </p>
         </div>
 
         <!-- Test Environment Setup Documentation -->
-        <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-8">
+        <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl p-8">
             <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <svg class="w-6 h-6 text-Galactic Fruit-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-6 h-6 text-galactic-fruit-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
@@ -34,8 +34,8 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
             <div class="space-y-4">
                 <p class="text-white">Follow these steps to set up your test environment:</p>
                 <ol class="space-y-3 ml-6 list-decimal text-white">
-                    <li>Download and install <strong class="text-Galactic Fruit-accent">Steam</strong></li>
-                    <li>Contact <a href="mailto:domab2020@gmail.com" class="text-Galactic Fruit-accent hover:underline">domab2020@gmail.com</a> to request a product key</li>
+                    <li>Download and install <strong class="text-galactic-fruit-accent">Steam</strong></li>
+                    <li>Contact <a href="mailto:domab2020@gmail.com" class="text-galactic-fruit-accent hover:underline">domab2020@gmail.com</a> to request a product key</li>
                     <li>In Steam, click <strong>"+ Add a Game"</strong> in the Library</li>
                     <li>Select <strong>"Activate a product on Steam"</strong></li>
                     <li>Enter the product code provided</li>
@@ -54,9 +54,9 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
         </div>
 
         <!-- Filter Buttons -->
-        <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6">
+        <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl p-6">
             <div class="flex flex-wrap gap-3">
-                <button id="filter-all" class="px-6 py-2.5 bg-Galactic Fruit-accent text-white rounded-lg font-medium hover:bg-Galactic Fruit-accent/80 transition-colors">
+                <button id="filter-all" class="px-6 py-2.5 bg-galactic-fruit-accent text-white rounded-lg font-medium hover:bg-galactic-fruit-accent/80 transition-colors">
                     All Test Sets
                 </button>
                 <button id="filter-smoke" class="px-6 py-2.5 bg-white/5 text-white rounded-lg font-medium hover:bg-white/10 transition-colors border border-white/10">
@@ -66,7 +66,7 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
                     Regression Suite
                 </button>
             </div>
-            <p id="filter-description" class="text-Galactic Fruit-muted text-sm mt-4">
+            <p id="filter-description" class="text-galactic-fruit-muted text-sm mt-4">
                 Showing all test sets organized by category
             </p>
         </div>
@@ -74,11 +74,11 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
         <!-- Test Sets Display -->
         <div id="test-sets-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {testSets.map((set: any) => (
-                <div class="test-set-card bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6 hover:border-white/10 transition-all cursor-pointer" data-set-id={set.id}>
+                <div class="test-set-card bg-galactic-fruit-panel border border-white/5 rounded-xl p-6 hover:border-white/10 transition-all cursor-pointer" data-set-id={set.id}>
                     <div class="flex items-start justify-between mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-white mb-1">{set.name}</h3>
-                            <p class="text-sm text-Galactic Fruit-muted">{set.description}</p>
+                            <p class="text-sm text-galactic-fruit-muted">{set.description}</p>
                         </div>
                         <span class="text-xs font-mono bg-purple-500/20 text-purple-300 px-2 py-1 rounded">
                             {set.id}
@@ -86,8 +86,8 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
                     </div>
                     <div class="flex items-center gap-4 text-sm">
                         <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-Galactic Fruit-accent"></span>
-                            <span class="text-Galactic Fruit-muted">Test Count:</span>
+                            <span class="w-2 h-2 rounded-full bg-galactic-fruit-accent"></span>
+                            <span class="text-galactic-fruit-muted">Test Count:</span>
                             <span class="test-count text-white font-medium">Loading...</span>
                         </div>
                     </div>
@@ -97,27 +97,27 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
 
         <!-- Test Cases Detail View -->
         <div id="test-cases-detail" class="hidden space-y-6">
-            <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6">
+            <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl p-6">
                 <div class="flex items-center gap-4 mb-4">
-                    <button id="back-to-sets" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-Galactic Fruit-muted hover:text-white">
+                    <button id="back-to-sets" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-galactic-fruit-muted hover:text-white">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
                     </button>
                     <div>
                         <h2 id="detail-set-name" class="text-2xl font-bold text-white"></h2>
-                        <p id="detail-set-description" class="text-Galactic Fruit-muted mt-1"></p>
+                        <p id="detail-set-description" class="text-galactic-fruit-muted mt-1"></p>
                     </div>
                 </div>
                 <div class="flex gap-3">
                     <div class="text-center px-4 py-2 bg-black/20 rounded-lg border border-white/5">
-                        <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider">Total</div>
+                        <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider">Total</div>
                         <div id="detail-total" class="text-lg font-bold text-white">0</div>
                     </div>
                 </div>
             </div>
 
-            <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl overflow-hidden">
+            <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl overflow-hidden">
                 <table class="w-full text-left text-sm">
                     <thead class="bg-white/5 text-xs uppercase text-white sticky top-0">
                         <tr>
@@ -136,17 +136,17 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
 
         <!-- Loading State -->
         <div id="loading-state" class="hidden text-center py-12">
-            <div class="inline-block w-8 h-8 border-4 border-Galactic Fruit-accent border-t-transparent rounded-full animate-spin"></div>
-            <p class="text-Galactic Fruit-muted mt-4">Loading test cases...</p>
+            <div class="inline-block w-8 h-8 border-4 border-galactic-fruit-accent border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-galactic-fruit-muted mt-4">Loading test cases...</p>
         </div>
 
         <!-- Empty State -->
-        <div id="empty-state" class="hidden text-center py-12 bg-Galactic Fruit-panel border border-white/5 rounded-xl">
-            <svg class="w-16 h-16 mx-auto text-Galactic Fruit-muted opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div id="empty-state" class="hidden text-center py-12 bg-galactic-fruit-panel border border-white/5 rounded-xl">
+            <svg class="w-16 h-16 mx-auto text-galactic-fruit-muted opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
             <h3 class="text-lg font-medium text-white mb-2">No Tests Found</h3>
-            <p class="text-sm text-Galactic Fruit-muted">No test cases match the current filter.</p>
+            <p class="text-sm text-galactic-fruit-muted">No test cases match the current filter.</p>
         </div>
     </div>
 </MainLayout>
@@ -241,10 +241,10 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
 
             buttons.forEach(btn => {
                 if (btn === activeBtn) {
-                    btn?.classList.add('bg-Galactic Fruit-accent');
+                    btn?.classList.add('bg-galactic-fruit-accent');
                     btn?.classList.remove('bg-white/5', 'border-white/10');
                 } else {
-                    btn?.classList.remove('bg-Galactic Fruit-accent');
+                    btn?.classList.remove('bg-galactic-fruit-accent');
                     btn?.classList.add('bg-white/5', 'border-white/10');
                 }
             });
@@ -356,14 +356,14 @@ const testSets = testSetsData.default?.sets || testSetsData.sets || [];
 
                     return `
                         <tr class="hover:bg-white/5 transition-colors cursor-pointer" onclick="window.location.href='${base}test-case/${setId}/${tc.id}'">
-                            <td class="px-6 py-4 font-mono text-Galactic Fruit-muted">${tc.id}</td>
+                            <td class="px-6 py-4 font-mono text-galactic-fruit-muted">${tc.id}</td>
                             <td class="px-6 py-4 font-medium text-white">${tc.name}</td>
                             <td class="px-6 py-4">
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${priorityColors[tc.priority] || priorityColors['Medium']}">
                                     ${tc.priority}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 text-Galactic Fruit-muted">${tc.type}</td>
+                            <td class="px-6 py-4 text-galactic-fruit-muted">${tc.type}</td>
                         </tr>
                     `;
                 }).join('');

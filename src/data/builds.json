@@ -1,12 +1,5 @@
 [
     {
-        "id": "coverage_check",
-        "name": "Coverage Verification Build",
-        "date": "2025-12-06",
-        "status": "Completed",
-        "passRate": 100
-    },
-    {
         "id": "bWAed",
         "name": "Alpha Build 0.9.1",
         "date": "2024-03-15",

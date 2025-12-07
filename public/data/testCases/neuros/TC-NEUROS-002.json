@@ -1,0 +1,49 @@
+{
+    "id": "TC-NEUROS-002",
+    "name": "Verify Neuros CLI Basic Functionality and Help",
+    "description": "Tests the basic CLI functions including the welcome message, help command, and exit mechanism.",
+    "testObjective": "Ensure the CLI displays the correct welcome message, lists available topics via help, and exits correctly.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-07",
+    "lastModified": "2025-12-07",
+    "estimatedExecutionTime": "3 minutes",
+    "environment": "Build 3049470",
+    "derivedFeature": "CLI Functionality",
+    "preconditions": [
+        "Neuros terminal is open"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Open the Command Line Interface by clicking [LMB] if not already active.",
+            "expected": "Terminal prints 'NEUROS ONLINE' in green text."
+        },
+        {
+            "step": 2,
+            "action": "Observe the command prompt area.",
+            "expected": "No prompt cursor is visible initially."
+        },
+        {
+            "step": 3,
+            "action": "Type 'help' and press Enter.",
+            "expected": "Lists available topics: Galactic Fruit, Fabrica, Ladagocia, Mesodion."
+        },
+        {
+            "step": 4,
+            "action": "Press [RMB].",
+            "expected": "Exits the Neuros terminal."
+        }
+    ],
+    "postconditions": [
+        "Player returned to regular view",
+        "Terminal closed"
+    ],
+    "tags": [
+        "neuros",
+        "cli",
+        "help"
+    ]
+}

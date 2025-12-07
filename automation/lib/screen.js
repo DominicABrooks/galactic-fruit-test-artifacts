@@ -45,6 +45,91 @@ $bitmap.Dispose()
 }
 
 /**
+ * Show a blocking Precondition dialog
+ * @param {string} message - Instructions for the user
+ * @returns {Promise<void>} - Resolves when user clicks Proceed
+ */
+async function showPreconditionDialog(message) {
+    const { left, top } = config.overlay.position;
+    const { width: overlayWidth, height: overlayHeight } = config.overlay.size;
+    const dialogTop = top + overlayHeight + 10; // 10px buffer below main overlay
+
+    return new Promise((resolve) => {
+        const script = `
+Add-Type -AssemblyName PresentationFramework
+Add-Type -AssemblyName PresentationCore
+Add-Type -AssemblyName WindowsBase
+
+$xaml = @"
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Preconditions" 
+        Height="250" Width="${overlayWidth}"
+        WindowStyle="None" 
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="True"
+        WindowStartupLocation="Manual"
+        Left="${left}" Top="${dialogTop}">
+    <Border Background="#EE1a1a2e" CornerRadius="15" Padding="20" BorderBrush="#ffaa00" BorderThickness="3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Text="Preconditions" 
+                       Foreground="#ffaa00" FontSize="20" FontWeight="Bold" 
+                       HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            
+            <TextBlock Grid.Row="1" Text="${message.replace(/"/g, '&quot;')}" 
+                       Foreground="White" FontSize="14" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       TextAlignment="Center" TextWrapping="Wrap" Margin="5"/>
+            
+            <Button x:Name="ProceedBtn" Grid.Row="2"  Height="40" Margin="10,10,10,0" Cursor="Hand">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#22aa22" CornerRadius="10" BorderBrush="#33ff33" BorderThickness="2" Padding="15,0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="&#x2714;" Foreground="White" FontSize="18" Margin="0,0,10,0"/>
+                                <TextBlock Text="Proceed (Done)" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Border>
+</Window>
+"@
+
+$reader = [System.Xml.XmlReader]::Create([System.IO.StringReader]::new($xaml))
+$window = [System.Windows.Markup.XamlReader]::Load($reader)
+
+$btn = $window.FindName("ProceedBtn")
+$btn.Add_Click({
+    $window.Close()
+})
+
+$window.ShowDialog() | Out-Null
+`;
+
+        const psPath = path.join(tempDir, 'Galactic Fruit_precondition.ps1');
+        fs.writeFileSync(psPath, script, 'utf8');
+
+        exec(`powershell -ExecutionPolicy Bypass -File "${psPath}"`, (error) => {
+            if (error && !error.killed) {
+                console.error('Precondition dialog error:', error.message);
+            }
+            resolve();
+        });
+    });
+}
+
+/**
  * Show verification dialog with screenshot
  * @param {string} screenshotPath - Path to the screenshot
  * @param {string} contextMessage - Context message for verification
@@ -140,7 +225,7 @@ if (Test-Path $imagePath) {
     $screenshotImg.Source = $bitmap
 }
 
-$contextBlock.Text = "${contextMessage}"
+$contextBlock.Text = "${contextMessage.replace(/"/g, '`"')}"
 
 $yesBtn.Add_Click({
     $script:result = "yes"
@@ -226,4 +311,5 @@ module.exports = {
     capture,
     captureAndVerify,
     showVerifyDialog,
+    showPreconditionDialog
 };

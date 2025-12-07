@@ -20,13 +20,13 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
     <div class="flex flex-col h-[calc(100vh-140px)]">
         <!-- Tab Navigation -->
         <div class="flex border-b border-white/10 mb-6">
-            <button id="tab-execution" class="px-6 py-3 text-sm font-medium text-white border-b-2 border-Galactic Fruit-accent transition-colors">
+            <button id="tab-execution" class="px-6 py-3 text-sm font-medium text-white border-b-2 border-galactic-fruit-accent transition-colors">
                 Test Execution
             </button>
-            <button id="tab-exploratory" class="px-6 py-3 text-sm font-medium text-Galactic Fruit-muted hover:text-white border-b-2 border-transparent transition-colors">
+            <button id="tab-exploratory" class="px-6 py-3 text-sm font-medium text-galactic-fruit-muted hover:text-white border-b-2 border-transparent transition-colors">
                 Exploratory Notes
             </button>
-            <button id="tab-defects" class="px-6 py-3 text-sm font-medium text-Galactic Fruit-muted hover:text-white border-b-2 border-transparent transition-colors">
+            <button id="tab-defects" class="px-6 py-3 text-sm font-medium text-galactic-fruit-muted hover:text-white border-b-2 border-transparent transition-colors">
                 Defects
             </button>
         </div>
@@ -34,16 +34,16 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
         <!-- Execution View -->
         <div id="view-execution" class="flex flex-col md:flex-row gap-6 flex-1 min-h-0">
             <!-- Left Panel: Build List -->
-            <div class="w-full md:w-1/3 bg-Galactic Fruit-panel border border-white/5 rounded-xl overflow-hidden flex flex-col">
+            <div class="w-full md:w-1/3 bg-galactic-fruit-panel border border-white/5 rounded-xl overflow-hidden flex flex-col">
                 <div class="p-4 border-b border-white/5 bg-white/[0.02]">
                     <div class="relative">
                         <input
                             type="text"
                             placeholder="Search builds..."
-                            class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-Galactic Fruit-accent/50 transition-colors"
+                            class="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-galactic-fruit-accent/50 transition-colors"
                         />
                         <svg
-                            class="w-4 h-4 text-Galactic Fruit-muted absolute right-3 top-2.5"
+                            class="w-4 h-4 text-galactic-fruit-muted absolute right-3 top-2.5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -62,9 +62,9 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
             </div>
 
             <!-- Right Panel: Content Area -->
-            <div class="w-full md:w-2/3 bg-Galactic Fruit-panel border border-white/5 rounded-xl overflow-hidden flex flex-col relative">
+            <div class="w-full md:w-2/3 bg-galactic-fruit-panel border border-white/5 rounded-xl overflow-hidden flex flex-col relative">
                 <!-- Empty State -->
-                <div id="empty-state" class="absolute inset-0 flex flex-col items-center justify-center text-Galactic Fruit-muted p-8 text-center">
+                <div id="empty-state" class="absolute inset-0 flex flex-col items-center justify-center text-galactic-fruit-muted p-8 text-center">
                     <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                     </div>
@@ -77,11 +77,11 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                     <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                         <div>
                             <h2 id="sets-build-name" class="text-xl font-bold text-white"></h2>
-                            <p id="sets-build-meta" class="text-sm text-Galactic Fruit-muted mt-1"></p>
+                            <p id="sets-build-meta" class="text-sm text-galactic-fruit-muted mt-1"></p>
                         </div>
                         <div class="flex gap-3">
                             <div class="text-center px-4 py-2 bg-black/20 rounded-lg border border-white/5">
-                                <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider">Sets</div>
+                                <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider">Sets</div>
                                 <div id="sets-total" class="text-lg font-bold text-white">0</div>
                             </div>
                             <div class="text-center px-4 py-2 bg-green-500/10 rounded-lg border border-green-500/20">
@@ -101,21 +101,21 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                 <div id="test-cases-view" class="hidden flex-col h-full animate-fade-in">
                     <div class="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                         <div class="flex items-center gap-4">
-                            <button id="back-to-sets" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-Galactic Fruit-muted hover:text-white">
+                            <button id="back-to-sets" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-galactic-fruit-muted hover:text-white">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                             </button>
                             <div>
                                 <div class="flex items-center gap-2">
                                     <h2 id="selected-build-name" class="text-xl font-bold text-white"></h2>
-                                    <span class="text-Galactic Fruit-muted">•</span>
-                                    <span id="selected-set-name" class="text-lg text-Galactic Fruit-accent"></span>
+                                    <span class="text-galactic-fruit-muted">•</span>
+                                    <span id="selected-set-name" class="text-lg text-galactic-fruit-accent"></span>
                                 </div>
-                                <p id="selected-build-meta" class="text-sm text-Galactic Fruit-muted mt-1"></p>
+                                <p id="selected-build-meta" class="text-sm text-galactic-fruit-muted mt-1"></p>
                             </div>
                         </div>
                         <div class="flex gap-3">
                             <div class="text-center px-4 py-2 bg-black/20 rounded-lg border border-white/5">
-                                <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider">Total</div>
+                                <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider">Total</div>
                                 <div id="stat-total" class="text-lg font-bold text-white">0</div>
                             </div>
                             <div class="text-center px-4 py-2 bg-green-500/10 rounded-lg border border-green-500/20">
@@ -130,7 +130,7 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                     </div>
                     <div class="flex-1 overflow-y-auto p-0">
                         <table class="w-full text-left border-collapse">
-                            <thead class="bg-black/20 text-xs uppercase text-Galactic Fruit-muted sticky top-0 backdrop-blur-md">
+                            <thead class="bg-black/20 text-xs uppercase text-galactic-fruit-muted sticky top-0 backdrop-blur-md">
                                 <tr>
                                     <th class="px-6 py-4 font-medium tracking-wider">ID</th>
                                     <th class="px-6 py-4 font-medium tracking-wider">Test Case Name</th>
@@ -146,15 +146,15 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                 </div>
 
                 <!-- Test Case Detail View -->
-                <div id="test-detail-view" class="hidden animate-fade-in bg-Galactic Fruit-panel absolute inset-0 z-10 flex flex-col h-full">
+                <div id="test-detail-view" class="hidden animate-fade-in bg-galactic-fruit-panel absolute inset-0 z-10 flex flex-col h-full">
                     <div class="p-6 border-b border-white/5 flex items-center gap-4 bg-white/[0.02]">
-                        <button id="back-to-table" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-Galactic Fruit-muted hover:text-white">
+                        <button id="back-to-table" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-galactic-fruit-muted hover:text-white">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         </button>
                         <div>
                             <h2 id="detail-name" class="text-xl font-bold text-white"></h2>
                             <div class="flex items-center gap-3 mt-1">
-                                <span id="detail-id" class="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-Galactic Fruit-muted"></span>
+                                <span id="detail-id" class="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-galactic-fruit-muted"></span>
                                 <span id="detail-status" class="text-xs px-2 py-0.5 rounded-full border"></span>
                             </div>
                         </div>
@@ -164,11 +164,11 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                             <!-- Test Case Metadata -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 max-h-40 flex flex-col">
-                                    <h4 class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-2 flex-shrink-0">Description</h4>
+                                    <h4 class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-2 flex-shrink-0">Description</h4>
                                     <p id="detail-description" class="text-sm text-white overflow-y-auto custom-scrollbar flex-1"></p>
                                 </div>
                                 <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 max-h-40 flex flex-col">
-                                    <h4 class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-2 flex-shrink-0">Test Objective</h4>
+                                    <h4 class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-2 flex-shrink-0">Test Objective</h4>
                                     <p id="detail-objective" class="text-sm text-white overflow-y-auto custom-scrollbar flex-1"></p>
                                 </div>
                             </div>
@@ -176,19 +176,19 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                             <!-- Metadata Grid -->
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                    <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Priority</div>
+                                    <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-1">Priority</div>
                                     <div id="detail-priority" class="text-sm font-medium text-white"></div>
                                 </div>
                                 <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                    <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Type</div>
+                                    <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-1">Type</div>
                                     <div id="detail-type" class="text-sm font-medium text-white"></div>
                                 </div>
                                 <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                    <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Author</div>
+                                    <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-1">Author</div>
                                     <div id="detail-author" class="text-sm font-medium text-white"></div>
                                 </div>
                                 <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                    <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Est. Time</div>
+                                    <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-1">Est. Time</div>
                                     <div id="detail-time" class="text-sm font-medium text-white"></div>
                                 </div>
                             </div>
@@ -204,13 +204,13 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
 
                             <!-- Test Data -->
                             <div id="test-data-section" class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
-                                <h3 class="text-sm font-semibold text-Galactic Fruit-muted uppercase tracking-wider mb-3">Test Data</h3>
+                                <h3 class="text-sm font-semibold text-galactic-fruit-muted uppercase tracking-wider mb-3">Test Data</h3>
                                 <div id="test-data-content" class="font-mono text-xs bg-black/40 rounded p-4 overflow-auto custom-scrollbar max-h-60"></div>
                             </div>
 
                             <!-- Test Steps -->
                             <div>
-                                <h3 class="text-sm font-semibold text-Galactic Fruit-muted uppercase tracking-wider mb-4">Test Steps</h3>
+                                <h3 class="text-sm font-semibold text-galactic-fruit-muted uppercase tracking-wider mb-4">Test Steps</h3>
                                 <div class="space-y-4">
                                     <div id="steps-container" class="relative border-l-2 border-white/10 ml-3 pl-8 space-y-8 py-2">
                                         <!-- Steps injected by JS -->
@@ -229,7 +229,7 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
 
                             <!-- Tags -->
                             <div id="tags-section">
-                                <h3 class="text-sm font-semibold text-Galactic Fruit-muted uppercase tracking-wider mb-3">Tags</h3>
+                                <h3 class="text-sm font-semibold text-galactic-fruit-muted uppercase tracking-wider mb-3">Tags</h3>
                                 <div id="tags-container" class="flex flex-wrap gap-2"></div>
                             </div>
 
@@ -238,17 +238,17 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                                     Defect Report
                                 </h4>
-                                <p id="defect-notes" class="text-sm text-Galactic Fruit-muted"></p>
+                                <p id="defect-notes" class="text-sm text-galactic-fruit-muted"></p>
                             </div>
 
                             <!-- Failure Artifacts -->
                             <div id="failure-artifacts" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 hidden">
                                 <div class="bg-black/20 border border-white/5 rounded-xl p-4">
-                                    <h4 class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-3">Execution Log</h4>
+                                    <h4 class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-3">Execution Log</h4>
                                     <div id="execution-log" class="bg-black/40 rounded p-3 overflow-x-auto"></div>
                                 </div>
                                 <div class="bg-black/20 border border-white/5 rounded-xl p-4">
-                                    <h4 class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-3">Screenshots</h4>
+                                    <h4 class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-3">Screenshots</h4>
                                     <div id="screenshots-container"></div>
                                 </div>
                             </div>
@@ -261,12 +261,12 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
         <!-- Exploratory View -->
         <div id="view-exploratory" class="hidden flex-1 min-h-0 overflow-y-auto custom-scrollbar">
             <div class="max-w-6xl mx-auto space-y-6 pb-20">
-                <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-8">
+                <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl p-8">
                     <h2 class="text-2xl font-bold text-white mb-2">Exploratory Notes</h2>
-                    <p class="text-Galactic Fruit-muted">Reference notes and findings from exploratory testing sessions.</p>
+                    <p class="text-galactic-fruit-muted">Reference notes and findings from exploratory testing sessions.</p>
                 </div>
 
-                <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl overflow-hidden">
+                <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl overflow-hidden">
                     <table class="w-full text-left text-sm">
                         <thead class="bg-white/5 text-xs uppercase text-white sticky top-0">
                             <tr>
@@ -286,10 +286,10 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                                         </a>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="text-xs font-medium text-Galactic Fruit-muted uppercase tracking-wider">{note.frontmatter.category}</span>
+                                        <span class="text-xs font-medium text-galactic-fruit-muted uppercase tracking-wider">{note.frontmatter.category}</span>
                                     </td>
                                     <td class="px-6 py-4 text-white font-medium whitespace-nowrap">
-                                        <a href={makePath(`exploratory/${note.frontmatter.id}`)} class="hover:text-Galactic Fruit-accent transition-colors block">
+                                        <a href={makePath(`exploratory/${note.frontmatter.id}`)} class="hover:text-galactic-fruit-accent transition-colors block">
                                             {note.frontmatter.title}
                                         </a>
                                     </td>
@@ -314,13 +314,13 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
         <div id="view-defects" class="hidden flex-1 min-h-0 overflow-y-auto custom-scrollbar">
         <div class="max-w-6xl mx-auto space-y-6 pb-20">
             <!-- Header -->
-            <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-8">
+            <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl p-8">
             <h2 class="text-2xl font-bold text-white mb-2">Defects</h2>
-            <p class="text-Galactic Fruit-muted">List of defects found during testing.</p>
+            <p class="text-galactic-fruit-muted">List of defects found during testing.</p>
             </div>
 
             <!-- Table -->
-            <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl overflow-hidden">
+            <div class="bg-galactic-fruit-panel border border-white/5 rounded-xl overflow-hidden">
             <table class="w-full text-left text-sm">
                 <thead class="bg-white/5 text-xs uppercase text-white sticky top-0">
                 <tr>
@@ -398,14 +398,14 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                 viewExecution?.classList.add('flex');
                 viewExploratory?.classList.add('hidden');
                 
-                tabExecution?.classList.add('text-white', 'border-Galactic Fruit-accent');
-                tabExecution?.classList.remove('text-Galactic Fruit-muted', 'border-transparent');
+                tabExecution?.classList.add('text-white', 'border-galactic-fruit-accent');
+                tabExecution?.classList.remove('text-galactic-fruit-muted', 'border-transparent');
                 
-                tabExploratory?.classList.remove('text-white', 'border-Galactic Fruit-accent');
-                tabExploratory?.classList.add('text-Galactic Fruit-muted', 'border-transparent');
+                tabExploratory?.classList.remove('text-white', 'border-galactic-fruit-accent');
+                tabExploratory?.classList.add('text-galactic-fruit-muted', 'border-transparent');
 
-                tabDefects?.classList.remove('text-white', 'border-Galactic Fruit-accent');
-                tabDefects?.classList.add('text-Galactic Fruit-muted', 'border-transparent');
+                tabDefects?.classList.remove('text-white', 'border-galactic-fruit-accent');
+                tabDefects?.classList.add('text-galactic-fruit-muted', 'border-transparent');
                 
                 history.replaceState(null, '', '#execution');
             } else if (tab === 'exploratory') {
@@ -416,14 +416,14 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                 viewDefects?.classList.add('hidden');
                 viewDefects?.classList.remove('flex');
                 
-                tabExecution?.classList.remove('text-white', 'border-Galactic Fruit-accent');
-                tabExecution?.classList.add('text-Galactic Fruit-muted', 'border-transparent');
+                tabExecution?.classList.remove('text-white', 'border-galactic-fruit-accent');
+                tabExecution?.classList.add('text-galactic-fruit-muted', 'border-transparent');
                 
-                tabExploratory?.classList.add('text-white', 'border-Galactic Fruit-accent');
-                tabExploratory?.classList.remove('text-Galactic Fruit-muted', 'border-transparent');
+                tabExploratory?.classList.add('text-white', 'border-galactic-fruit-accent');
+                tabExploratory?.classList.remove('text-galactic-fruit-muted', 'border-transparent');
 
-                tabDefects?.classList.remove('text-white', 'border-Galactic Fruit-accent');
-                tabDefects?.classList.add('text-Galactic Fruit-muted', 'border-transparent');
+                tabDefects?.classList.remove('text-white', 'border-galactic-fruit-accent');
+                tabDefects?.classList.add('text-galactic-fruit-muted', 'border-transparent');
                 
                 history.replaceState(null, '', '#exploratory');
             }
@@ -436,14 +436,14 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
 
                 viewDefects?.classList.remove('hidden');
                 
-                tabExecution?.classList.remove('text-white', 'border-Galactic Fruit-accent');
-                tabExecution?.classList.add('text-Galactic Fruit-muted', 'border-transparent');
+                tabExecution?.classList.remove('text-white', 'border-galactic-fruit-accent');
+                tabExecution?.classList.add('text-galactic-fruit-muted', 'border-transparent');
                 
-                tabExploratory?.classList.remove('text-white', 'border-Galactic Fruit-accent');
-                tabExploratory?.classList.add('text-Galactic Fruit-muted', 'border-transparent');
+                tabExploratory?.classList.remove('text-white', 'border-galactic-fruit-accent');
+                tabExploratory?.classList.add('text-galactic-fruit-muted', 'border-transparent');
 
-                tabDefects?.classList.add('text-white', 'border-Galactic Fruit-accent');
-                tabDefects?.classList.remove('text-Galactic Fruit-muted', 'border-transparent');
+                tabDefects?.classList.add('text-white', 'border-galactic-fruit-accent');
+                tabDefects?.classList.remove('text-galactic-fruit-muted', 'border-transparent');
                 
                 history.replaceState(null, '', '#defects');
             }
@@ -574,7 +574,7 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
         function renderTestSets(buildId: string) {
             const selectedBtn = document.querySelector(`.build-item[data-id="${buildId}"]`);
             const buildName = selectedBtn?.querySelector(".font-medium")?.textContent ?? "";
-            const buildDate = selectedBtn?.querySelector(".text-Galactic Fruit-muted span:first-child")?.textContent ?? "";
+            const buildDate = selectedBtn?.querySelector(".text-galactic-fruit-muted span:first-child")?.textContent ?? "";
 
             const setBuildName = document.getElementById("sets-build-name");
             const setBuildMeta = document.getElementById("sets-build-meta");
@@ -625,18 +625,18 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                 <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-all cursor-pointer group" onclick="selectSet('${set.id}')">
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <h3 class="text-white font-semibold group-hover:text-Galactic Fruit-accent transition-colors">${set.name}</h3>
-                            <p class="text-xs text-Galactic Fruit-muted mt-1">${set.description}</p>
+                            <h3 class="text-white font-semibold group-hover:text-galactic-fruit-accent transition-colors">${set.name}</h3>
+                            <p class="text-xs text-galactic-fruit-muted mt-1">${set.description}</p>
                         </div>
                         <div class="text-right">
                             <div class="text-2xl font-bold ${passRate === 100 ? 'text-green-400' : passRate >= 80 ? 'text-yellow-400' : 'text-red-400'}">${passRate}%</div>
-                            <div class="text-xs text-Galactic Fruit-muted">Pass Rate</div>
+                            <div class="text-xs text-galactic-fruit-muted">Pass Rate</div>
                         </div>
                     </div>
                     <div class="flex gap-4 text-xs">
                         <div class="flex items-center gap-1">
                             <span class="w-2 h-2 rounded-full bg-white/20"></span>
-                            <span class="text-Galactic Fruit-muted">Total:</span>
+                            <span class="text-galactic-fruit-muted">Total:</span>
                             <span class="text-white font-medium">${total}</span>
                         </div>
                         <div class="flex items-center gap-1">
@@ -686,7 +686,7 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
             // Update header
             const selectedBtn = document.querySelector(`.build-item[data-id="${currentBuildId}"]`);
             const buildName = selectedBtn?.querySelector(".font-medium")?.textContent ?? "";
-            const buildDate = selectedBtn?.querySelector(".text-Galactic Fruit-muted span:first-child")?.textContent ?? "";
+            const buildDate = selectedBtn?.querySelector(".text-galactic-fruit-muted span:first-child")?.textContent ?? "";
 
             const selectedBuildName = document.getElementById("selected-build-name");
             const selectedSetName = document.getElementById("selected-set-name");
@@ -724,14 +724,14 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                         <tr class="test-case-row hover:bg-white/5 cursor-pointer transition-colors group" 
                             data-id="${tc.id}" 
                             data-set-id="${setId}">
-                            <td class="px-6 py-4 font-mono text-Galactic Fruit-muted group-hover:text-white">${tc.id}</td>
+                            <td class="px-6 py-4 font-mono text-galactic-fruit-muted group-hover:text-white">${tc.id}</td>
                             <td class="px-6 py-4 font-medium text-white">${tc.name}</td>
                             <td class="px-6 py-4">
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${statusColors[tc.status] || statusColors['Fail']}">
                                     ${tc.status}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 text-Galactic Fruit-muted truncate max-w-xs">${tc.notes || '-'}</td>
+                            <td class="px-6 py-4 text-galactic-fruit-muted truncate max-w-xs">${tc.notes || '-'}</td>
                         </tr>
                     `;
                 }).join('');
@@ -837,19 +837,19 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
             if (stepsContainer) {
                 stepsContainer.innerHTML = testCaseDef.steps.map((step: any) => `
                     <div class="relative">
-                        <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-Galactic Fruit-panel border border-white/20 flex items-center justify-center text-xs text-Galactic Fruit-muted font-mono">
+                        <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-galactic-fruit-panel border border-white/20 flex items-center justify-center text-xs text-galactic-fruit-muted font-mono">
                             ${step.step}
                         </div>
                         <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 hover:border-white/10 transition-colors">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Action</div>
+                                    <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-1">Action</div>
                                     <div class="text-sm text-white">${step.action}</div>
                                     ${step.testData ? `<div class="mt-2 text-xs text-blue-300 font-mono">Data: ${step.testData}</div>` : ''}
                                 </div>
                                 <div>
-                                    <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Expected Result</div>
-                                    <div class="text-sm text-Galactic Fruit-text">${step.expected}</div>
+                                    <div class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-1">Expected Result</div>
+                                    <div class="text-sm text-galactic-fruit-text">${step.expected}</div>
                                 </div>
                             </div>
                         </div>
@@ -905,7 +905,7 @@ const defects = Object.values(defectsGlob).map((file: any) => file.default || fi
                 if (defectNotes) {
                     if (defectMatch) {
                         const defectId = defectMatch[1];
-                        defectNotes.innerHTML = `${notes.replace(defectId, "")} <a href="${baseSlash}defects/${defectId}" class="text-Galactic Fruit-accent hover:underline font-mono ml-1">${defectId} ↗</a>`;
+                        defectNotes.innerHTML = `${notes.replace(defectId, "")} <a href="${baseSlash}defects/${defectId}" class="text-galactic-fruit-accent hover:underline font-mono ml-1">${defectId} ↗</a>`;
                     } else {
                         defectNotes.textContent = notes || "Test failed. No defect ID linked.";
                     }

@@ -7,7 +7,7 @@ const { builds } = Astro.props;
 ---
 
 <div class="space-y-2">
-    <h3 class="text-xs font-semibold text-Galactic Fruit-muted uppercase tracking-wider mb-3 px-2">Executions</h3>
+    <h3 class="text-xs font-semibold text-galactic-fruit-muted uppercase tracking-wider mb-3 px-2">Executions</h3>
     <div class="space-y-1">
         {builds.map((build) => (
             <button
@@ -15,20 +15,20 @@ const { builds } = Astro.props;
                 data-id={build.id}
             >
                 <div class="flex justify-between items-center mb-1">
-                    <span class="font-medium text-white group-hover:text-Galactic Fruit-accent transition-colors">{build.name}</span>
+                    <span class="font-medium text-white group-hover:text-galactic-fruit-accent transition-colors">{build.name}</span>
                     <span class={`text-[10px] px-2 py-0.5 rounded-full border ${
                         build.status === 'Completed' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
                     }`}>
                         {build.status}
                     </span>
                 </div>
-                <div class="flex justify-between items-center text-xs text-Galactic Fruit-muted">
+                <div class="flex justify-between items-center text-xs text-galactic-fruit-muted">
                     <span>{build.date}</span>
                     <span>Pass Rate: <span class={build.passRate >= 90 ? 'text-green-400' : 'text-yellow-400'}>{build.passRate}%</span></span>
                 </div>
                 
                 <!-- Active indicator (hidden by default) -->
-                <div class="active-indicator absolute left-0 top-0 bottom-0 w-1 bg-Galactic Fruit-accent opacity-0 transition-opacity"></div>
+                <div class="active-indicator absolute left-0 top-0 bottom-0 w-1 bg-galactic-fruit-accent opacity-0 transition-opacity"></div>
             </button>
         ))}
     </div>

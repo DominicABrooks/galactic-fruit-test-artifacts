@@ -1,0 +1,36 @@
+{
+    "id": "TC-NEUROS-003",
+    "name": "Verify Neuros Lore: Galactic Fruit",
+    "description": "Validates that the 'Galactic Fruit' command returns the correct lore text.",
+    "testObjective": "Ensure typing 'Galactic Fruit' returns the expected narrative text about the corporation.",
+    "priority": "Medium",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-07",
+    "lastModified": "2025-12-07",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Build 3049470",
+    "derivedFeature": "Neuros Lore Entries",
+    "preconditions": [
+        "Neuros terminal is open",
+        "CLI is active"
+    ],
+    "testData": {
+        "command": "Galactic Fruit"
+    },
+    "steps": [
+        {
+            "step": 1,
+            "action": "Type 'Galactic Fruit' and press Enter.",
+            "expected": "Prints text: 'Galactic Fruit: Intergalactic Corporation. Due to their monopoly on the fruit trade, this corporation has amassed more wealth than the Fabrican Royal Family.'"
+        }
+    ],
+    "postconditions": [
+        "Lore entry displayed correctly"
+    ],
+    "tags": [
+        "neuros",
+        "lore",
+        "galactic-fruit"
+    ]
+}

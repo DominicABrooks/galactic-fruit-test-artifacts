@@ -1,0 +1,44 @@
+{
+    "id": "TC-NEUROS-001",
+    "name": "Verify Neuros Terminal Visuals and Activation",
+    "description": "Validates the visual appearance and activation mechanism of the Neuros terminal in Region 0b.",
+    "testObjective": "Ensure the Neuros terminal displays correct visual elements and activates via standard interaction keys.",
+    "priority": "High",
+    "type": "Functional",
+    "author": "Dominic Brooks",
+    "createdDate": "2025-12-07",
+    "lastModified": "2025-12-07",
+    "estimatedExecutionTime": "2 minutes",
+    "environment": "Build 3049470",
+    "derivedFeature": "Neuros Terminal Interaction",
+    "preconditions": [
+        "Player is in Region 0b",
+        "Player is in the cabin/cockpit"
+    ],
+    "testData": {},
+    "steps": [
+        {
+            "step": 1,
+            "action": "Locate the Neuros terminal on the left side of the cabin.",
+            "expected": "Terminal is visible."
+        },
+        {
+            "step": 2,
+            "action": "Observe the terminal's visual elements.",
+            "expected": "Displays 'Neuros' in red text, '301E' in white subtext, and a crudely drawn star spinning above it."
+        },
+        {
+            "step": 3,
+            "action": "Interact with the screen using [LMB] or [E].",
+            "expected": "Neuros terminal interface opens."
+        }
+    ],
+    "postconditions": [
+        "Neuros CLI is displayed"
+    ],
+    "tags": [
+        "neuros",
+        "visuals",
+        "interaction"
+    ]
+}

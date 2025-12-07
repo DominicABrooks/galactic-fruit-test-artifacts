@@ -56,13 +56,13 @@ const isTestingActive = navStructure
 ---
 
 <aside
-    class="w-64 h-screen bg-Galactic Fruit-panel border-r border-white/5 fixed left-0 top-0 overflow-y-auto z-50 hidden md:block flex flex-col"
+    class="w-64 h-screen bg-galactic-fruit-panel border-r border-white/5 fixed left-0 top-0 overflow-y-auto z-50 hidden md:block flex flex-col"
 >
     <div class="p-6">
         <h1 class="text-xl font-bold tracking-tight text-white mb-2">
             Galactic Fruit
         </h1>
-        <p class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-8">
+        <p class="text-xs text-galactic-fruit-muted uppercase tracking-wider mb-8">
             Test Artifacts
         </p>
 
@@ -72,7 +72,7 @@ const isTestingActive = navStructure
                     if (item.children) {
                         return (
                             <details class="group" open={isTestingActive}>
-                                <summary class="flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-Galactic Fruit-muted hover:text-white hover:bg-white/5 cursor-pointer transition-colors select-none">
+                                <summary class="flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium text-galactic-fruit-muted hover:text-white hover:bg-white/5 cursor-pointer transition-colors select-none">
                                     <span class="flex items-center gap-3">
                                         <span set:html={item.icon} />
                                         {item.name}
@@ -99,7 +99,7 @@ const isTestingActive = navStructure
                                                 "block px-3 py-2 rounded-md text-sm transition-all duration-200 whitespace-nowrap truncate",
                                                 normalizedCurrent === child.path
                                                     ? "text-white bg-white/10 font-medium"
-                                                    : "text-Galactic Fruit-muted hover:text-white hover:bg-white/5",
+                                                    : "text-galactic-fruit-muted hover:text-white hover:bg-white/5",
                                             ]}
                                         >
                                             {child.name}
@@ -115,8 +115,8 @@ const isTestingActive = navStructure
                                 class:list={[
                                     "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
                                     normalizedCurrent === item.path
-                                        ? "bg-Galactic Fruit-accent/10 text-Galactic Fruit-accent border border-Galactic Fruit-accent/20 shadow-[0_0_15px_rgba(59,130,246,0.1)]"
-                                        : "text-Galactic Fruit-muted hover:text-white hover:bg-white/5",
+                                        ? "bg-galactic-fruit-accent/10 text-galactic-fruit-accent border border-galactic-fruit-accent/20 shadow-[0_0_15px_rgba(59,130,246,0.1)]"
+                                        : "text-galactic-fruit-muted hover:text-white hover:bg-white/5",
                                 ]}
                             >
                                 <span set:html={item.icon} />
@@ -132,13 +132,13 @@ const isTestingActive = navStructure
     <div class="mt-auto p-6 border-t border-white/5">
         <div class="flex items-center gap-3">
             <div
-                class="w-8 h-8 rounded-full bg-Galactic Fruit-accent flex items-center justify-center text-xs font-bold text-white"
+                class="w-8 h-8 rounded-full bg-galactic-fruit-accent flex items-center justify-center text-xs font-bold text-white"
             >
                 QA
             </div>
             <div>
                 <p class="text-sm font-medium text-white">QA Team</p>
-                <p class="text-xs text-Galactic Fruit-muted">v1.0.0</p>
+                <p class="text-xs text-galactic-fruit-muted">v1.0.0</p>
             </div>
         </div>
     </div> -->

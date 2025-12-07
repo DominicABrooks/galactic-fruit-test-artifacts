@@ -1,16 +1,15 @@
 /**
- * Example Test Spec: Basic Movement Test
+ * Enter Ship Test
  * 
- * This spec tests basic character movement by first turning 90 degrees right,
- * then moving, picking up the suit, and entering the ship.
+ * Tests the character's ability to enter the ship after picking up the suit.
  */
 
 const { input, screen, utils } = require('../lib');
 
 module.exports = {
     // Test metadata
-    name: 'Basic Movement Test',
-    description: 'Verify character can turn, move, pick up suit, and enter ship',
+    name: 'Enter Ship Test',
+    description: 'Verify character can enter the ship after picking up the suit',
 
     // Optional: Override config settings
     // exePath: "C:\\Path\\To\\Game.exe",
