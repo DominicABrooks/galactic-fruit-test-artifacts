@@ -39,6 +39,11 @@
             "id": "confirmation-tests",
             "name": "Confirmation Suite",
             "description": "Defect verification and regression tests"
+        },
+        {
+            "id": "neuros",
+            "name": "Neuros Tests",
+            "description": "Neuros validation tests"
         }
     ]
 }
