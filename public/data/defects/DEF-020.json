@@ -1,0 +1,19 @@
+{
+    "id": "DEF-020",
+    "summary": "Can start authorization while ship powering on",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build",
+    "reporter": "Dominic Brooks",
+    "date": "2025-12-07",
+    "description": "The authorization modal can be opened while the ship is powering on.",
+    "steps": [
+        "1. Get suit, go up ladder to cockpit",
+        "2. Click red button to power on ship",
+        "3. While blue progress bar is visible, interact with terminal",
+        "4. Click [E], observe 'Authorization' terminal modal opens"
+    ],
+    "expected": "Authorization modal should not open while ship is powering on",
+    "actual": "Authorization modal opens while ship is powering on",
+    "attachments": []
+}
