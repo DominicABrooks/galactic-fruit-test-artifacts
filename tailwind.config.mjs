@@ -5,11 +5,11 @@ export default {
         extend: {
             colors: {
                 // Custom colors for Galactic Fruit theme
-                'eoe-dark': '#0a0a0c',
-                'eoe-panel': '#131316',
-                'eoe-accent': '#3b82f6', // Blue for now, can adjust
-                'eoe-text': '#e2e8f0',
-                'eoe-muted': '#94a3b8',
+                'Galactic Fruit-dark': '#0a0a0c',
+                'Galactic Fruit-panel': '#131316',
+                'Galactic Fruit-accent': '#3b82f6', // Blue for now, can adjust
+                'Galactic Fruit-text': '#e2e8f0',
+                'Galactic Fruit-muted': '#94a3b8',
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],

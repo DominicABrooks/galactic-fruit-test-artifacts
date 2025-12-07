@@ -16,7 +16,7 @@ const { id } = Astro.params;
 
 <MainLayout title={`Defect ${id}`} currentPath="/test-execution">
         <div class="mb-8">
-            <button onclick="history.back()" class="text-eoe-muted hover:text-white flex items-center gap-2 text-sm transition-colors bg-transparent border-none cursor-pointer">
+            <button onclick="history.back()" class="text-Galactic Fruit-muted hover:text-white flex items-center gap-2 text-sm transition-colors bg-transparent border-none cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                 </svg>
@@ -24,13 +24,13 @@ const { id } = Astro.params;
             </button>
         </div>
     <div
-        class="max-w-4xl mx-auto space-y-6 text-eoe-muted"
+        class="max-w-4xl mx-auto space-y-6 text-Galactic Fruit-muted"
         id="defect-container"
     >
         <!-- Loading State -->
         <div id="loading" class="text-center py-12">
             <div
-                class="animate-spin rounded-full h-8 w-8 border-b-2 border-eoe-accent mx-auto mb-4"
+                class="animate-spin rounded-full h-8 w-8 border-b-2 border-Galactic Fruit-accent mx-auto mb-4"
             >
             </div>
             <p>Loading defect data...</p>
@@ -40,7 +40,7 @@ const { id } = Astro.params;
         <div id="content" class="hidden space-y-6">
             <!-- Header -->
             <div
-                class="bg-eoe-panel border border-white/5 rounded-xl p-6 flex justify-between items-start"
+                class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6 flex justify-between items-start"
             >
                 <div>
                     <div class="flex items-center gap-3 mb-2">
@@ -57,7 +57,7 @@ const { id } = Astro.params;
                     <h2 class="text-lg text-white/90" id="defect-summary"></h2>
                 </div>
                 <div class="text-right text-sm">
-                    <div class="text-eoe-muted">Severity</div>
+                    <div class="text-Galactic Fruit-muted">Severity</div>
                     <div class="text-red-400 font-medium" id="defect-severity">
                     </div>
                 </div>
@@ -65,7 +65,7 @@ const { id } = Astro.params;
 
             <!-- Details Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6">
                     <h3
                         class="text-white font-medium mb-4 border-b border-white/5 pb-2"
                     >
@@ -86,7 +86,7 @@ const { id } = Astro.params;
                         </div>
                     </dl>
                 </div>
-                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6">
                     <h3
                         class="text-white font-medium mb-4 border-b border-white/5 pb-2"
                     >
@@ -99,7 +99,7 @@ const { id } = Astro.params;
             </div>
 
             <!-- Description & Steps -->
-            <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+            <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6">
                 <h3 class="text-white font-medium mb-4">Description</h3>
                 <p class="text-sm mb-6" id="defect-desc"></p>
 
@@ -114,7 +114,7 @@ const { id } = Astro.params;
 
             <!-- Expected vs Actual -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6">
                     <h3
                         class="text-green-400 font-medium mb-2 text-sm uppercase tracking-wider"
                     >
@@ -122,7 +122,7 @@ const { id } = Astro.params;
                     </h3>
                     <p class="text-sm" id="defect-expected"></p>
                 </div>
-                <div class="bg-eoe-panel border border-white/5 rounded-xl p-6">
+                <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl p-6">
                     <h3
                         class="text-red-400 font-medium mb-2 text-sm uppercase tracking-wider"
                     >
@@ -189,7 +189,7 @@ const { id } = Astro.params;
             <div class="flex items-center gap-3 p-2 bg-white/5 rounded border border-white/10">
               <div>
                 <div class="text-white text-xs font-medium">${val(att.name)}</div>
-                <div class="text-eoe-muted text-[10px]">${val(att.description)}</div>
+                <div class="text-Galactic Fruit-muted text-[10px]">${val(att.description)}</div>
               </div>
             </div>
           `)

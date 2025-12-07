@@ -57,15 +57,15 @@ const BASE = import.meta.env.BASE_URL || "/";
                     </svg>
                     <h2 class="text-xl font-bold text-white mb-2">Test Case Not Found</h2>
                     <p class="text-red-400">{errorMessage}</p>
-                    <button onclick="window.history.back()" class="inline-block mt-4 px-6 py-2 bg-eoe-accent hover:bg-blue-600 text-white font-medium rounded-lg transition-colors cursor-pointer">
+                    <button onclick="window.history.back()" class="inline-block mt-4 px-6 py-2 bg-Galactic Fruit-accent hover:bg-blue-600 text-white font-medium rounded-lg transition-colors cursor-pointer">
                         Go Back
                     </button>
                 </div>
             </div>
         ) : testCaseDef && (
-            <div class="bg-eoe-panel border border-white/5 rounded-xl overflow-hidden flex flex-col h-full">
+            <div class="bg-Galactic Fruit-panel border border-white/5 rounded-xl overflow-hidden flex flex-col h-full">
                 <div class="p-6 border-b border-white/5 flex items-center gap-4 bg-white/[0.02]">
-                    <button onclick="window.history.back()" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-eoe-muted hover:text-white cursor-pointer">
+                    <button onclick="window.history.back()" class="p-2 hover:bg-white/10 rounded-lg transition-colors text-Galactic Fruit-muted hover:text-white cursor-pointer">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
@@ -73,7 +73,7 @@ const BASE = import.meta.env.BASE_URL || "/";
                     <div>
                         <h2 class="text-xl font-bold text-white">{testCaseDef.name}</h2>
                         <div class="flex items-center gap-3 mt-1">
-                            <span class="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-eoe-muted">{testCaseDef.id}</span>
+                            <span class="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-Galactic Fruit-muted">{testCaseDef.id}</span>
                         </div>
                     </div>
                 </div>
@@ -82,11 +82,11 @@ const BASE = import.meta.env.BASE_URL || "/";
                         <!-- Test Case Metadata -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 max-h-40 flex flex-col">
-                                <h4 class="text-xs text-eoe-muted uppercase tracking-wider mb-2 flex-shrink-0">Description</h4>
+                                <h4 class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-2 flex-shrink-0">Description</h4>
                                 <p class="text-sm text-white overflow-y-auto custom-scrollbar flex-1">{testCaseDef.description || '-'}</p>
                             </div>
                             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 max-h-40 flex flex-col">
-                                <h4 class="text-xs text-eoe-muted uppercase tracking-wider mb-2 flex-shrink-0">Test Objective</h4>
+                                <h4 class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-2 flex-shrink-0">Test Objective</h4>
                                 <p class="text-sm text-white overflow-y-auto custom-scrollbar flex-1">{testCaseDef.testObjective || '-'}</p>
                             </div>
                         </div>
@@ -94,19 +94,19 @@ const BASE = import.meta.env.BASE_URL || "/";
                         <!-- Metadata Grid -->
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Priority</div>
+                                <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Priority</div>
                                 <div class="text-sm font-medium text-white">{testCaseDef.priority || '-'}</div>
                             </div>
                             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Type</div>
+                                <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Type</div>
                                 <div class="text-sm font-medium text-white">{testCaseDef.type || '-'}</div>
                             </div>
                             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Author</div>
+                                <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Author</div>
                                 <div class="text-sm font-medium text-white">{testCaseDef.author || '-'}</div>
                             </div>
                             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-3 text-center">
-                                <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Est. Time</div>
+                                <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Est. Time</div>
                                 <div class="text-sm font-medium text-white">{testCaseDef.estimatedExecutionTime || '-'}</div>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ const BASE = import.meta.env.BASE_URL || "/";
                         <!-- Test Data -->
                         {testCaseDef.testData && Object.keys(testCaseDef.testData).length > 0 && (
                             <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
-                                <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-3">Test Data</h3>
+                                <h3 class="text-sm font-semibold text-Galactic Fruit-muted uppercase tracking-wider mb-3">Test Data</h3>
                                 <div class="font-mono text-xs bg-black/40 rounded p-4 overflow-auto custom-scrollbar max-h-60">
                                     {JSON.stringify(testCaseDef.testData, null, 2)}
                                 </div>
@@ -145,26 +145,26 @@ const BASE = import.meta.env.BASE_URL || "/";
 
                         <!-- Test Steps -->
                         <div>
-                            <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-4">Test Steps</h3>
+                            <h3 class="text-sm font-semibold text-Galactic Fruit-muted uppercase tracking-wider mb-4">Test Steps</h3>
                             <div class="space-y-4">
                                 <div class="relative border-l-2 border-white/10 ml-3 pl-8 space-y-8 py-2">
                                     {testCaseDef.steps.map((step: any) => (
                                         <div class="relative">
-                                            <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-eoe-panel border border-white/20 flex items-center justify-center text-xs text-eoe-muted font-mono">
+                                            <div class="absolute -left-[41px] top-0 w-6 h-6 rounded-full bg-Galactic Fruit-panel border border-white/20 flex items-center justify-center text-xs text-Galactic Fruit-muted font-mono">
                                                 {step.step}
                                             </div>
                                             <div class="bg-white/[0.02] border border-white/5 rounded-lg p-4 hover:border-white/10 transition-colors">
                                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                     <div>
-                                                        <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Action</div>
+                                                        <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Action</div>
                                                         <div class="text-sm text-white">{step.action}</div>
                                                         {step.testData && (
                                                             <div class="mt-2 text-xs text-blue-300 font-mono">Data: {step.testData}</div>
                                                         )}
                                                     </div>
                                                     <div>
-                                                        <div class="text-xs text-eoe-muted uppercase tracking-wider mb-1">Expected Result</div>
-                                                        <div class="text-sm text-eoe-text">{step.expected}</div>
+                                                        <div class="text-xs text-Galactic Fruit-muted uppercase tracking-wider mb-1">Expected Result</div>
+                                                        <div class="text-sm text-Galactic Fruit-text">{step.expected}</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -199,7 +199,7 @@ const BASE = import.meta.env.BASE_URL || "/";
                         <!-- Tags -->
                         {testCaseDef.tags && testCaseDef.tags.length > 0 && (
                             <div>
-                                <h3 class="text-sm font-semibold text-eoe-muted uppercase tracking-wider mb-3">Tags</h3>
+                                <h3 class="text-sm font-semibold text-Galactic Fruit-muted uppercase tracking-wider mb-3">Tags</h3>
                                 <div class="flex flex-wrap gap-2">
                                     {testCaseDef.tags.map((tag: string) => (
                                         <span class="text-xs bg-purple-500/10 text-purple-300 px-3 py-1 rounded-full border border-purple-500/20">

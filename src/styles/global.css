@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-eoe-dark text-eoe-text antialiased;
+    @apply bg-Galactic Fruit-dark text-Galactic Fruit-text antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
   
@@ -13,12 +13,12 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-eoe-dark;
+    @apply bg-Galactic Fruit-dark;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-eoe-panel rounded-full border border-eoe-dark;
+    @apply bg-Galactic Fruit-panel rounded-full border border-Galactic Fruit-dark;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-eoe-muted;
+    @apply bg-Galactic Fruit-muted;
   }
 }

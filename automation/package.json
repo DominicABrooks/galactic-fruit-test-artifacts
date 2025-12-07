@@ -1,0 +1,13 @@
+{
+    "name": "Galactic Fruit-automation",
+    "version": "1.0.0",
+    "description": "Nut.js automation framework for Echoes of Exile testing",
+    "main": "runner.js",
+    "scripts": {
+        "test": "node runner.js movement-test.js",
+        "test:all": "node runner.js --all"
+    },
+    "dependencies": {
+        "@nut-tree-fork/nut-js": "^4.2.6"
+    }
+}
