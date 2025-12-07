@@ -1,0 +1,18 @@
+{
+    "id": "DEF-019",
+    "summary": "Typo in Ladagocia lore text",
+    "severity": "Low",
+    "status": "Open",
+    "environment": "Steam Client Build",
+    "reporter": "Dominic Brooks",
+    "date": "2025-12-07",
+    "description": "The lore text for 'Ladagocia' contains a homophone error.",
+    "steps": [
+        "1. Open Neuros",
+        "2. Type 'Ladagocia' into the CLI",
+        "3. Observe the text starting with 'Their they found...'"
+    ],
+    "expected": "Text should read 'There they found...'",
+    "actual": "Text reads 'Their they found...'",
+    "attachments": []
+}
