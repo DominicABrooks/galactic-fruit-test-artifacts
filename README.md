@@ -5,4 +5,6 @@ Automation - <br/>Nut.js
 
 ![automation-compress](https://github.com/user-attachments/assets/0d47c635-0ba4-481c-821b-74e35926d063)
 
-![Neuros Automation](https://files.catbox.moe/j8ym8e.gif)
+<p align="center">
+  <img src="https://files.catbox.moe/j8ym8e.gif" />
+</p>
